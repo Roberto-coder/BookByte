@@ -10,12 +10,13 @@ const __dirname = (process.platform === "win32")
 const app = express();
 
 // Middleware
-
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 // Otros middleware que necesites...
 
 // Definir las rutas
 app.get('/', (req, res) => {
-    res.send('¡Hola, mundo!');
+    res.render("index");
 });
 
 // Definir más rutas y controladores según sea necesario...
