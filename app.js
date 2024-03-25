@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Definir más rutas y controladores según sea necesario...
-//app.use('/',loginruta);
+app.use('/',loginruta);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
