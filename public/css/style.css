@@ -19,6 +19,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
   }
   
   .left-content {
@@ -32,4 +33,13 @@ body{
   .right-content a {
     margin-left: 20px; /* Ajusta el margen entre los enlaces */
   }
+
+  h1{
+    text-align: center;
+  }
   
+  .ul{
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+  }

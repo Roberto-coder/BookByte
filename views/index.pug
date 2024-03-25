@@ -7,19 +7,22 @@ html(lang="es")
     title Home
     link(rel="stylesheet", href="/css/style.css")
   body
-    header(class="header") 
+    header(class="header")
       div.left-content
-        h1 Librería
+        h1 Logo de la Librería
       div.right-content 
         a(href="/login") Iniciar sesión
         a(href="/cart") Carrito
 
+  main(class="main")
+    h2 Bienvenido a Mi Página
+    ul(class="ul")
+      li
+        a(href="/libros") LIBROS
+      li
+        a(href="/descuentos") DESCUENTOS
+      li
+        a(href="/ebooks") EBOOKS
 
-    main
-      block content // Este bloque se reemplazará en las plantillas específicas
-
-        h2 Bienvenido a Mi Página
-        p Contenido principal de la página.
-
-    footer
-      p © 2024 Mi Página
+  footer
+    p © 2024 Mi Página
