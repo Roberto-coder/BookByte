@@ -7,17 +7,18 @@ html(lang="es")
     title Home
     link(rel="stylesheet", href="/css/style.css")
   body
-    header
-      // Aquí está el contenido del encabezado
+    header(class="header") 
       div.left-content
         h1 Librería
+      div.right-content 
         a(href="/login") Iniciar sesión
         a(href="/cart") Carrito
 
-      h2 Bienvenido a Mi Página
 
     main
       block content // Este bloque se reemplazará en las plantillas específicas
+
+        h2 Bienvenido a Mi Página
         p Contenido principal de la página.
 
     footer

@@ -1,3 +1,35 @@
-body{
-    background-color: red;
+html{
+    font-size: 16px;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left-content {
+    flex-grow: 1; /* Para que el título Librería ocupe el espacio restante */
+  }
+  
+  .right-content {
+    display: flex;
+  }
+  
+  .right-content a {
+    margin-left: 20px; /* Ajusta el margen entre los enlaces */
+  }
+  
