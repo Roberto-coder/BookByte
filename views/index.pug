@@ -1,9 +1,24 @@
+// layout.pug (la plantilla base)
+
 doctype html
-html(lang="en")
+html(lang="es")
   head
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title #{title}
+    title Home
+    link(rel="stylesheet", href="/css/style.css")
   body
-    h1 #{message}
-    p ¡Esta es una página de prueba con Pug!
+    header
+      // Aquí está el contenido del encabezado
+      div.left-content
+        h1 Librería
+        a(href="/login") Iniciar sesión
+        a(href="/cart") Carrito
+
+      h2 Bienvenido a Mi Página
+
+    main
+      block content // Este bloque se reemplazará en las plantillas específicas
+        p Contenido principal de la página.
+
+    footer
+      p © 2024 Mi Página
