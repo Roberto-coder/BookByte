@@ -6,14 +6,19 @@ html(lang="es")
     link(rel="stylesheet", href="/css/style.css")
   body
     header(class="header")
-      div.left-content
-        h1.logo Logo de la Librería
-      div.right-content 
-        a(href="/login") Iniciar sesión
-        a(href="/cart") Carrito
+  div.left-content
+    h1.section-title
+      | BOOK 
+      samp.byte byte
+
+  div.right-content 
+    div(class="nav-links")
+      a(href="/login") Iniciar sesión
+      a(href="/cart") Carrito
+
 
     main(class="main")
-      h2 Bienvenido a {nombre de la librería}
+      h2 Bienvenidx a BOOK byte
       div(class="container")
         ul(class="ul")
           li
