@@ -6,14 +6,19 @@ html(lang="es")
     link(rel="stylesheet", href="/css/style.css")
   body
     header(class="header")
-      div.left-content
-        h1.logo Logo de la Librería
-      div.right-content 
-        a(href="/login") Iniciar sesión
-        a(href="/cart") Carrito
+  div.left-content
+    h1.section-title
+      | BOOK 
+      samp.byte byte
+
+  div.right-content 
+    div(class="nav-links")
+      a(href="/login") Iniciar sesión
+      a(href="/cart") Carrito
+
 
     main(class="main")
-      h2 Bienvenido a {nombre de la librería}
+      h2 Bienvenidx a BOOK byte
       div(class="container")
         ul(class="ul")
           li
@@ -26,9 +31,16 @@ html(lang="es")
         form(class="form", action="/search", method="post") 
           input(type="text", id="buscar", name="buscar", placeholder="Buscar libros...", required)
 
-      div(class="gallery")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen1")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen2")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen3")
+      div(class="slider-frame")
+        ul
+        li
+          img(src="img/1.jpeg", alt="imagen1")
+        li
+          img(src="img/2.jpg", alt="imagen2")
+        li
+          img(src="img/3.jpg", alt="imagen3")
+        li
+          img(src="img/4.jpg", alt="imagen4")
+
     footer
       p © 2024 Mi Página

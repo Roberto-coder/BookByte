@@ -50,3 +50,93 @@
   font-family: Klavika-Bold-Italic;
   src: url(../fonts/klavika-bold-italic.otf);
 }
+*{
+  margin: 0;
+  padding: 0;
+  font-family: lato;
+}
+.left-content{
+  z-index: 1;
+    background: var(--secondary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    position: relative;
+}
+.section-title {
+  font-size: 5vw;
+  font-family: RC;
+  text-transform: uppercase;
+  background-image: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--secondary);
+  display: flex;
+  position: relative;
+  margin-bottom: 2vh;
+}
+
+samp{
+  position: center;
+  text-transform: lowercase;
+  font-family: ZonaProBold;
+  background-image: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5vw;
+  bottom: -2.2vh;
+  left: 1vw;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 20px;
+}
+
+.slider-frame {
+	width: 1280px;
+    height: auto;
+	margin:50px auto 0;
+	overflow: hidden;
+}
+
+.slider-frame ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	
+	animation: slide 20s infinite alternate ease-in-out;
+}
+
+.slider-frame li {
+	width: 100%;
+	list-style: none;
+}
+
+.slider-frame img {
+	width: 100%;
+}
+@keyframes slide {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+}
