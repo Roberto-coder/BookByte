@@ -50,15 +50,3 @@
   font-family: Klavika-Bold-Italic;
   src: url(../fonts/klavika-bold-italic.otf);
 }
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  background-color: var(--primary);
-  font-family: Klavika;
-}
-
