@@ -3,6 +3,7 @@ import path from "path";
 import flash from "connect-flash";
 import session from "express-session";
 import loginruta from "./rutas/login-ruta.js";
+import pruebasruta from "./rutas/pruebas-ruta.js";
 import passport from "./config/passport.js";
 const __dirname = (process.platform === "win32")
         ? path.resolve()
@@ -35,6 +36,7 @@ app.get('/', (req, res) => {
 
 // Definir más rutas y controladores según sea necesario...
 app.use('/', loginruta);
+app.use('/', pruebasruta);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
