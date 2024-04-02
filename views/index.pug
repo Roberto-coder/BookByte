@@ -31,9 +31,16 @@ html(lang="es")
         form(class="form", action="/search", method="post") 
           input(type="text", id="buscar", name="buscar", placeholder="Buscar libros...", required)
 
-      div(class="gallery")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen1")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen2")
-        img(src="/ruta/a/la/imagen.jpg", alt="imagen3")
+      div(class="slider-frame")
+        ul
+        li
+          img(src="img/1.jpeg", alt="imagen1")
+        li
+          img(src="img/2.jpg", alt="imagen2")
+        li
+          img(src="img/3.jpg", alt="imagen3")
+        li
+          img(src="img/4.jpg", alt="imagen4")
+
     footer
       p © 2024 Mi Página
