@@ -1,21 +1,12 @@
+CREATE DATABASE bookbyte;
 USE bookbyte;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin123';
-
-DROP TABLE IF EXISTS `DETALLE_ORDEN`;
-DROP TABLE IF EXISTS `ORDEN`;
-DROP TABLE IF EXISTS `C_METODO_PAGO`;
-DROP TABLE IF EXISTS `domicilios`;
-DROP TABLE IF EXISTS `carrito`;
-DROP TABLE IF EXISTS `disponibles`;
-DROP TABLE IF EXISTS `libros`;
-DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users`(
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `apellido` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(15) NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
+  `user_lastname` VARCHAR(45) NOT NULL,
+  `user_email` VARCHAR(45) NOT NULL,
+  `user_password` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
