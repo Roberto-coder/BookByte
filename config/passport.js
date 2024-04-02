@@ -9,7 +9,7 @@ passport.use(new LocalStrategy(
                 return done(error);
             }
             if (results.length === 0) {
-                return done(null, false, { message: 'Usuario o contraseña incorrectos' }); // Usuario no encontrado
+                return done(null, false, { error: 'Usuario o contraseña incorrectos' }); // Usuario no encontrado
             }
             const user = results[0];
             bcrypt.compare(password, user.user_password, function(err, result) {
@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
                 if (result) {
                     return done(null, { id: user.id, name: user.user_name});
                 } else {
-                    return done(null, false, { message: 'Usuario o contraseña incorrectos' });
+                    return done(null, false, { error: 'Usuario o contraseña incorrectos' });
                 }
             });
         });

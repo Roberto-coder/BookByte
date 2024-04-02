@@ -30,6 +30,10 @@ html(lang="es")
               div.input-block
                 label(for="login-password") Contraseña
                 input#login-password(type="password", name="login_password", required)
+              if error_msg.length > 0
+                    .error
+                        each err in error_msg
+                            p Usuario y/o contraseña incorrectos #{ err }
             button.btn-login#btn-login(type="submit") Iniciar Sesión
 
         div.form-wrapper
@@ -41,10 +45,10 @@ html(lang="es")
               legend Por favor ingresa tu correo electrónico, tu contraseña y confirma tu contraseña para registrarte.
               div.input-block
                 label(for="signup-user-name") Nombre 
-                input#signup-user-name(type="text", name="signup_user_name", required)
+                input#signup-user-name(type="text", name="signup_name", required)
               div.input-block
                 label(for="signup-user-name") Apellido
-                input#signup-user-name(type="text", name="signup_user_name", required)
+                input#signup-user-name(type="text", name="signup_lastname", required)
               div.input-block
                 label(for="signup-email") Correo electrónico
                 input#signup-email(type="email", name="signup_email", required)
