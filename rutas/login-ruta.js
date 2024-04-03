@@ -15,6 +15,9 @@ router.get('/login',(req,res)=>{
     const error_msg = req.flash('error'); // Obtiene el mensaje de error
     res.render('login', { error_msg });
 });
+router.get('/compras', (req, res) =>{
+    
+});
 router.post('/signup', async (req, res) => {
     try {
         const { signup_name, signup_lastname, signup_email, signup_password } = req.body;

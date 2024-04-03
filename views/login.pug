@@ -1,60 +1,60 @@
 html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="css/style.css")
-    link(rel="stylesheet", href="css/login.css")
-    title Inicio
-  body
-    // MESSAGES
-    
-    section.login-img
-      div
-        img(src="img/indexlogo.png")
-        
-    section.forms-section
-      h1.section-title BOOK
-        samp byte
-      div.forms
-        div.form-wrapper.is-active
-          button.switcher.switcher-login(type="button")
-            | Iniciar Sesión
-            span.underline
-          form.form.form-login(action="/signin", method="POST")
-            fieldset
-              legend Por favor ingresa tu correo electrónico y tu contraseña para iniciar sesión
-              div.input-block
-                label(for="login-email") Correo electrónico
-                input#login-email(type="email", name="login_email", required)
-              div.input-block
-                label(for="login-password") Contraseña
-                input#login-password(type="password", name="login_password", required)
-              if error_msg.length > 0
-                    .error
-                        each err in error_msg
-                            p Usuario y/o contraseña incorrectos #{ err }
-            button.btn-login#btn-login(type="submit") Iniciar Sesión
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="css/style.css")
+        link(rel="stylesheet", href="css/login.css")
+        title Inicio
+    body
+        // MESSAGES
 
-        div.form-wrapper
-          button.switcher.switcher-signup(type="button")
-            | ¿Nuevo usuario?
-            span.underline
-          form.form.form-signup(action="/signup", method="POST")
-            fieldset
-              legend Por favor ingresa tu correo electrónico, tu contraseña y confirma tu contraseña para registrarte.
-              div.input-block
-                label(for="signup-user-name") Nombre 
-                input#signup-user-name(type="text", name="signup_name", required)
-              div.input-block
-                label(for="signup-user-name") Apellido
-                input#signup-user-name(type="text", name="signup_lastname", required)
-              div.input-block
-                label(for="signup-email") Correo electrónico
-                input#signup-email(type="email", name="signup_email", required)
-              div.input-block
-                label(for="signup-password") Contraseña
-                input#signup-password(type="password", name="signup_password", required)
-            button.btn-signup#btn-signup(type="submit") Crear cuenta
-            
-    script(src="js/login.js")
+        section.login-img
+            div
+                img(src="img/indexlogo.png")
+
+        section.forms-section
+            h1.section-title BOOK
+                samp byte
+            div.forms
+                div.form-wrapper.is-active
+                    button.switcher.switcher-login(type="button")
+                        | Iniciar Sesión
+                        span.underline
+                    form.form.form-login(action="/signin", method="POST")
+                        fieldset
+                            legend Por favor ingresa tu correo electrónico y tu contraseña para iniciar sesión
+                            div.input-block
+                                label(for="login-email") Correo electrónico
+                                input#login-email(type="email", name="login_email", required)
+                            div.input-block
+                                label(for="login-password") Contraseña
+                                input#login-password(type="password", name="login_password", required)
+                            if error_msg.length > 0
+                                .error
+                                    each err in error_msg
+                                        p Usuario y/o contraseña incorrectos #{ err }
+                        button.btn-login#btn-login(type="submit") Iniciar Sesión
+
+                div.form-wrapper
+                    button.switcher.switcher-signup(type="button")
+                        | ¿Nuevo usuario?
+                        span.underline
+                    form.form.form-signup(action="/signup", method="POST")
+                        fieldset
+                            legend Por favor ingresa tu correo electrónico, tu contraseña y confirma tu contraseña para registrarte.
+                            div.input-block
+                                label(for="signup-user-name") Nombre
+                                input#signup-user-name(type="text", name="signup_name", required)
+                            div.input-block
+                                label(for="signup-user-name") Apellido
+                                input#signup-user-name(type="text", name="signup_lastname", required)
+                            div.input-block
+                                label(for="signup-email") Correo electrónico
+                                input#signup-email(type="email", name="signup_email", required)
+                            div.input-block
+                                label(for="signup-password") Contraseña
+                                input#signup-password(type="password", name="signup_password", required)
+                        button.btn-signup#btn-signup(type="submit") Crear cuenta
+
+        script(src="js/login.js")
