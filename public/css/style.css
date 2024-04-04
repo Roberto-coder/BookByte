@@ -10,6 +10,47 @@
   --warning:  #EEAF77;
   --success:  #11AC83;
 }
+/*** LOGO FONTS ***/
+@font-face {
+  font-family: RC;
+  src: url(../fonts/R&C-Demo.otf);
+}
+@font-face {
+  font-family: ZonaProBold;
+  src: url(../fonts/ZonaPro-Bold.otf);
+}
+@font-face {
+  font-family: ZonaPro;
+  src: url(../fonts/ZonaPro-ExtraLight.otf);
+}
+
+/*** TEXT/BODY FONTS ***/
+@font-face {
+  font-family: Klavika;
+  src: url(../fonts/klavika-light.otf);
+}
+@font-face {
+  font-family: Klavika-Italic;
+  src: url(../fonts/klavika-light-italic.otf);
+}
+@font-face {
+  font-family: Klavika-Medium;
+  src: url(../fonts/klavika-medium.otf);
+}
+@font-face {
+  font-family: Klavika-Medium-Italic;
+  src: url(../fonts/klavika-medium-italic.otf);
+}
+@font-face {
+  font-family: Klavika-Bold;
+  src: url(../fonts/klavika-bold.otf);
+}
+@font-face {
+  font-family: Klavika-Bold-Italic;
+  src: url(../fonts/klavika-bold-italic.otf);
+}
+
+/******A PARTIR DE AQUI EMPIEZA EL CARRUSEL*/
 
 .texto {
   position: absolute;
@@ -99,46 +140,4 @@
 .main-container{
   display: flex;
   flex-direction: column;
-}
-
-
-
-/*** LOGO FONTS ***/
-@font-face {
-  font-family: RC;
-  src: url(../fonts/R&C-Demo.otf);
-}
-@font-face {
-  font-family: ZonaProBold;
-  src: url(../fonts/ZonaPro-Bold.otf);
-}
-@font-face {
-  font-family: ZonaPro;
-  src: url(../fonts/ZonaPro-ExtraLight.otf);
-}
-
-/*** TEXT/BODY FONTS ***/
-@font-face {
-  font-family: Klavika;
-  src: url(../fonts/klavika-light.otf);
-}
-@font-face {
-  font-family: Klavika-Italic;
-  src: url(../fonts/klavika-light-italic.otf);
-}
-@font-face {
-  font-family: Klavika-Medium;
-  src: url(../fonts/klavika-medium.otf);
-}
-@font-face {
-  font-family: Klavika-Medium-Italic;
-  src: url(../fonts/klavika-medium-italic.otf);
-}
-@font-face {
-  font-family: Klavika-Bold;
-  src: url(../fonts/klavika-bold.otf);
-}
-@font-face {
-  font-family: Klavika-Bold-Italic;
-  src: url(../fonts/klavika-bold-italic.otf);
 }
