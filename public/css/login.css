@@ -39,7 +39,7 @@ section{
     font-size: 5vw;
     font-family: RC;
     text-transform: uppercase;
-    background-image: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    background-image: -webkit-linear-gradient(315deg, #2b2b73 0%, #009ffd 74%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: var(--secondary);

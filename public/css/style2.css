@@ -19,6 +19,8 @@ body{
     min-height: 100vh;
     background: var(--bg-color);
     color: var(--text-color);
+    align-items: center;
+    justify-content: center;
 }
 
 header{

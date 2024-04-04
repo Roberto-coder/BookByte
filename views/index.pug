@@ -1,3 +1,31 @@
 extends layout
+
 block content
-    body
+  div.main-container
+    div.container-carousel
+      div.carruseles#slider
+        section.slider-section
+          img(src="img/1.jpeg" alt="imagen 1")
+        section.slider-section
+          img(src="img/2.jpg")
+        section.slider-section
+          img(src="img/3.jpg")
+        section.slider-section
+          img(src="img/4.jpg")
+      div.btn-left
+        i(class='bx bx-chevron-left')   
+      div.btn-right
+        i(class='bx bx-chevron-right') 
+      div.texto
+        h2 DESCUENTOS
+        p Descubre nuestros increíbles descuentos!!!! 
+      
+    section.header-feahion
+      div.header-text(style="position: absolute; left: 150px; top: 100px;")
+        h2(style="color: red;") BEST SELLERS
+        h1(style="color: black; font-size: 64px;") 
+          b Encuentra los libros más vendidos
+          hr(style="background-color: #62aabf; height: 1px; border: 0;")
+          | 
+
+  script(src="js/slider.js")
