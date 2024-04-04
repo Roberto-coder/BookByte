@@ -23,8 +23,11 @@ router.post('/signup', async (req, res) => {
         const { signup_name, signup_lastname, signup_email, signup_password } = req.body;
         console.log(req.body);
         const hash = await hashPassword(signup_password);
-        pool.query('INSERT INTO users (user_name, user_lastname, user_email, user_password) VALUES (?, ?, ?, ?)',
-                [signup_name, signup_lastname, signup_email, hash], (error, results) => {
+        pool.query('INSERT INTO users (user_name, user_lastname, user_email, user_password, user_role) VALUES (?, ?, ?, ?, ?)',
+        //0 = admin
+        //1 = empleado
+        //2 = cliente
+                [signup_name, signup_lastname, signup_email, hash, 2], (error, results) => {
                     if (error) {
                         // Manejo de error al intentar guardar en la base de datos
                         res.status(500).send(error);
