@@ -55,9 +55,35 @@ header.header{
     font-size: 1.1rem;
     font-weight: 600;
 }
-.navbar{
-    display: flex;
+.navbar i{
+    position: relative;
 }
+.navbar {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center; 
+    gap: 20px; 
+}
+.navbar li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute; 
+    margin-top: 5px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    background-color: var(--bg-color); 
+    transition: visibility 0.2s, opacity 0.2s ease-in-out;
+}
+
+.navbar li:hover > ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+.navbar li ul li {
+    display: block;
+}
+
 .navbar a{
     color: var(--text-color);
     font-size: 1.7rem;
@@ -67,6 +93,12 @@ header.header{
     margin: 0px 30px;
     transition: all .50s ease;
 }
+
+.navbar li ul li a {
+    padding: 10px;
+    color: #000; /* Submenu item text color */
+    display: block; /* Make the whole area clickable */
+}
 .navbar a:hover{
     color: var(--main-color);
 }
@@ -74,12 +106,11 @@ header.header{
     color: var(--main-color);
 }
 
-.main{
+.mainm{
     display: flex;
-    
     align-items: center;
 }
-.main a{
+.mainm a{
     margin-right: 25px;
     margin-left: 10px;
     color: var(--text-color);
@@ -149,7 +180,7 @@ header.header{
         top:100%;
         right: -100%;
         width: 270px;
-        height: 29vh;
+        height: 30vh;
         background: var(--main-color);
         display: flex;
         flex-direction: column;
@@ -161,7 +192,7 @@ header.header{
     .navbar a{
         display: block;
         margin: 12px 0;
-        padding: 0px 25 ;
+        padding: 0px 25px ;
         transition: all .50s ease;
     }
 
