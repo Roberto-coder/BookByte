@@ -2,8 +2,11 @@ import express from "express";
 import path from "path";
 import flash from "connect-flash";
 import session from "express-session";
+import imagenesRuta from "./rutas/imagenes-ruta.js";
+import indexruta from "./rutas/index-ruta.js";
 import loginruta from "./rutas/login-ruta.js";
 import pruebasruta from "./rutas/pruebas-ruta.js";
+import catalogoruta from "./rutas/catalogo-ruta.js";
 import passport from "./config/passport.js";
 const __dirname = (process.platform === "win32")
         ? path.resolve()
@@ -29,15 +32,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-// Definir las rutas
-app.get('/', (req, res) => {
-    res.render("index");
-});
-
 // Definir más rutas y controladores según sea necesario...
+app.use('/', indexruta);
 app.use('/', loginruta);
 app.use('/', pruebasruta);
-
+app.use('/', catalogoruta);
+app.use('/', imagenesRuta);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
