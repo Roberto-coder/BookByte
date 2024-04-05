@@ -1,7 +1,9 @@
-let menu = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+document.addEventListener('DOMContentLoaded', function() {
+    let menu = document.querySelector('#menu-icon');
+    let navbar = document.querySelector('.navbar');
 
-menu.onClick = () => {
-    menu.classList.toggle('bx-x');
-    navbar.classList.toggle('open')
-}
+    menu.onclick = function() {
+        menu.classList.toggle('bx-x');
+        navbar.classList.toggle('open');
+    };
+});

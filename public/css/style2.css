@@ -71,12 +71,11 @@ header{
     color: var(--main-color);
 }
 
-.main{
+.mainm{
     display: flex;
-    
     align-items: center;
 }
-.main a{
+.mainm a{
     margin-right: 25px;
     margin-left: 10px;
     color: var(--text-color);
@@ -158,7 +157,7 @@ header{
     .navbar a{
         display: block;
         margin: 12px 0;
-        padding: 0px 25 ;
+        padding: 0px 25px ;
         transition: all .50s ease;
     }
 
