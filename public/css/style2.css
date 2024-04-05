@@ -77,10 +77,14 @@ header{
     opacity: 1;
 }
 
-.navbar li ul li {
+.navbar li ul li a {
     display: block;
 }
-
+.sagas{
+    display: block;
+    margin-top: 2px;
+    left: 100%;
+}
 .navbar a{
     color: var(--text-color);
     font-size: 1.7rem;
@@ -194,7 +198,7 @@ header{
         right: -100%;
         width: 290px;
         height: 30vh;
-        background: var(--main-color);
+        background: var(--bg-color);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
