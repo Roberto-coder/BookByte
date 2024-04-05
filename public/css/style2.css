@@ -11,11 +11,10 @@
 :root{
  --bg-color: #ffffff;
  --text-color: #2c0544;
- --main-color: #1737ec;
+ --main-color: #009ffd;
 }
 body{
     display: flex;
-    overflow: hidden;
     min-height: 100vh;
     background: var(--bg-color);
     color: var(--text-color);
@@ -35,6 +34,10 @@ header{
     background: transparent;
     padding: 28px 12%;
     transition: all .50s ease;
+    
+}
+header.header{
+    margin-bottom: 100px;
 }
 
 .logo{
@@ -178,7 +181,12 @@ header{
     src: url(../fonts/BebasNeue-Regular.ttf);
   }
 
-
+  .main-container{
+    margin-top: 150px; /* Ajusta el valor según la altura de tu encabezado */
+    display: flex;
+    flex-direction: column;
+    
+  }
 /******A PARTIR DE AQUI EMPIEZA EL CARRUSEL*/
 
 .texto {
@@ -201,13 +209,16 @@ header{
   .container-carousel {
     position: relative;
     width: 900px;
+    max-width: 100%; /* Ajusta el ancho máximo para que se adapte al tamaño del contenedor */
     height: 350px;
+    max-height: calc(100vh - 200px); /* Ajusta la altura máxima según el espacio disponible */
     background-color: #e0e0e0;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
     border-radius: 15px;
     overflow: hidden;
-  
-  }
+    margin: auto; /* Centra horizontalmente el carrusel */
+}
+
   
   .carruseles {
     width: 400%;
@@ -239,7 +250,7 @@ header{
     padding: 5px;
     font-weight: 700;
     cursor: pointer;
-    color: #fafa00c9;
+    color: #7d7d6bc9;
     transform: translate(0,-50%);
     transition: .5s ease;
     user-select: none;
@@ -270,3 +281,137 @@ header{
     display: flex;
     flex-direction: column;
   }  
+
+/*** Best sellers **/
+.header-feahion{
+    padding-top: 5%;
+}
+.header-feahion h1{
+    color: var(--main-color);
+    font-size: 30px;
+}
+.header-text{
+    position: absolute; 
+    left: 150px; 
+    top: 100px;
+}
+.header-text h1,b{
+    color: black; 
+    font-size: 50px;
+}
+
+  .s_product{
+      position: relative;
+  }
+  .product {
+    margin-bottom: 106px;
+  }
+  .s_product > img {
+    width: 100%;
+  }
+  .s_product h2 {
+    background: #e8eced none repeat scroll 0 0;
+    border-radius: 52%;
+    color: #eec787;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 20px 8px;
+    position: absolute;
+    right: 18px;
+    top: -13px;
+  }
+  .s_product > h3 {
+    background: var(--main-color) none repeat scroll 0 0;
+    bottom: -30px;
+    color: #fff;
+    font-family: "Roboto",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    left: 25%;
+    padding: 13px 38px;
+    position: absolute;
+    text-align: center;
+  }
+  .s_product h4 {
+    background: rgba(0,0,0,.5);
+    bottom: -10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    padding: 20px 0px;
+      font-family: "Roboto",sans-serif;
+      opacity: 0;
+  }
+  .s_product .s_overlay{
+      position: absolute;
+      background: rgba(0,0,0,.4);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      opacity: 0;
+  }
+  .s_product i {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .s_product:hover > .s_overlay{
+      opacity: 1
+  }
+  .s_product:hover > h4{
+      opacity: 1
+  }
+  .s_product:hover > h3{
+      opacity: 0
+  }
+  .rate > h3 {
+    margin: 0;
+    padding-top: 40px;
+      font-size: 18px;
+      font-weight: 400;
+      font-family: "Roboto",sans-serif;
+      color: #3d3d3d;
+  }
+  .rate > p {
+    margin-top: 5px;
+  }
+  .rate > p i {
+    color: #a26503;
+      margin-right: 5px;
+  }
+  .rate > p span i {
+    color: #b8b8b8;
+  }
+  .rate > h5 {
+    margin-top: -3px;
+    padding: 0;
+      font-size: 18px;
+      font-weight: 400;
+      font-family: "Roboto",sans-serif;
+      color: #3d3d3d;
+  }
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+    .col-md-3, .col-md-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+  }
+  @media (min-width: 992px) {
+    .col-md-1, .col-md-2, .col-md-3, .col-md-12 {
+      float: left;
+    }
+    .col-md-12 {
+      width: 100%;
+    }
+    .col-md-3 {
+      width: 25%;
+    }
+  }
+

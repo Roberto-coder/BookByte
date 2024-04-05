@@ -20,11 +20,101 @@ block content
         h2 DESCUENTOS
         p Descubre nuestros increíbles descuentos!!!! 
     section.header-feahion
-      img(src="img/patas.png", alt="")
-      div.header-text(style="position: absolute; left: 150px; top: 100px;")
-      h2(style="color: red;") BEST SELLERS 
-      h1(style="color: black; font-size: 64px;") 
+      div.header-text
+      h1 BEST SELLERS 
+      h2
         b Encuentra los libros más vendidos 
-        hr(style="background-color: #62aabf; height: 1px; border: 0;")
-
+        hr(style="background-color: #62aabf; height: 2px; border: 0;")
+        
+    .related-products
+    .container
+        .row
+            .col-md-12
+                br
+                br
+            .row
+                .col-md-3
+                    .s_product
+                        img(src="img/indigno.jpg", alt="")
+                        .s_overlay
+                        h2(style="color: black;") AGOTADO
+                        h3 EDITORIAL
+                        h4
+                            i.fa.fa-cart-arrow-down(aria-hidden="true")
+                            a(onclick="Agotado()", style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                    .row
+                        .col-md-12
+                            .rate
+                                h3 Indigno de ser humano
+                                p
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                h5 $500.0
+                .col-md-3
+                    .s_product
+                        img(src="img/peste.jpg", alt="peste")
+                        .s_overlay
+                        h2(style="color: red;") CALIENTE
+                        h3 EDITORIAL
+                        h4
+                            i.fa.fa-cart-arrow-down(aria-hidden="true")
+                            a(onclick="AlmacenarUn()", style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                    .row
+                        .col-md-12
+                            .rate
+                                h3 La peste 
+                                p
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                h5 $400.0
+                .col-md-3
+                    .s_product
+                        img(src="img/dune.jpg", alt="")
+                        .s_overlay
+                        h2(style="color: blue;") NUEVO
+                        h3 EDITORIAL
+                        h4
+                            i.fa.fa-cart-arrow-down(aria-hidden="true")
+                            a(onclick="AlmacenarTres()", style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                    .row
+                        .col-md-12
+                            .rate
+                                h3 Dune 
+                                p
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    span
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                h5 $300.0
+                .col-md-3
+                    .s_product
+                        img(src="img/tokie.jpg", alt="")
+                        .s_overlay
+                        h2(style="color: blue;") NUEVO
+                        h3 EDITORIAL
+                        h4
+                            i.fa.fa-cart-arrow-down(aria-hidden="true")
+                            a(onclick="AlmacenarTres()", style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                    .row
+                        .col-md-12
+                            .rate
+                                h3 Tokie blues 
+                                p
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    i.fa.fa-star(aria-hidden="true")
+                                    span
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                h5 $300.0
+                   
+                                
   script(src="js/slider.js")
