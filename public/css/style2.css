@@ -11,7 +11,7 @@
 :root{
  --bg-color: #ffffff;
  --text-color: #2c0544;
- --main-color: #009ffd;
+ --main-color: #00a4e4;
 }
 body{
     display: flex;
@@ -63,7 +63,7 @@ header.header{
     flex-wrap: wrap; 
     justify-content: center;
     align-items: center; 
-    gap: 20px; 
+    gap: 5px; 
 }
 .navbar li ul {
     visibility: hidden;
@@ -80,10 +80,14 @@ header.header{
     opacity: 1;
 }
 
-.navbar li ul li {
+.navbar li ul li a {
     display: block;
 }
-
+.sagas{
+    display: block;
+    margin-top: 2px;
+    left: 100%;
+}
 .navbar a{
     color: var(--text-color);
     font-size: 1.7rem;
@@ -100,10 +104,17 @@ header.header{
     display: block; /* Make the whole area clickable */
 }
 .navbar a:hover{
-    color: var(--main-color);
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+
 }
 .navbar a.active{
-    color: var(--main-color);
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 .mainm{
@@ -127,7 +138,10 @@ header.header{
 }
 
 .user i{
-    color: var(--main-color);
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
     font-size: 28px;
     margin-right: 7px;
 }
@@ -137,7 +151,10 @@ header.header{
     align-items: center;
 }
 .bag i{
-    color: var(--main-color);
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
     font-size: 23px;
     margin-right: 7px;
 }
@@ -146,7 +163,10 @@ header.header{
     align-items: center;
 }
 .fav i{
-    color: var(--main-color);
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
     font-size: 23px;
     margin-right: 7px;
 }
@@ -179,9 +199,9 @@ header.header{
         position: absolute;
         top:100%;
         right: -100%;
-        width: 270px;
+        width: 290px;
         height: 30vh;
-        background: var(--main-color);
+        background: var(--bg-color);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
