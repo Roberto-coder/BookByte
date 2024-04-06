@@ -16,6 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `books` (
+  `book_id` int NOT NULL AUTO_INCREMENT,
+  `book_name` varchar(100) NOT NULL,
+  `book_author` varchar(50) NOT NULL,
+  `book_genre` varchar(40) NOT NULL,
+  `book_price` decimal(10,2) NOT NULL,
+  `book_numPage` int NOT NULL,
+  `book_datePublication` date NOT NULL,
+  `book_placePublication` varchar(45) NOT NULL,
+  `book_vol` int NOT NULL,
+  `book_isbn` bigint NOT NULL,
+  `book_editorial` varchar(45) NOT NULL,
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (4,'Harry Potter y las Reliquias de la Muerte','J. K. Rowling','Fantasia',549.00,704,'2020-05-24','España',1,9786073193566,'Salamandra'),(5,'La maldición del Titán','Rick Riordan','Fantasia',369.00,304,'2023-12-12','España',1,9786073838764,'Salamandra'),(6,'Guerra Mundial Z: Una Historia Oral de la Guerra Zombi','Max Brooks','Terror',249.00,472,'2019-05-01','España',1,9786073170161,'Penguin Random House Grupo Editorial');
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `c_metodo_pago`
 --
 
@@ -54,7 +87,7 @@ CREATE TABLE `carrito` (
   PRIMARY KEY (`id`),
   KEY `carrito_user_idx` (`idCliente`),
   KEY `libro_idx` (`idLibro`),
-  CONSTRAINT `carrito_libro` FOREIGN KEY (`idLibro`) REFERENCES `libros` (`id`),
+  CONSTRAINT `carrito_libro` FOREIGN KEY (`idLibro`) REFERENCES `books` (`book_id`),
   CONSTRAINT `carrito_user` FOREIGN KEY (`idCliente`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,7 +118,7 @@ CREATE TABLE `detalle_orden` (
   KEY `ID_ORDEN` (`ID_ORDEN`),
   KEY `ID_PRODUCTO` (`ID_PRODUCTO`),
   CONSTRAINT `ID_ORDEN` FOREIGN KEY (`ID_ORDEN`) REFERENCES `orden` (`id`),
-  CONSTRAINT `ID_PRODUCTO` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `libros` (`id`)
+  CONSTRAINT `ID_PRODUCTO` FOREIGN KEY (`ID_PRODUCTO`) REFERENCES `books` (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,7 +144,7 @@ CREATE TABLE `disponibles` (
   `CANTIDAD` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `disponibles_libro` (`idLibro`),
-  CONSTRAINT `disponibles_libro` FOREIGN KEY (`idLibro`) REFERENCES `libros` (`id`)
+  CONSTRAINT `disponibles_libro` FOREIGN KEY (`idLibro`) REFERENCES `books` (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,32 +185,6 @@ CREATE TABLE `domicilios` (
 LOCK TABLES `domicilios` WRITE;
 /*!40000 ALTER TABLE `domicilios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `domicilios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `libros`
---
-
-DROP TABLE IF EXISTS `libros`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `libros` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) NOT NULL,
-  `Autor` varchar(50) NOT NULL,
-  `GENERO` varchar(40) NOT NULL,
-  `PRECIO` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `libros`
---
-
-LOCK TABLES `libros` WRITE;
-/*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -249,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-03 18:26:02
+-- Dump completed on 2024-04-05 18:21:45
