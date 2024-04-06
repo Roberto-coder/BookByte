@@ -34,8 +34,12 @@ html(lang="es")
                 li
                     a(href="#") LO MAS LEIDO
             div(class="mainm")
-                a(href="login" class="user") MI CUENTA
-                    i(class="ri-user-3-fill") 
+                if (user)
+                    a(href="login" class="user")= user.user_name
+                        i(class="ri-user-3-fill") 
+                else
+                    a(href="login" class="user") MI CUENTA
+                        i(class="ri-user-3-fill") 
                 a(href="#"  class="bag")
                     i(class="ri-shopping-bag-3-fill") 
                 a(href="#"  class="fav")
