@@ -7,7 +7,7 @@ const __dirname = (process.platform === "win32")
 router.get('/img_book/:genre/:isr', (req, res) => {
     const { genre }= req.params;
     const { isr }= req.params;
-    const rutaImagen = path.join(__dirname, 'private/img_books/' , genre, isr, '.jpg');
+    const rutaImagen = path.join(__dirname, 'private/img_books/' , genre, isr + '.jpg');
     console.log(rutaImagen);
     res.sendFile(rutaImagen, (err) => {
         if (err) {
