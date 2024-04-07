@@ -2,16 +2,15 @@ import  express  from "express";
 import passport  from '../config/passport.js';
 import bcrypt from "bcrypt";
 import pool from '../config/database.js';
+import loginControllers from '../controllers/loginControllers.js'
 import path from 'path';
 const router = express.Router();
-const __dirname = (process.platform === "win32")
-        ? path.resolve()
-        : path.dirname(new URL(import.meta.url).pathname);
+
 const saltRounds = 10;
 function hashPassword(password) {
     return bcrypt.hash(password, saltRounds);
 }
-router.get('/login',(req,res)=>{
+router.get('/login', loginControllers.notensureAuthenticated, (req,res)=>{
     const error_msg = req.flash('error'); // Obtiene el mensaje de error
     res.render('login', { error_msg });
 });
@@ -21,7 +20,6 @@ router.get('/compras', (req, res) =>{
 router.post('/signup', async (req, res) => {
     try {
         const { signup_name, signup_lastname, signup_email, signup_password } = req.body;
-        console.log(req.body);
         const hash = await hashPassword(signup_password);
         pool.query('INSERT INTO users (user_name, user_lastname, user_email, user_password, user_role) VALUES (?, ?, ?, ?, ?)',
         //0 = admin
@@ -53,9 +51,11 @@ router.post('/signup', async (req, res) => {
         res.status(500).send('Error al procesar la solicitud');
     }
 });
-router.post('/signin', passport.authenticate('local', {
+router.post('/signin',  passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true // Opcional: para mensajes de flash
-}));
+    }
+)
+);
 export default router;
