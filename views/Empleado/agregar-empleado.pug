@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container
+    h1 Agregar Nuevo Usuario
+
+    // Formulario para agregar un nuevo usuario con estilos de Bootstrap
+    form(action="/agregar-usuario", method="post")
+      .form-group
+        label(for="nombre") Nombre:
+        input.form-control(type="text", name="nombre", id="nombre", placeholder="Ingrese el nombre", required)
+      .form-group
+        label(for="correo") Correo:
+        input.form-control(type="email", name="correo", id="correo", placeholder="Ingrese el correo electrónico", required)
+      .form-group
+        label(for="rol") Rol:
+        select.form-control(name="rol", id="rol", required)
+          option(value="1") Rol 1
+          option(value="2") Rol 2
+          option(value="3") Rol 3
+      button.btn.btn-primary(type="submit") Agregar Usuario

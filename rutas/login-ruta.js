@@ -51,11 +51,17 @@ router.post('/signup', async (req, res) => {
         res.status(500).send('Error al procesar la solicitud');
     }
 });
-router.post('/signin',  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
+
+// Ruta para autenticar y redirigir basada en el rol del usuario
+router.post('/signin', passport.authenticate('local', {
+    failureRedirect: '/login', // Redirigir en caso de falla de autenticación
     failureFlash: true // Opcional: para mensajes de flash
+}), (req, res) => {
+    // Verificar el rol del usuario después de la autenticación
+    
+    if (req.user['role'] === 0) {
+        res.redirect('/admin'); // Redirigir al administrador
     }
-)
-);
+});
+
 export default router;

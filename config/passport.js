@@ -7,7 +7,7 @@ passport.use(new LocalStrategy({
     passwordField: 'login_password'
     },
     function(username, password, done){
-        pool.query('SELECT user_id, user_name, user_password FROM users WHERE user_email = ?', [username], (error, results, fields) => {
+        pool.query('SELECT user_id, user_name, user_password, user_role FROM users WHERE user_email = ?', [username], (error, results, fields) => {
             if (error) {
                 return done(error);
             }
@@ -21,7 +21,7 @@ passport.use(new LocalStrategy({
                     return done(err);
                 }
                 if (result) {
-                    return done(null, { id: user.user_id, name: user.user_name});
+                    return done(null, { id: user.user_id, name: user.user_name, role: user.user_role});
                 } else {
                     return done(null, false, { message: 'Usuario o contraseña incorrectos' });
                 }

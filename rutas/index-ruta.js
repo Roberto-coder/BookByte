@@ -5,7 +5,8 @@ router.get('/', (req, res) =>{
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4',
     (error, results) =>{
         if (error) {
-            res.render("ERROR");
+            //res.render("ERROR");
+            throw error;
         }else{
         res.render("index", { newBooks: results, user: req.user });
         }

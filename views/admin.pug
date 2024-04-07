@@ -1,0 +1,49 @@
+extends layout
+block content
+  link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+  .container
+    h1(style="margin-top: 50px;") Administrador
+
+    // Tabla para agregar libros
+    h2 Libros
+    table.table.table-striped
+      thead
+        tr
+          th Título
+          th Autor
+          th Año
+          th Acciones
+      tbody
+        tr
+          td Libro 1
+          td Autor 1
+          td 2022
+          td
+            button.btn.btn-primary.btn-sm Editar
+            button.btn.btn-danger.btn-sm Eliminar
+
+    // Botones para agregar nuevo libro y nuevo usuario
+    div.mt-4
+      a.btn.btn-success(href="#") Agregar Libro
+
+    // Tabla para usuarios
+    h2 Empleados
+    table.table.table-striped
+        thead
+            tr
+            th ID
+            th Nombre
+            th Correo
+            th Acciones
+        tbody
+            each usuario in usuarios
+                tr
+                td=usuario.user_id 
+                td=usuario.user_name
+                td=usuario.user_email
+                td
+                    a.btn.btn-primary(href="/Empleado/editar-empleado/#{usuario.user_id}") Editar
+                    a.btn.btn-danger(href="/Empleado/eliminar-empleado/#{usuario.user_id}") Eliminar
+
+    div.mt-4
+      a.btn.btn-success(href="/agregar-empleado") Agregar Nuevo Empleado
