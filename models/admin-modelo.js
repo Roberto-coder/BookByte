@@ -2,35 +2,43 @@
 import pool from '../config/database.js';
 
 // Define las funciones de los controladores
-function mostrarAdminPage(req, res) {
-    // Definir `rol` aquí si es necesario
-    const rol = 2;
-    // Ejecutar la consulta SQL utilizando el objeto `pool`
-    pool.query('SELECT user_id, user_name, user_email FROM users WHERE user_role = ?', [rol], (error, resultados) => {
+function mostrarAdminPage(callback) {
+
+    // Consulta SQL para obtener los usuarios
+    const sql = 'SELECT user_id, user_name, user_email FROM users WHERE user_role = 2';
+    
+    // Ejecutar la consulta utilizando el pool de conexiones
+    pool.query(sql, (error, resultados) => {
         if (error) {
             console.error('Error al ejecutar la consulta:', error);
-            res.status(500).send('Error interno del servidor');
-            return;
+            // Si hay un error, llama a la función de callback con el error
+            callback(error, null);
+        } else {
+            // Si la consulta es exitosa, llama a la función de callback con los resultados
+            callback(null, resultados);
         }
-        // Renderizar la plantilla Pug y pasar los datos de los usuarios
-        res.render('admin', { usuarios: resultados });
     });
+
 }
 
-function agregarUsuario(req, res) {
-    // Aquí debes obtener los datos del nuevo usuario desde el cuerpo de la solicitud
-    // y ejecutar la consulta SQL utilizando el objeto `pool`
-    const nuevoUsuario = req.body;
-    pool.query('INSERT INTO users (user_name, user_lastname, user_email, user_password, user_role) VALUES (?, ?, ?, ?, 2)', [nuevoUsuario.user_name, nuevoUsuario.user_lastname, nuevoUsuario.user_email, nuevoUsuario.user_password], (error, resultado) => {
-        if (error) {
-            console.error('Error al agregar el usuario:', error);
-            res.status(500).send('Error interno del servidor');
-            return;
-        }
-        // Redirigir a la página deseada después de agregar el usuario
-        res.redirect('/admin',resultado);
+// Función para agregar un usuario a la base de datos
+const agregarUsuario = (usuarioDatos, callback) => {
+    // Consulta SQL para insertar un nuevo usuario en la tabla usuarios
+    usuarioDatos.user_role = 2;
+    let sql = "INSERT INTO users SET ?";
+    
+    // Ejecutar la consulta SQL utilizando la conexión a la base de datos
+    pool.query(sql, usuarioDatos, (error, resultado) => {
+      if (error) {
+        // Si hay un error, se pasa al callback
+        return callback(error, null);
+      } else {
+        // Si la inserción es exitosa, se pasa al callback el ID del usuario insertado
+        return callback(null, resultado.insertId);
+      }
     });
-}
+  };
+
 
 // Exporta las funciones de los controladores
 export { mostrarAdminPage, agregarUsuario };

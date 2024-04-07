@@ -1,14 +1,21 @@
 import  express  from "express";
-import { mostrarAdminPage, agregarUsuario } from '../models/admin-modelo.js';
+
+import { agregarEmpleado, mostrarAdmin } from '../controllers/adminControllers.js';
 const router = express.Router();
 
 
 // Ruta para mostrar la página de administrador
-router.get('/admin', mostrarAdminPage);
+router.get('/admin', mostrarAdmin);
 
-// Ruta para mostrar la página de agregar Empleado
-router.post('/agregar-empleado', agregarUsuario);
 
+
+// Controlador para la página de agregar empleado
+router.get('/admin/agregar-empleado', (req, res) => {
+    // Aquí puedes renderizar la vista de la página de agregar empleado
+    res.render('Empleado/agregar-empleado');
+});
+
+router.post('/admin/registrar-empleado', agregarEmpleado);
 
 export default router;//module.exports = router;
 

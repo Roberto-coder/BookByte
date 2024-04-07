@@ -1,9 +1,16 @@
 // Importar el pool de conexiones a la base de datos
+import { mostrarAdminPage, agregarUsuario } from '../models/admin-modelo.js';
+import bcrypt from "bcrypt";
+
+const saltRounds = 10;
+function hashPassword(password) {
+    return bcrypt.hash(password, saltRounds);
+}
 
 // Controlador para mostrar la página de administrador
-function mostrarAdminPage(req, res) {
+function mostrarAdmin(req, res) {
     // Llamar a una función en el modelo para obtener los usuarios
-    mostrarAdminPage(2, (error, usuarios) => {
+    mostrarAdminPage((error, usuarios) => {
       if (error) {
         console.error('Error al obtener los usuarios:', error);
         res.status(500).send('Error interno del servidor');
@@ -14,25 +21,37 @@ function mostrarAdminPage(req, res) {
     });
   }
 
-function agregarUsuario(req, res) {
-    const sql = 'INSERT INTO users (user_name, user_lastname, user_email, user_password, user_role) VALUES (?, ?, ?, ?, 2)';
-    // Obtener los datos del nuevo usuario desde el cuerpo de la solicitud
-    const nuevoUsuario = {
-      nombre: req.body.nombre,
-      correo: req.body.correo,
-      rol: req.body.rol
-    };
+  async function agregarEmpleado(req, res) {
+    try{
+      const hash = await hashPassword(req.body.password);
+      const nuevoUsuario = {
+        user_name: req.body.nombre,
+        user_lastname: req.body.apellido,
+        user_email: req.body.correo,
+        //contraseña: req.body.user_password
+        user_password: hash
+      };
+    
+      
   
-    // Llamar a la función en el modelo para agregar el nuevo usuario
-    agregarUsuario(nuevoUsuario, (error, resultado) => {
-      if (error) {
-        console.error('Error al agregar el usuario:', error);
-        res.status(500).send('Error interno del servidor');
-        return;
-      }
-      // Redirigir a la página de administrador después de agregar el usuario
-      res.redirect('/agregar-empleado');
-    });
+      // Llamar a la función en el modelo para agregar el nuevo usuario
+      agregarUsuario(nuevoUsuario, (error, resultado) => {
+        if (error) {
+          console.error('Error al agregar el usuario:', error);
+          res.status(500).send('Error interno del servidor');
+          return;
+        }
+        // Redirigir a la página de administrador después de agregar el usuario
+        //res.render('admin', { usuarios: usuarios });
+        res.redirect('/admin');
+      });
+    } catch (err){
+        console.error(err);
+        res.status(500).send('Error al procesar la solicitud');
+    }
   }
+
   
-  module.exports=adminController;
+
+
+  export { mostrarAdmin, agregarEmpleado };
