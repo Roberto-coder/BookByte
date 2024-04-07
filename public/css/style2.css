@@ -65,30 +65,57 @@ header.header{
     align-items: center; 
     gap: 5px; 
 }
-.navbar li ul {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute; 
-    margin-top: 5px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    background-color: var(--bg-color); 
-    transition: visibility 0.2s, opacity 0.2s ease-in-out;
+
+
+.navbar li{
+  position: relative;
+  list-style: none;
+}
+.navbar li .submenu {
+  display: none; 
+  position: absolute;
+  background-color: var(--bg-color);
+  margin-top: 5px; 
+  z-index: 100;
+  left: 0; 
+  white-space: nowrap;
+}
+
+.navbar li .submenu .u-items {
+  display: flex; 
+  flex-direction: column; 
+  min-width: 120px;
+  padding: 10px; 
+}
+
+.navbar li:hover > .submenu {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+  transform: translateY(0);
+ 
+}
+.navbar li .submenu a {
+color: var(--text-color);  
+padding: 5px 0; 
+display: block; 
+text-align: left;
 }
 
 .navbar li:hover > ul {
     visibility: visible;
     opacity: 1;
+    transform: translateY(0px);
 }
 
-.navbar li ul li a {
-    display: block;
-}
+
 .sagas{
     display: block;
     margin-top: 2px;
     left: 100%;
 }
 .navbar a{
+    text-decoration: none;
     color: var(--text-color);
     font-size: 1.7rem;
     font-family: bebas;
@@ -235,9 +262,12 @@ header.header{
   .main-container{
     margin-top: 150px; /* Ajusta el valor según la altura de tu encabezado */
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
   }
+.u-items{
+  font-size: 28px;
+}
+ 
 /******A PARTIR DE AQUI EMPIEZA EL CARRUSEL*/
 
 .texto {
@@ -465,4 +495,3 @@ header.header{
       width: 25%;
     }
   }
-
