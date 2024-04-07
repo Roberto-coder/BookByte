@@ -20,6 +20,8 @@ body{
     color: var(--text-color);
     align-items: center;
     justify-content: center;
+    position: relative;
+    padding-bottom: 10em;
 }
 
 header{
@@ -362,6 +364,16 @@ text-align: left;
     display: flex;
     flex-direction: column;
   }  
+
+  /** FOOTER **/
+
+  footer{
+    background-color: red;
+    padding: 1em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 
 /*** Best sellers **/
 .header-feahion{
