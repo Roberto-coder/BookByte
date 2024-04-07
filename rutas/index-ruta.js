@@ -7,8 +7,7 @@ router.get('/', (req, res) =>{
         if (error) {
             res.render("ERROR");
         }else{
-        console.log(results);
-        res.render("index", { newBooks: results });
+        res.render("index", { newBooks: results, user: req.user });
         }
     });
 
