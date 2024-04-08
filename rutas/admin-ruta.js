@@ -1,13 +1,10 @@
 import  express  from "express";
 
-import { agregarEmpleado, mostrarAdmin } from '../controllers/adminControllers.js';
+import { agregarEmpleado, mostrarAdmin, editarEmpleado, empleadoID, eliminarEmpleado } from '../controllers/adminControllers.js';
 const router = express.Router();
-
 
 // Ruta para mostrar la página de administrador
 router.get('/admin', mostrarAdmin);
-
-
 
 // Controlador para la página de agregar empleado
 router.get('/admin/agregar-empleado', (req, res) => {
@@ -16,6 +13,13 @@ router.get('/admin/agregar-empleado', (req, res) => {
 });
 
 router.post('/admin/registrar-empleado', agregarEmpleado);
+
+// Controlador para la página de editar empleado
+router.get('/admin/editar-empleado', empleadoID);
+
+router.post('/admin/actualizar-empleado', editarEmpleado);
+
+router.get('/admin/eliminar-empleado', eliminarEmpleado);
 
 export default router;//module.exports = router;
 

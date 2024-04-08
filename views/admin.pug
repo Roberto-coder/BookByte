@@ -42,8 +42,8 @@ block content
                 td=usuario.user_name
                 td=usuario.user_email
                 td
-                    a.btn.btn-primary(href="/editar-empleado/#{usuario.user_id}") Editar
-                    a.btn.btn-danger(href="/eliminar-empleado/#{usuario.user_id}") Eliminar
+                    a.btn.btn-primary(href=`/admin/editar-empleado?id=${usuario.user_id}`) Editar
+                    a.btn.btn-danger(href=`/admin/eliminar-empleado?id=${usuario.user_id}`) Eliminar
 
     div.mt-4
       a.btn.btn-success(href="/admin/agregar-empleado") Agregar Nuevo Empleado
