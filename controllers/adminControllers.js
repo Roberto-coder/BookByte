@@ -1,5 +1,5 @@
 
-import { mostrarAdminPage, agregarUsuario, editarUsuario, obtenerUsuarioPorId, eliminarUsuario} from '../models/admin-modelo.js';
+import * as modeloAdmin from '../models/admin-modelo.js';
 import bcrypt from "bcrypt";
 
 const saltRounds = 10;
@@ -9,17 +9,22 @@ function hashPassword(password) {
 
 // Controlador para mostrar la página de administrador
 function mostrarAdmin(req, res) {
-    // Llamar a una función en el modelo para obtener los usuarios
-    mostrarAdminPage((error, usuarios) => {
+  modeloAdmin.mostrarAdminPage((error, datos) => {
       if (error) {
-        console.error('Error al obtener los usuarios:', error);
-        res.status(500).send('Error interno del servidor');
-        return;
+          console.error('Error al obtener los datos:', error);
+          res.status(500).send('Error interno del servidor');
+          return;
       }
-      // Renderizar la plantilla Pug y pasar los datos de los usuarios
-      res.render('admin', { usuarios: usuarios });
-    });
-  }
+
+      // Extraer los usuarios y los libros de los datos
+      const usuarios = datos[0];
+      const libros = datos[1];
+
+      // Renderizar la plantilla Pug y pasar los datos de usuarios y libros
+      res.render('admin', { usuarios: usuarios, libros: libros });
+  });
+}
+//---------------------------Empleados------------------------------------
 
   async function agregarEmpleado(req, res) {
     try{
@@ -33,7 +38,7 @@ function mostrarAdmin(req, res) {
       };
   
       // Llamar a la función en el modelo para agregar el nuevo usuario
-      agregarUsuario(nuevoUsuario, (error, resultado) => {
+      modeloAdmin.agregarUsuario(nuevoUsuario, (error, resultado) => {
         if (error) {
           console.error('Error al agregar el usuario:', error);
           res.status(500).send('Error interno del servidor');
@@ -70,7 +75,7 @@ function mostrarAdmin(req, res) {
         }*/
 
         // Llamar a la función para editar el usuario en el modelo
-        editarUsuario(userData.user_id, userData, (error, results) => {
+        modeloAdmin.editarUsuario(userData.user_id, userData, (error, results) => {
             if (error) {
                 return res.status(500).json({ error: 'Error al editar usuario' });
             }
@@ -82,11 +87,11 @@ function mostrarAdmin(req, res) {
     }
 }
 
-  function empleadoID(req, res) {
+function empleadoID(req, res) {
     const userId = req.query.id; // Obtiene el ID del usuario de la consulta (query) de la URL
 
     // Llama al método del modelo para obtener los datos del usuario por su ID
-    obtenerUsuarioPorId(userId, (error, usuario) => {
+    modeloAdmin.obtenerUsuarioPorId(userId, (error, usuario) => {
         if (error) {
             return res.status(500).json({ error: 'Error al obtener datos del usuario' });
         }
@@ -100,11 +105,11 @@ function mostrarAdmin(req, res) {
     });
 };
 
-const eliminarEmpleado = (req, res) => {
+function eliminarEmpleado(req, res){
   const userId = req.query.id; // Obtener el ID del usuario de los parámetros de la ruta
 
   // Llamar a la función para eliminar el usuario en el modelo
-  eliminarUsuario(userId, (error, results) => {
+  modeloAdmin.eliminarUsuario(userId, (error, results) => {
       if (error) {
           return res.status(500).json({ error: 'Error al eliminar usuario' });
       }
@@ -112,6 +117,37 @@ const eliminarEmpleado = (req, res) => {
       res.redirect('/admin');
   });
 };
+//---------------------------Libros------------------------------------
+function agregarLibro(req, res) {
 
+    const nuevoLibro = {
+      book_name: req.body.titulo,
+      book_author: req.body.autor,
+      book_genre: req.body.genero,
+      book_price: req.body.precio,
+      book_numPage: req.body.paginas,
+      book_datePublication: req.body.fecha,
+      book_placePublication: req.body.lugar,
+      book_vol: req.body.volumen,
+      book_isbn: req.body.isbn,
+      book_editorial: req.body.editorial,
+      book_amount: req.body.cantidad
+    };
 
-  export { mostrarAdmin, agregarEmpleado, editarEmpleado, empleadoID, eliminarEmpleado };
+    // Llamar a la función en el modelo para agregar el nuevo usuario
+    modeloAdmin.agregarLibro(nuevoLibro, (error, resultado) => {
+      if (error) {
+        console.error('Error al agregar el libro:', error);
+        res.status(500).send('Error interno del servidor');
+        return;
+      }
+      // Redirigir a la página de administrador después de agregar el usuario
+      //res.render('admin', { usuarios: usuarios });
+      res.redirect('/admin');
+    });
+
+}
+
+  export default { mostrarAdmin, agregarEmpleado, editarEmpleado, empleadoID, eliminarEmpleado
+  , agregarLibro
+  };

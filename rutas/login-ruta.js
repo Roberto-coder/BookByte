@@ -59,8 +59,19 @@ router.post('/signin', passport.authenticate('local', {
 }), (req, res) => {
     // Verificar el rol del usuario después de la autenticación
     
-    if (req.user['role'] === 0) {
-        res.redirect('/admin'); // Redirigir al administrador
+
+    switch (req.user['role']) {
+        case 0:
+            res.redirect('/admin');
+            break;
+        case 1:
+            res.redirect('/empleado');
+            break;
+        case 2:
+            res.redirect('/cliente');
+            break;
+        default:
+            res.redirect('/'); // Redirigir a una página por defecto en caso de un rol desconocido
     }
 });
 

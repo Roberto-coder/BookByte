@@ -1,4 +1,5 @@
 extends layout
+
 block content
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
   .container
@@ -6,29 +7,34 @@ block content
 
     // Tabla para agregar libros
     h2 Libros
-    table.table.table-striped
+    table.table.table-striped.table-scrollable(style="max-height: 300px; overflow-y: auto;")
       thead
         tr
+          th ID
           th Título
           th Autor
           th Año
+          th Cantidad
           th Acciones
       tbody
-        tr
-          td Libro 1
-          td Autor 1
-          td 2022
-          td
-            button.btn.btn-primary.btn-sm Editar
-            button.btn.btn-danger.btn-sm Eliminar
+        each libro in libros
+          tr
+            td=libro.book_id
+            td=libro.book_name 
+            td=libro.book_author
+            td=libro.year
+            td=libro.book_amount
+            td
+              a.btn.btn-primary(href=`/admin/editar-libro?id=${libro.book_id}`) Editar
+              a.btn.btn-danger(href=`/admin/eliminar-libro?id=${libro.book_id}`) Eliminar
 
     // Botones para agregar nuevo libro y nuevo usuario
     div.mt-4
-      a.btn.btn-success(href="#") Agregar Libro
+      a.btn.btn-success(href="/admin/agregar-libro") Agregar Libro
 
     // Tabla para usuarios
-    h2 Empleados
-    table.table.table-striped
+    h2(style="margin-top: 50px;") Empleados
+    table.table.table-striped.table-scrollable(style="max-height: 300px; overflow-y: auto;")
         thead
             tr
             th ID
