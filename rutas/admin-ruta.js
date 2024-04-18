@@ -27,7 +27,11 @@ router.get('/admin/agregar-libro', loginControllers.ensureAuthenticated, (req, r
 
 router.post('/admin/registrar-libro', loginControllers.ensureAuthenticated, adminControllers.agregarLibro);
 
+router.get('/admin/editar-libro', loginControllers.ensureAuthenticated, adminControllers.libroID);
 
+router.post('/admin/actualizar-libro', loginControllers.ensureAuthenticated, adminControllers.editarLibro);
+
+router.get('/admin/eliminar-libro', loginControllers.ensureAuthenticated, adminControllers.eliminarLibro);
 
 export default router;//module.exports = router;
 

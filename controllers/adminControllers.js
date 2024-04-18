@@ -141,13 +141,72 @@ function agregarLibro(req, res) {
         res.status(500).send('Error interno del servidor');
         return;
       }
-      // Redirigir a la página de administrador después de agregar el usuario
-      //res.render('admin', { usuarios: usuarios });
+      // Redirigir a la página de administrador después de agregar el libro
       res.redirect('/admin');
     });
 
 }
 
+function libroID(req, res) {
+  const libroId = req.query.id; // Obtiene el ID del usuario de la consulta (query) de la URL
+
+  // Llama al método del modelo para obtener los datos del libro por su ID
+  modeloAdmin.obtenerLibroPorId(libroId, (error, libro) => {
+      if (error) {
+          return res.status(500).json({ error: 'Error al obtener datos del libro' });
+      }
+
+      if (!libro) {
+          return res.status(404).json({ error: 'Libro no encontrado' });
+      }
+
+      // Renderizar la vista de edición y pasar los datos del usuario como contexto
+      res.render('Libro/editar-libro', { libro: libro });
+  });
+};
+
+function editarLibro(req, res) {
+  try {
+      //const userId = req.params.id;
+      const libroData = {
+        book_id: req.body.id,
+        book_name: req.body.titulo,
+        book_author: req.body.autor,
+        book_genre: req.body.genero,
+        book_price: req.body.precio,
+        book_numPage: req.body.paginas,
+        book_datePublication: req.body.fecha,
+        book_placePublication: req.body.lugar,
+        book_vol: req.body.volumen,
+        book_amount: req.body.cantidad
+      };
+
+      // Llamar a la función para editar el usuario en el modelo
+      modeloAdmin.editarLibro(libroData.book_id, libroData, (error, results) => {
+          if (error) {
+              return res.status(500).json({ error: 'Error al editar usuario' });
+          }
+          res.redirect('/admin');
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error al procesar la solicitud');
+  }
+}
+
+function eliminarLibro(req, res){
+  const bookId = req.query.id; // Obtener el ID del usuario de los parámetros de la ruta
+
+  // Llamar a la función para eliminar el usuario en el modelo
+  modeloAdmin.eliminarLibro(bookId, (error, results) => {
+      if (error) {
+          return res.status(500).json({ error: 'Error al eliminar libro' });
+      }
+      // La eliminación del usuario se ha completado correctamente
+      res.redirect('/admin');
+  });
+};
+
   export default { mostrarAdmin, agregarEmpleado, editarEmpleado, empleadoID, eliminarEmpleado
-  , agregarLibro
+  , agregarLibro, libroID, editarLibro, eliminarLibro
   };

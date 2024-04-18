@@ -1,0 +1,76 @@
+extends ../layout
+block content
+  link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+  .container
+    .row
+      .col-md-6.offset-md-3
+        .card.mt-5
+          .card-header
+            h1.text-center Editar Libro
+          .card-body
+            form(action=`/admin/actualizar-libro?id=${libro.book_id}`, method="POST")
+                input(type='hidden', name='id', value=libro.book_id)
+                .form-group
+                    label(for="titulo") Nombre del libro
+                    input#titulo.form-control(type="text", name="titulo", placeholder=libro.book_name, required)
+
+                .form-group
+                    label(for="autor") Autor
+                    input#autor.form-control(type="text", name="autor", placeholder=libro.book_author, required)
+
+                .form-group
+                    label(for="genero") Género
+                    select#genero.form-control(name="genero", required)
+                        option(value="Novela") Novela
+                        option(value="Romántica") Romántica
+                        option(value="Ciencia ficción") Ciencia ficción
+                        option(value="Distopía") Distopía
+                        option(value="Aventuras") Aventuras
+                        option(value="Fantasía") Fantasía
+                        option(value="Contemporáneo") Contemporáneo
+                        option(value="Terror") Terror
+                        option(value="Poesía") Poesía
+                        option(value="Juvenil") Juvenil
+                        option(value="Infantil") Infantil
+                        option(value="Autoayuda y superación personal") Autoayuda y superación personal
+                        option(value="Salud y deporte") Salud y deporte
+                        option(value="Libros prácticos o manuales") Libros prácticos o manuales
+                        option(value="Biografías") Biografías
+                        option(value="Cocina") Cocina
+                        option(value="Viajes") Viajes
+                        option(value="Divulgativos") Divulgativos
+                        option(value="Arte") Arte
+
+                .form-group
+                    label(for="precio") Precio
+                    input#precio.form-control(type="number", name="precio", placeholder=libro.book_price, required)
+
+                .form-group
+                    label(for="paginas") Número de páginas
+                    input#paginas.form-control(type="number", name="paginas", placeholder=libro.book_numPage, required)
+
+                .form-group
+                    label(for="fecha") Fecha de publicación
+                    input#fecha.form-control(type="date", name="fecha", placeholder=libro.book_datePublication, required)
+
+                .form-group
+                    label(for="lugar") Lugar de publicación
+                    input#lugar.form-control(type="text", name="lugar", placeholder=libro.book_placePublication, required)
+
+                .form-group
+                    label(for="volumen") Volumen
+                    input#volumen.form-control(type="text", name="volumen", placeholder=libro.book_vol, required)
+
+                .form-group
+                    label(for="isbn") ISBN
+                    input#isbn.form-control(type="text", name="isbn", placeholder=libro.book_isbn, required)
+
+                .form-group
+                    label(for="editorial") Editorial
+                    input#editorial.form-control(type="text", name="editorial", placeholder=libro.book_editorial, required)
+
+                .form-group
+                    label(for="cantidad") Cantidad
+                    input#cantidad.form-control(type="number", name="cantidad", placeholder=libro.book_amount, required)
+
+                button.btn.btn-primary(type="submit") Editar Libro

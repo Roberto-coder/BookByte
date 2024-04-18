@@ -22,7 +22,6 @@ export const mostrarAdminPage=(callback) => {
     });
 }
 
-
 // Función para agregar un usuario a la base de datos
 export const agregarUsuario = (usuarioDatos, callback) => {
     // Consulta SQL para insertar un nuevo usuario en la tabla usuarios
@@ -94,5 +93,45 @@ export const agregarLibro = (libroDatos, callback) => {
         // Si la inserción es exitosa, se pasa al callback el ID del usuario insertado
         return callback(null, resultado.insertId);
       }
+    });
+  };
+
+  export const obtenerLibroPorId = (bookId, callback) => {
+    pool.query('SELECT * FROM books WHERE book_id = ?', [bookId], (error, results, fields) => {
+        if (error) {
+            console.error('Error al obtener datos del libro:', error);
+            return callback(error, null);
+        }
+        // Si se encontraron resultados para el libro
+        if (results.length > 0) {
+            const libro = results[0];
+            return callback(null, libro);
+        } else {
+            // Si no se encontró ningún libro con ese ID
+            return callback(null, null);
+        }
+    });
+  };
+
+  export const editarLibro = (bookId, bookData, callback) => {
+    // Realiza la actualización en la base de datos
+    pool.query('UPDATE books SET ? WHERE book_id = ?', [bookData, bookId], (error, results) => {
+        if (error) {
+            console.error('Error al editar libro:', error);
+            return callback(error, null);
+        }
+        // La actualización del usuario se ha completado correctamente
+        return callback(null, results);
+    });
+};
+
+export const eliminarLibro = (bookId, callback) => {
+    pool.query('DELETE FROM books WHERE book_id = ?', [bookId], (error, results) => {
+        if (error) {
+            console.error('Error al eliminar libro:', error);
+            return callback(error, null);
+        }
+        // La eliminación del usuario se ha completado correctamente
+        return callback(null, results);
     });
   };
