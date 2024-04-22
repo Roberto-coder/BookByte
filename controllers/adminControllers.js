@@ -21,7 +21,7 @@ function mostrarAdmin(req, res) {
       const libros = datos[1];
 
       // Renderizar la plantilla Pug y pasar los datos de usuarios y libros
-      res.render('admin', { usuarios: usuarios, libros: libros });
+      res.render('admin', { user: req.user, empleados: usuarios, libros: libros });
   });
 }
 //---------------------------Empleados------------------------------------

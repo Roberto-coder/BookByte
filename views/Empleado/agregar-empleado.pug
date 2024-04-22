@@ -1,6 +1,8 @@
-extends ../layout
+//extends ../layout
 block content
+  link(rel="stylesheet", href="/css/formulario-admin.css")
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+
   .container
     .row
       .col-md-6.offset-md-3
@@ -8,7 +10,7 @@ block content
           .card-header
             h1.text-center Registro de Empleado
           .card-body
-            form(action="/admin/registrar-empleado", method="POST")
+            form#form(action="/admin/registrar-empleado", method="POST")
               .form-group
                 label(for="nombre") Nombre:
                 input#nombre.form-control(type="text", name="nombre", placeholder="Nombre", required)
@@ -30,3 +32,5 @@ block content
                 input#confirmar-password.form-control(type="password", name="confirmarPassword", placeholder="Confirmar Contraseña", required)
 
               button.btn.btn-primary.btn-block(type="submit") Registrar
+              p#warnings.warnings
+  script(src="/js/formulario-admin.js")
