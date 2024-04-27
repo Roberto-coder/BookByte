@@ -2,9 +2,11 @@ import express from "express";
 import path from "path";
 import flash from "connect-flash";
 import session from "express-session";
+
 import imagenesRuta from "./rutas/imagenes-ruta.js";
 import indexruta from "./rutas/index-ruta.js";
 import loginruta from "./rutas/login-ruta.js";
+import carritoRuta from "./rutas/carrito-ruta.js";
 import pruebasruta from "./rutas/pruebas-ruta.js";
 import catalogoruta from "./rutas/catalogo-ruta.js";
 import adminRuta from "./rutas/admin-ruta.js";
@@ -41,6 +43,7 @@ app.use('/', pruebasruta);
 app.use('/', catalogoruta);
 app.use('/', imagenesRuta);
 app.use('/', adminRuta);
+app.use('/', carritoRuta);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

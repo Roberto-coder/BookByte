@@ -1,0 +1,6 @@
+extends layout
+//- Ejemplo usando Pug para la vista
+form(action="/carrito/123" method="post")
+    input(type="hidden" name="idLibro" value="123") // El ID del libro que se va a agregar
+    input(type="number" name="cantidad" value="1") // La cantidad que se va a agregar
+    button(type="submit") Agregar al Carrito
