@@ -6,7 +6,7 @@ async function getData(req, res) {
     const idCliente = req.user.idCliente; 
     try {
         const query = `
-            SELECT c.idCliente, c.idLibro
+            SELECT c.idCliente, c.idLibro, l.book_name
             FROM carrito c
             INNER JOIN books l ON c.idLibro = l.book_id
             WHERE c.idCliente = ?
