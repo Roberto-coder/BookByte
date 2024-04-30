@@ -58,9 +58,7 @@ router.post('/signin', passport.authenticate('local', {
     failureFlash: true // Opcional: para mensajes de flash
 }), (req, res) => {
     // Verificar el rol del usuario después de la autenticación
-    
-
-    switch (req.user['role']) {
+    switch (req.user['user_role']) {
         case 0:
             res.redirect('/admin');
             break;
