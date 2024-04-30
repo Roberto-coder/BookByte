@@ -7,6 +7,7 @@ router.get('/', (req, res) =>{
     (error, results) =>{
         if (error) {
             //res.render("ERROR");
+            res.redirect
             throw error;
         }else{
         res.render("index", { newBooks: results, user: req.user });
