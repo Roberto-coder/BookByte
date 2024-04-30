@@ -2,30 +2,39 @@ import pool from '../config/database.js';
 import util from 'util';
 import passport from '../config/passport.js';
 
-async function getData(req, res) {
-    const idCliente = req.user.idCliente; 
-    try {
-        const query = `
-            SELECT c.idCliente, c.idLibro, l.book_name
-            FROM carrito c
-            INNER JOIN books l ON c.idLibro = l.book_id
-            WHERE c.idCliente = ?
-        `;
-        pool.query(query, [idCliente], (error, results) =>{
-            console.log(results);
-            if (results.length > 0) {
-                res.json(results);
-            } else {
-                res.status(404).send('No hay datos en el carrito para este usuario.');
-            }
-        });
-
+function getData(req, res, next) {
+    if(req.isAuthenticated()){
+        const idCliente = req.user.user_id; 
+        console.log(idCliente);
+        try {
+            const query = `
+                SELECT c.idCliente, c.idLibro, l.book_name, l.book_price
+                FROM carrito c
+                INNER JOIN books l ON c.idLibro = l.book_id
+                WHERE c.idCliente = ?
+            `;
+            pool.query(query, [idCliente], (error, results) =>{
+                if (error) {
+                    console.log(error);
+                }
+                if(results.length > 0){
+                    req.carrito = results;
+                }else{
+                    req.carrito = null;
+                }
+                return next();
+            });
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Error al obtener datos del carrito');
+        }    
+    }else{
+        req.carrito = null;
+        return next();
         
-
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Error al obtener datos del carrito');
     }
+
+
 }
 
 async function carritoo(req, res) {
