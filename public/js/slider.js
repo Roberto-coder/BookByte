@@ -1,8 +1,15 @@
 const btnLeft = document.querySelector(".btn-left"),
       btnRight = document.querySelector(".btn-right"),
       slider = document.querySelector("#slider"),
-      sliderSection = document.querySelectorAll(".slider-section");
-      
+      sliderSection = document.querySelectorAll(".slider-section"),
+      contenedorCompra = document.getElementById('contenedorCompra');     
+document.querySelector('.bag').addEventListener('click', function() {
+    document.getElementById('informacionCompra').style.display = 'block';
+});
+    
+document.getElementById('x').addEventListener('click', function() {
+    document.getElementById('informacionCompra').style.display = 'none';
+});
 
 btnLeft.addEventListener("click", e => moveToLeft())
 btnRight.addEventListener("click", e => moveToRight())
@@ -46,4 +53,7 @@ function moveToLeft() {
     
     
 }   
+
+
+
 

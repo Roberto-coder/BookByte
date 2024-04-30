@@ -8,7 +8,7 @@
     list-style: none;
 }
 
-:root{
+:root{  
  --bg-color: #ffffff;
  --text-color: #2c0544;
  --main-color: #00a4e4;
@@ -145,6 +145,82 @@ text-align: left;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
+
+.contenedorCompra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; /* Changed from 'center' to 'space-around' for better spacing */
+  width: 30%; /* Adjusted for a narrower appearance like in the image */
+  height: auto; /* Changed to 'auto' to fit the content */
+  position: fixed;
+  right: 10%; /* Positioned to the right side */
+  top: 10%; /* Adjusted to not be at the very top */
+  background-color: var(--bg-color);
+  border-radius: 15px; /* Rounded corners like in the image */
+  padding: 20px; /* Padding added for spacing around the content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a subtle depth effect */
+  z-index: 1000; /* Ensure it's above other content */
+  overflow: auto; /* In case content overflows */
+}
+
+/* Style for the close (x) button */
+.cesta-header span {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* Scrollbar styles if needed */
+.cesta-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cesta-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.cesta-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.cesta-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px; 
+}
+
+
+.contenedorCompra button {
+  background-color: var(--main-color); 
+  color: white; 
+  width: 80%; 
+  padding: 15px 30px; 
+  border-radius: 20px; 
+  border: none;
+  font-size: 17px;
+  font-weight: 500; 
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.contenedorCompra button:hover {
+  background-color: #ffffff; 
+  color: #363636; 
+}
+
+.none {
+  display: none;
+}
+
+  
+
 
 .mainm{
     display: flex;

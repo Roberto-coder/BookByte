@@ -48,12 +48,26 @@ html(lang="es")
                 else
                     a(href="login" class="user") MI CUENTA
                         i(class="ri-user-3-fill") 
-                a(href="carrito"  class="bag")
+                a( class="bag")
                     i(class="ri-shopping-bag-3-fill") 
+                div(class="contenedorCompra none", id="contenedorCompra")
+                    div(class="cesta")
+                        div(class="cesta-header")
+                            h2 Cesta
+                            span(class="x", id="x") ×   
+                    div(class="cesta-footer")
+                        h3 Valor Total
+                        div(class="productoo")  
+                            p Nombre del libro: 
+                            span(id="nombreLibro")  
+                            p Precio: 
+                            span(id="precioLibro") 
+                    div(class="total-precio")
+                    button Finalizar Compra      
                 a(href="#"  class="fav")
                     i(class="ri-heart-3-fill")   
                 div(class="bx bx-menu" id="menu-icon")
     script(src="js/header.js")                
     block content
     footer
-        h1 hola
+        h1 holaaaa

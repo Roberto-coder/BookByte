@@ -2,6 +2,7 @@ extends layout
 
 block content
   div.main-container
+     
     div.container-carousel
       div.carruseles#slider
         section.slider-section
@@ -56,8 +57,7 @@ block content
                                         i.fa.fa-star(aria-hidden="true")
                                         i.fa.fa-star(aria-hidden="true")
                                     h5=book.book_price  
-                   
-
+                     
     section.header-feahion
       div.header-text
       h1 BEST SELLERS
@@ -93,5 +93,6 @@ block content
                                         i.fa.fa-star(aria-hidden="true")
                                         i.fa.fa-star(aria-hidden="true")
                                         i.fa.fa-star(aria-hidden="true")
-                                    h5=book.book_price              
+                                    h5=book.book_price
+                                             
   script(src="js/slider.js")

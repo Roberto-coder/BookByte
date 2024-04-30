@@ -4,29 +4,69 @@ html(lang="es")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/style2.css")
-        link(rel)
         link(rel="stylesheet", href="https://unpkg.com/boxicons@latest/css/boxicons.min.css")
         link(href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet")
     body
         header(class="header")
-            a(class="logo", href = "index") 
+            a(class="logo", href="/")
                 img(src="img/logo.ico")
             ul(class="navbar")
                 li 
                     a(href="#" class="active") INICIO
                 li
-                    a(href="#") LIBROS   
+                    a(href="#") LIBROS+
+                    div(class="submenu")
+                        div(class="u-items")
+                            p submenu1
+                            ul 
+                                li
+                                    a(href="#") Item
+                                    a(href="#") Item
+                                    a(href="#") Item
+                        div(class="u-items")
+                            p submenu2
+                            ul 
+                                li
+                                    a(href="#") Item
+                                    a(href="#") Item
+                                    a(href="#") Item
+                        div(class="u-items")
+                            p submenu3
+                            ul 
+                                li
+                                    a(href="#") Item
+                                    a(href="#") Item
+                                    a(href="#") Item
                 li
                     a(href="#") OFERTAS
                 li
                     a(href="#") LO MAS LEIDO
-                    
-            div(class="main")
-                a(href="login" class="user") MI CUENTAdasdsa
-                    i(class="ri-user-3-fill") 
-                a(href="#"  class="bag")
-                    i(class="ri-shopping-bag-3-fill") 
-                a(href="#"  class="fav")
-                    i(class="ri-heart-3-fill")   
-                div(class="bx bx-menu" id="menu-icon")
-    script(src="js/login.js")                
+            div(class="mainm")
+                if user
+                    a(href="login", class="user")= user.user_name
+                        i(class="ri-user-3-fill") 
+                else
+                    a(href="login", class="user") MI CUENTA
+                        i(class="ri-user-3-fill") 
+                    a(href="carrito", class="bag", id="carrito")
+                        i(class="ri-shopping-bag-3-fill")     
+                div(class="contenedorCompra none", id="contenedorCompra")
+                    div(class="cesta")
+                        div(class="cesta-header")
+                            h2 Cesta
+                            span(class="x", id="x") ×
+                        div(class="cesta-body")
+                            // Elementos del carrito van aquí
+                        div(class="cesta-footer")
+                            h3 Valor Total
+                            
+                            p(class="total-precio") $0
+                            button Finalizar Compra     
+                                a(href="#", class="fav")
+                                    i(class="ri-heart-3-fill")   
+                                div(class="bx bx-menu", id="menu-icon")
+        block content
+        footer
+            h1 holaaaa
+
+    script(src="js/header.js")
