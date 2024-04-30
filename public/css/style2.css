@@ -22,6 +22,7 @@ body{
     justify-content: center;
     position: relative;
     padding-bottom: 10em;
+    text-transform: capitalize;
 }
 
 header{
@@ -444,12 +445,43 @@ text-align: left;
   /** FOOTER **/
 
   footer{
-    background-color: red;
-    padding: 1em 0;
+    background-color: #24262B;
+    padding: 0.5em 0;
     position: absolute;
     bottom: 0;
     width: 100%;
   }
+
+  .container-footer{
+    max-width: 1200px;
+    margin: 0 auto;
+
+  }
+  .footer-row{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .footer-links{
+    width: 25%;
+    padding: 0 15px;
+
+  }
+
+  .footer-links h4{
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: 500;
+    border-bottom: 2px solid #00C3FF;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+
+
+
+
+
 
 /*** Best sellers **/
 .header-feahion{

@@ -6,6 +6,7 @@ html(lang="es")
         link(rel="stylesheet", href="/css/style2.css")
         link(rel="stylesheet", href="https://unpkg.com/boxicons@latest/css/boxicons.min.css")
         link(href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css")
     body
         header(class="header")
             a(class="logo",href = "/") 
@@ -69,5 +70,32 @@ html(lang="es")
                 div(class="bx bx-menu" id="menu-icon")
     script(src="js/header.js")                
     block content
-    footer
-        h1 holaaaa
+    footer(class="footer")
+        .container-footer 
+            .footer-row 
+                .footer-links 
+                    h4 CATEGORÍAS 
+                    ul 
+                        l1 
+                        a(href="#") Libros   
+                        a(href="#") Ebooks 
+                        a(href="#") Audiolibros
+                    h4 CONÓCENOS
+                    ul 
+                        l1 
+                        a(href="#") Acerca de   
+                        a(href="#") Políticas 
+                        a(href="#") Avisos de privacidad
+                    h4 CONTÁCTANOS 
+                    ul 
+                        l1 
+                        a(href="#") elcliente@bookbyte.com.mx
+                        .social-link 
+                            a(href="#") 
+                                 i.fab.fa-facebook-f 
+                            a(href="#") 
+                                 i.fab.fa-instagram 
+                            a(href="#") 
+                                 i.fab.fa-twitter
+                            a(href="#") 
+                                 i.fab.fa-tiktok
