@@ -59,10 +59,11 @@ html(lang="es")
                     div(class="cesta-footer")
                         h3 Valor Total
                         div(class="productoo")  
-                            p Nombre del libro: 
-                            span(id="nombreLibro")  
-                            p Precio: 
-                            span(id="precioLibro") 
+                            if(carrito)
+                                for librocarrito in carrito
+                                    p Nombre del libro:#{librocarrito.book_name} 
+                                    span(id="nombreLibro")  
+                                    p Precio: #{librocarrito.book_price} 
                     div(class="total-precio")
                     button Finalizar Compra      
                 a(href="#"  class="fav")

@@ -13,35 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     carrito.addEventListener('click', function(event) {
         event.preventDefault();
         contenedorCompra.classList.toggle('none');
-        mostrarElementosLista();
     });
 
     x.addEventListener('click', function() {
         contenedorCompra.classList.add('none');
     });
     
-    async function mostrarElementosLista() {
-        fetch('/carrito')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error de seleccion');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const carritoHTML = data.map(item => `
-                    <div class="item-carrito">
-                        <h4>${item.Nombre}</h4>
-                        <p>Cantidad: ${item.cantidad}</p>
-                        <p>Precio: ${item.PREC}</p>
-                    </div>
-                `).join('');
-                contenedorCompra.innerHTML = carritoHTML;
-            })
-            .catch(err => {
-                console.error('Error al obtener datos', err.message);
-                contenedorCompra.innerHTML = `<p>Error al cargar el carrito.</p>`;
-            });
-    }
     
 });
