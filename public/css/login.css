@@ -2,6 +2,7 @@
 *::before,
 *::after {
 	box-sizing: border-box;
+	
 }
 body{
     display: flex;
@@ -60,6 +61,69 @@ section{
 .form-wrapper.is-active {
 	animation: showLayer .3s ease-in forwards;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+    .forms-section {
+        margin-left: 10vw; /* Ajuste moderado para el margen lateral */
+        max-width: 720px; /* Ancho más adecuado para tablets */
+    }
+
+    .section-title {
+        font-size: 80vw; 
+    }
+
+    .form {
+        padding: 60px 60px; /* Padding suficiente para formularios más grandes */
+        min-width: 500px; /* Min-width para asegurar la legibilidad */
+    }
+
+    .input-block label, .input-block input {
+        font-size: 15px; /* Ajuste de la fuente para mejor legibilidad en tablets */
+    }
+
+    .btn-login, .btn-signup {
+        font-size: 18px; /* Tamaño de fuente reducido para botones */
+        padding: 12px 25px; /* Padding ajustado para los botones */
+    }
+
+    .form [type='submit'] {
+        font-size: 18px; /* Tamaño de fuente para el botón de enviar */
+        padding: 12px 25px; /* Padding ajustado */
+    }
+}
+
+@media (min-width: 400px) and (max-width: 768px) {
+    .forms-section {
+        margin-left: 20vw; 
+        flex-direction: column; 
+        align-items: center;
+        padding: 10px; 
+    }
+
+    .section-title {
+        font-size: 7vw; 
+    }
+
+    .form {
+        padding: 25px 25px; 
+        min-width: 400px; 
+    }
+
+    .input-block label, .input-block input {
+        font-size: 13px; 
+    }
+
+    .btn-login, .btn-signup {
+        font-size: 16px; 
+        padding: 10px 20px; 
+    }
+
+    .form [type='submit'] {
+        font-size: 16px; 
+        padding: 10px 20px; 
+    }
+}
+
+
 
 @keyframes showLayer {
 	50% {
@@ -178,7 +242,24 @@ section{
 		transform: translate(40%, 10px);
 	}
 }
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 8vw;
+    }
 
+    .forms-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form {
+        padding: 10px;
+    }
+
+    .input-block input, .input-block label {
+        font-size: 12px; /* Reduce el tamaño de la fuente para móviles */
+    }
+}
 .form-signup {
 	animation: hideSignup .3s ease-out forwards;
 }
