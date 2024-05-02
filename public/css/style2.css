@@ -151,30 +151,32 @@ text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; /* Changed from 'center' to 'space-around' for better spacing */
-  width: 30%; /* Adjusted for a narrower appearance like in the image */
-  height: auto; /* Changed to 'auto' to fit the content */
+  justify-content: space-around; 
+  width: 30%; 
+  height: auto; 
   position: fixed;
-  right: 10%; /* Positioned to the right side */
-  top: 10%; /* Adjusted to not be at the very top */
+  right: 10%; 
+  top: 10%; 
   background-color: var(--bg-color);
-  border-radius: 15px; /* Rounded corners like in the image */
-  padding: 20px; /* Padding added for spacing around the content */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a subtle depth effect */
-  z-index: 1000; /* Ensure it's above other content */
-  overflow: auto; /* In case content overflows */
+  border-radius: 15px; 
+  padding: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
+  overflow: auto;
 }
-
-/* Style for the close (x) button */
+.cesta-header{
+  font-family: fjalla;
+}
 .cesta-header span {
   position: absolute;
   top: 10px;
   right: 20px;
   font-size: 25px;
   cursor: pointer;
+  
 }
 
-/* Scrollbar styles if needed */
+
 .cesta-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -221,8 +223,32 @@ text-align: left;
 }
 
   
-
-
+.productoo{
+  font-size: 20px;
+  font-family: Narrow;
+}
+.imgcompra {
+  display: flex;
+  align-content: center;
+}
+.imgcompra img{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  margin-top: 5px;
+  padding-left: 15px;
+  width: 100px;
+  height: 100px;
+}
+.total-precio{
+  margin-top: 10px;
+}
+.infocompra{
+  display: flex;
+  margin-left: 8px;
+  padding: 20px;
+  text-align: left ;
+}
 .mainm{
     display: flex;
     align-items: center;
@@ -336,6 +362,16 @@ text-align: left;
 @font-face {
     font-family: Bebas;
     src: url(../fonts/BebasNeue-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: Narrow;
+    src: url(../fonts/Archivo_Narrow/narrow.ttf);
+  }
+
+  @font-face {
+    font-family: fjalla;
+    src: url(../fonts/FjallaOne.ttf);
   }
 
   .main-container{

@@ -8,7 +8,7 @@ function getData(req, res, next) {
         console.log(idCliente);
         try {
             const query = `
-                SELECT c.idCliente, c.idLibro, l.book_name, l.book_price
+                SELECT c.idCliente, c.idLibro, l.book_name, l.book_price, l.book_genre, l.book_isbn
                 FROM carrito c
                 INNER JOIN books l ON c.idLibro = l.book_id
                 WHERE c.idCliente = ?
