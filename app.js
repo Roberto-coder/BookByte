@@ -44,11 +44,8 @@ app.use('/', pruebasruta);
 app.use('/', catalogoruta);
 app.use('/', imagenesRuta);
 app.use('/', adminRuta);
-<<<<<<< Updated upstream
 app.use('/', carritoRuta);
-=======
 app.use('/', gerenteRuta);
->>>>>>> Stashed changes
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
