@@ -206,7 +206,13 @@ function eliminarLibro(req, res){
       res.redirect('/admin');
   });
 };
-
+function ensureisAdmin(req, res, next) {
+  if (req.user.user_role == 0) {
+      return next();
+  }
+  // Redirigir al usuario a la página de login si no es admin
+  res.redirect('/');
+}
   export default { mostrarAdmin, agregarEmpleado, editarEmpleado, empleadoID, eliminarEmpleado
-  , agregarLibro, libroID, editarLibro, eliminarLibro
+  , agregarLibro, libroID, editarLibro, eliminarLibro, ensureisAdmin
   };

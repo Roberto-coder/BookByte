@@ -2,7 +2,7 @@
 import pool from '../config/database.js';
 
 export const mostrarAdminPage=(callback) => {
-    const sqlUsuarios = 'SELECT user_id, user_name, user_email FROM users WHERE user_role = 2;';
+    const sqlUsuarios = 'SELECT user_id, user_name, user_email FROM users WHERE user_role = 1;';
     const sqlLibros = 'SELECT book_id, book_name, book_author, YEAR(book_datePublication) AS year, book_amount FROM books;';
 
     pool.query(sqlUsuarios, (errorUsuarios, resultadosUsuarios) => {

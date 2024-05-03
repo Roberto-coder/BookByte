@@ -1,4 +1,4 @@
-extends ../layout
+//extends ../layout
 block content
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
   .container
@@ -6,7 +6,7 @@ block content
       .col-md-6.offset-md-3
         .card.mt-5
           .card-header
-            h1.text-center Registro de Empleado
+            h1.text-center Registro de Libro
           .card-body
             form(action="/admin/registrar-libro", method="POST")
                 .form-group
@@ -73,4 +73,4 @@ block content
                     input#cantidad.form-control(type="number", name="cantidad", placeholder="Cantidad de libros", required)
 
                 button.btn.btn-primary(type="submit") Agregar Libro
-
+        br  

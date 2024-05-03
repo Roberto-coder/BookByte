@@ -44,8 +44,15 @@ html(lang="es")
                     a(href="#") LO MAS LEIDO
             div(class="mainm")
                 if (user)
-                    a(href="login" class="user")= user.user_name
-                        i(class="ri-user-3-fill") 
+                    if user.user_role == 0
+                        a(href="/admin" class="user")= user.user_name
+                            i(class="ri-user-3-fill") 
+                    else if user.user_role == 1
+                        a(href="/" class="user")= user.user_name
+                            i(class="ri-user-3-fill") 
+                    else if user.user_role == 2
+                        a(href="/" class="user")= user.user_name
+                            i(class="ri-user-3-fill") 
                 else
                     a(href="login" class="user") MI CUENTA
                         i(class="ri-user-3-fill") 

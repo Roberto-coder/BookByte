@@ -5,25 +5,9 @@ import passport from "passport";
 
 const router = express.Router();
 
-router.get('/logout', (req, res) => {
-    const userId = req.query.id;
-    // Utilizamos passport para deserializar el usuario
-    passport.deserializeUser(userId, (err, user) => {
-        if (err) {
-            // Manejo del error
-            return res.status(500).send('Error interno del servidor');
-        }
-        if (!user) {
-            // El usuario no fue encontrado
-            return res.status(404).send('Usuario no encontrado');
-        }
-        
-        res.redirect('/'); // Redirigir a la página de inicio
-    });
-});
 
 // Ruta para mostrar la página de administrador
-router.get('/admin', loginControllers.ensureAuthenticated, adminControllers.mostrarAdmin);
+router.get('/admin', loginControllers.ensureAuthenticated, adminControllers.ensureisAdmin, adminControllers.mostrarAdmin);
 
 // Controlador para la página de agregar empleado
 router.get('/admin/agregar-empleado', loginControllers.ensureAuthenticated, (req, res) => {
