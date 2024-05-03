@@ -13,5 +13,38 @@ async function agregarAFavoritos(req, res) {
         res.redirect('/'); 
     });
 }
+function getData(req, res, next) {
+    if(req.isAuthenticated()){
+        const idCliente = req.user.user_id; 
+        console.log(idCliente);
+        try {
+            const query = `
+                SELECT f.id_user, f.id_book, l.book_name, l.book_price, l.book_genre, l.book_isbn
+                FROM favoritos f
+                INNER JOIN books l ON f.id_book = l.book_id
+                WHERE f.id_user = ?
+            `;
+            pool.query(query, [idCliente], (error, results) =>{
+                if (error) {
+                    console.log(error);
+                }
+                if(results.length > 0){
+                    req.favoritos = results;
+                }else{
+                    req.favoritos = null;
+                }
+                return next();
+            });
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Error al obtener datos del carrito');
+        }    
+    }else{
+        req.carrito = null;
+        return next();
+        
+    }
 
-export default { agregarAFavoritos };
+
+}
+export default { agregarAFavoritos, getData };

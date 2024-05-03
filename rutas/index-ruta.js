@@ -1,9 +1,10 @@
 import  express  from "express";
 import pool from '../config/database.js';
 import carritoControllers from "../controllers/carritoControllers.js";
+import favoritosControllers from "../controllers/favoritosControllers.js";
 
 const router = express.Router();
-router.get('/', carritoControllers.getData, (req, res) =>{
+router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4',
     (error, results) =>{
         if (error) {
@@ -16,7 +17,7 @@ router.get('/', carritoControllers.getData, (req, res) =>{
     });
 });
 
-router.get('/', carritoControllers.getData, (req, res) =>{
+router.get('/productos', carritoControllers.getData, (req, res) =>{
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4',
     (error, results) =>{
         if (error) {
