@@ -25,6 +25,7 @@ body{
     text-transform: capitalize;
 }
 
+
 header{
     position: fixed;
     width: 105%;
@@ -394,6 +395,85 @@ text-align: left;
 .u-items{
   font-size: 28px;
 }
+/*Buscador de contenido*/
+
+#icon-menu{
+  position: absolute;
+  right: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#icon-menu i{
+  font-size: 160%;
+  color: #3c3c3c;
+  cursor: pointer;
+  transition: all 300ms;
+}
+#icon-menu i:hover{
+  color: var(--main-color);
+}
+#ctn-bars-search{
+  position: fixed;
+  top: 10%;
+  width: 100%;
+  background: transparent;
+  padding: 20px;
+  z-index: 9;
+  transition: all 600ms;
+  top: -10px;
+  
+}
+
+#ctn-bars-search input{
+  display: block;
+  color: #ffffff;
+  width: 1200px;
+  margin: auto;
+  padding: 10px;
+  font-size: 20px;
+  outline: 0;
+}
+
+#box-search{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1200px;
+  background: #f60000;
+  z-index: 8;
+  overflow: hidden;
+  display: none;
+}
+
+#box-search li a{
+  display: block;
+  width: 1200px;
+  color: #777777;
+  padding: 12px 20px;
+}
+
+#box-search li a:hover{
+  background: #f3f3f3;
+}
+
+#box-search li a i{
+  margin-right: 10px;
+  color: #777777;
+}
+
+
+#cover-ctn-search{
+  width: 300%;
+  height: 300%;
+  position: fixed;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 7;
+  display: none;
+}
+
  
 /******A PARTIR DE AQUI EMPIEZA EL CARRUSEL*/
 
