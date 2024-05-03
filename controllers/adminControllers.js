@@ -29,12 +29,25 @@ function mostrarAdmin(req, res) {
   async function agregarEmpleado(req, res) {
     try{
       const hash = await hashPassword(req.body.password);
+      var rol;
+      switch(req.body.rol){
+        case "Gerente":
+          rol=3;
+          break;
+        case "Empleado":
+          rol=1;
+          break;
+        case "Acomodador":
+          rol=4;
+          break;
+      }
+
       const nuevoUsuario = {
         user_name: req.body.nombre,
         user_lastname: req.body.apellido,
         user_email: req.body.correo,
-        //contraseña: req.body.user_password
-        user_password: hash
+        user_password: hash,
+        user_role: rol
       };
   
       // Llamar a la función en el modelo para agregar el nuevo usuario
@@ -57,13 +70,27 @@ function mostrarAdmin(req, res) {
   async function editarEmpleado(req, res) {
     try {
         //const userId = req.params.id;
+        var rol;
+        switch(req.body.rol){
+          case "Gerente":
+            rol=3;
+            break;
+          case "Empleado":
+            rol=1;
+            break;
+          case "Acomodador":
+            rol=4;
+            break;
+        }
+        console.log(rol);
         const userData = {
           user_id: req.body.id,
           user_name: req.body.nombre,
           user_lastname: req.body.apellido,
           user_email: req.body.correo,
           //contraseña: req.body.user_password
-          user_password:  await bcrypt.hash(req.body.password, 10)
+          user_password:  await bcrypt.hash(req.body.password, 10),
+          user_role: rol
         };
 
         /*// Verificar si se proporcionó una nueva contraseña

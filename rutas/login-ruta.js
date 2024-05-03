@@ -25,6 +25,8 @@ router.post('/signup', async (req, res) => {
         //0 = admin
         //1 = empleado
         //2 = cliente
+        //3 = gerente
+        //4 = acomodador
                 [signup_name, signup_lastname, signup_email, hash, 2], (error, results) => {
                     if (error) {
                         // Manejo de error al intentar guardar en la base de datos
@@ -67,6 +69,12 @@ router.post('/signin', passport.authenticate('local', {
             break;
         case 2:
             res.redirect('/cliente');
+            break;
+        case 3:
+            res.redirect('/gerente');
+            break;
+        case 4:
+            res.redirect('/acomodador');
             break;
         default:
             res.redirect('/'); // Redirigir a una página por defecto en caso de un rol desconocido

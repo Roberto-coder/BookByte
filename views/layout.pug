@@ -9,6 +9,7 @@ html(lang="es")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css")
     body
         header(class="header")
+
             a(class="logo",href = "/") 
                 img(src="img/logo.ico")
             ul(class="navbar")
@@ -42,6 +43,9 @@ html(lang="es")
                     a(href="#") OFERTAS
                 li
                     a(href="#") LO MAS LEIDO
+                #icon-menu
+                    i.fa-solid.fa-magnifying-glass#icon-search
+
             div(class="mainm")
                 if (user)
                     if user.user_role == 0
@@ -84,6 +88,36 @@ html(lang="es")
                     a(href="/logout" class="logout")       
                         i(class="bx bxs-log-out" )
                 div(class="bx bx-menu" id="menu-icon")
+                
+        #ctn-bars-search
+            input(type="text", id="inputSearch", placeholder="¿Qué deseas buscar?")
+        ul#box-search
+            li
+                a(href="#")
+                    i.fas.fa-search HTML
+            li
+                a(href="#")
+                    i.fas.fa-search CSS
+            li
+                a(href="#")
+                    i.fas.fa-search JavaScript
+            li
+                a(href="#")
+                    i.fas.fa-search PHP
+            li
+                a(href="#")
+                    i.fas.fa-search NODEJS
+            li
+                a(href="#")
+                    i.fas.fa-search VUEJS
+            li
+                a(href="#")
+                    i.fas.fa-search Como hacer
+            li
+                a(href="#")
+                    i.fas.fa-search Como crear
+        #cover-ctn-search
+
     script(src="js/header.js")                
     block content
     footer(class="footer")
@@ -117,3 +151,5 @@ html(lang="es")
                             a(href="#") 
                                  i.fab.fa-twitter
                         a(href="#", style="color: yellow;") Métodos de pago
+
+script(src="js/barra-busqueda.js")

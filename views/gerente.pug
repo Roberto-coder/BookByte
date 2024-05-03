@@ -9,6 +9,13 @@ block content
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Gerente
         link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        script(src="https://cdn.jsdelivr.net/npm/chart.js")
+        style.
+            .chart-container {
+                width: 400px;
+                height: 300px;
+            }
+        
     body
         .container
             h1 Reportes de ventas
@@ -97,6 +104,9 @@ block content
                         td= month.book_genre
                         td= month.repeticiones 
 
+            canvas#myChart1.chart-container
+            canvas#myChart2.chart-container
+            canvas#myChart3.chart-container
 
     script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
     script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js")
@@ -125,3 +135,49 @@ block content
             // Luego, actualiza la tabla de ventas para géneros de libros con los nuevos datos
         });
         });
+    
+    script.
+      // Datos para el gráfico
+      var data = {
+          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
+          datasets: [{
+              label: "Ventas por mes",
+              backgroundColor: "blue",
+              data: [65, 59, 80, 81, 56, 55]
+          }]
+      };
+
+      // Configuración del gráfico
+      var options = {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      };
+
+      // Crear el gráfico
+      var ctx1 = document.getElementById('myChart1').getContext('2d');
+      var myChart1 = new Chart(ctx1, {
+          type: 'bar',
+          data: data,
+          options: options
+      });
+
+      // Crear el gráfico
+      var ctx2 = document.getElementById('myChart2').getContext('2d');
+      var myChart2 = new Chart(ctx2, {
+          type: 'pie',
+          data: data,
+          options: options
+      });
+
+            // Crear el gráfico
+      var ctx3 = document.getElementById('myChart3').getContext('2d');
+      var myChart3 = new Chart(ctx3, {
+          type: 'line',
+          data: data,
+          options: options
+      });
