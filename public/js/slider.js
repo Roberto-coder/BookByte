@@ -1,5 +1,7 @@
 const btnLeft = document.querySelector(".btn-left"),
       btnRight = document.querySelector(".btn-right"),
+      btnLeftProduct = document.querySelector(".btn-left-product"),
+      btnRightProduct = document.querySelector(".btn-right-product"),
       slider = document.querySelector("#slider"),
       sliderSection = document.querySelectorAll(".slider-section"),
       contenedorCompra = document.getElementById('contenedorCompra'),   
