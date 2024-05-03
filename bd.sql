@@ -115,6 +115,7 @@ CREATE TABLE `detalle_orden` (
   `ID_PRODUCTO` int NOT NULL,
   `CANTIDAD` int NOT NULL,
   `PRECIO` decimal(10,2) NOT NULL,
+  `FECHA_REGISTRO` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_ORDEN` (`ID_ORDEN`),
   KEY `ID_PRODUCTO` (`ID_PRODUCTO`),
