@@ -25,15 +25,33 @@ function convertToJPEG(req, res, next) {
 // Configuración para almacenamiento de imágenes de perfil
 const bookStorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const { book_genre } = req.body;
-        cb(null, path.join(__dirname, '/private/img_books/', book_genre));
+        const book_genre = req.body.genero;
+        const dir = path.join(__dirname, '/private/img_books/' + book_genre);
+
+        // Verificar si el directorio existe
+        fs.access(dir, fs.constants.F_OK, (error) => {
+            if (error) {
+                // Si el directorio no existe, crearlo
+                fs.mkdir(dir, { recursive: true }, (error) => {
+                    if (error) {
+                        cb(error, null);
+                    } else {
+                        cb(null, dir);
+                    }
+                });
+            } else {
+                // Si el directorio ya existe, simplemente continuar
+                cb(null, dir);
+            }
+        });
     },
     filename: function (req, file, cb) {
-        const { isr } = req.body;
+        const isbn = req.body.isbn;
         const fileExtension = '.jpg'; // Siempre guardar como JPEG
-        cb(null, userId + fileExtension);
+        cb(null, isbn + fileExtension);
     }
 });
+
 
 const uploadBookImage = multer({ storage: bookStorage });
 

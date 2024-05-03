@@ -1,6 +1,7 @@
 import  express  from "express";
 import loginControllers from '../controllers/loginControllers.js'
 import adminControllers from '../controllers/adminControllers.js';
+import { uploadBookImage } from '../config/multerConfig.js';
 import passport from "passport";
 
 const router = express.Router();
@@ -28,7 +29,7 @@ router.get('/admin/agregar-libro', loginControllers.ensureAuthenticated, (req, r
     res.render('Libro/agregar-libro');
 });
 
-router.post('/admin/registrar-libro', loginControllers.ensureAuthenticated, adminControllers.agregarLibro);
+router.post('/admin/registrar-libro', uploadBookImage.single('file'), loginControllers.ensureAuthenticated, adminControllers.agregarLibro);
 
 router.get('/admin/editar-libro', loginControllers.ensureAuthenticated, adminControllers.libroID);
 

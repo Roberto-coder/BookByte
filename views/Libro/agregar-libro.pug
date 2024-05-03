@@ -8,7 +8,7 @@ block content
           .card-header
             h1.text-center Registro de Libro
           .card-body
-            form(action="/admin/registrar-libro", method="POST")
+            form(action="/admin/registrar-libro", method="POST", enctype="multipart/form-data")
                 .form-group
                     label(for="titulo") Nombre del libro
                     input#titulo.form-control(type="text", name="titulo", placeholder="Nombre del libro", required)
@@ -71,6 +71,8 @@ block content
                 .form-group
                     label(for="cantidad") Cantidad
                     input#cantidad.form-control(type="number", name="cantidad", placeholder="Cantidad de libros", required)
-
+                .form-group
+                    label(for="file") Imagen de libro
+                    input#cantidad.form-control(type="file", name="file", required)
                 button.btn.btn-primary(type="submit") Agregar Libro
         br  
