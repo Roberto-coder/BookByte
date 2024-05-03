@@ -11,7 +11,6 @@ import carritoRuta from "./rutas/carrito-ruta.js";
 import pruebasruta from "./rutas/pruebas-ruta.js";
 import catalogoruta from "./rutas/catalogo-ruta.js";
 import adminRuta from "./rutas/admin-ruta.js";
-
 import passport from "./config/passport.js";
 
 const __dirname = (process.platform === "win32")
