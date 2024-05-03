@@ -570,6 +570,44 @@ text-align: left;
     flex-direction: column;
   }  
 
+
+  /** Aquí empieza el scroll de los productos **/
+
+  .btn-left-product,
+  .btn-right-product {
+    display: flex;
+    position: absolute;
+    top:37%;
+    font-size: 2.5rem;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #7d7d6bc9;
+    transform: translate(0,-50%);
+    transition: .5s ease;
+    user-select: none;
+  }
+  
+  .btn-left-product:hover{
+    background-color: #2b2b73;
+    color: #ffffff;
+  }
+  .btn-right-product:hover {
+    background-color: #2b2b73;
+    color: #ffffff;
+  }
+  
+  .btn-left-product {
+    left: 40px;
+  }
+  
+  .btn-right-product {
+    right: 45px;
+  }
+
+
   /** FOOTER **/
 
   footer{
