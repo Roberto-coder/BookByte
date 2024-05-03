@@ -34,6 +34,9 @@ block content
                 br
                 br
             .row
+                .col-md-2
+                  div.btn-right-product
+                    i(class='bx bx-chevron-right') 
                 for book in newBooks
                     .col-md-3 
                         .s_product
@@ -61,10 +64,6 @@ block content
                                         i.fa.fa-star(aria-hidden="true")
                                     h5=book.book_price  
 
-        div.btn-left-product  
-          i(class='bx bx-chevron-left')   
-        div.btn-right-product
-          i(class='bx bx-chevron-right') 
 
 
     section.header-feahion
