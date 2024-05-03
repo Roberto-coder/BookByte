@@ -72,5 +72,17 @@ router.post('/signin', passport.authenticate('local', {
             res.redirect('/'); // Redirigir a una página por defecto en caso de un rol desconocido
     }
 });
+router.get('/logout', (req, res, next) => {
+    const id_user = req.user.id;
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        // Opcionalmente, destruir la sesión
+        req.session.destroy(() => {
+            res.redirect('/'); // Redireccionar al usuario después de cerrar sesión
+        });
+    });
+});
 
 export default router;
