@@ -24,6 +24,13 @@ block content
                 input#correo.form-control(type="email", name="correo", placeholder="Correo Electrónico", required)
 
               .form-group
+                label(for="rol") Rol del Empleado:
+                select#rol.form-control(name="rol" , required)
+                        option(value="Gerente") Gerente 
+                        option(value="Empleado") Empleado
+                        option(value="Acomodador") Acomodador
+
+              .form-group
                 label(for="password") Contraseña:
                 input#password.form-control(type="password", name="password", placeholder="Contraseña", required)
 

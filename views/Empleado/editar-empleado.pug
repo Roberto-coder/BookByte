@@ -1,4 +1,4 @@
-extends ../layout
+//extends ../layout
 block content
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
   .container
@@ -12,15 +12,22 @@ block content
               input(type='hidden', name='id', value=usuario.user_id)
               .form-group
                 label(for="nombre") Nombre:
-                input#nombre.form-control(type="text", name="nombre", placeholder=usuario.user_name, required)
+                input#nombre.form-control(type="text", name="nombre", value=usuario.user_name, required)
 
               .form-group
                 label(for="apellido") Apellido:
-                input#apellido.form-control(type="text", name="apellido", placeholder=usuario.user_lastname, required)
+                input#apellido.form-control(type="text", name="apellido", value=usuario.user_lastname, required)
 
               .form-group
                 label(for="correo") Correo Electrónico:
-                input#correo.form-control(type="email", name="correo", placeholder=usuario.user_email, required)
+                input#correo.form-control(type="email", name="correo", value=usuario.user_email, required)
+
+              .form-group
+                label(for="rol") Rol del Empleado:
+                select#rol.form-control(name="rol" , required)
+                        option(value="Gerente") Gerente 
+                        option(value="Empleado") Empleado
+                        option(value="Acomodador") Acomodador
 
               .form-group
                 label(for="password") Contraseña:

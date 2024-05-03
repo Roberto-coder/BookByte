@@ -2,7 +2,7 @@
 import pool from '../config/database.js';
 
 export const mostrarAdminPage=(callback) => {
-    const sqlUsuarios = 'SELECT user_id, user_name, user_email FROM users WHERE user_role = 1;';
+    const sqlUsuarios = 'SELECT * FROM users WHERE user_role!=0 AND user_role!=2 ORDER BY user_role desc ;';
     const sqlLibros = 'SELECT book_id, book_name, book_author, YEAR(book_datePublication) AS year, book_amount FROM books;';
 
     pool.query(sqlUsuarios, (errorUsuarios, resultadosUsuarios) => {
@@ -25,7 +25,6 @@ export const mostrarAdminPage=(callback) => {
 // Función para agregar un usuario a la base de datos
 export const agregarUsuario = (usuarioDatos, callback) => {
     // Consulta SQL para insertar un nuevo usuario en la tabla usuarios
-    usuarioDatos.user_role = 2;
     let sql = "INSERT INTO users SET ?";
     
     // Ejecutar la consulta SQL utilizando la conexión a la base de datos

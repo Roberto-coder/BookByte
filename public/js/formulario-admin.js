@@ -5,7 +5,6 @@ const form = document.getElementById("form");
 const parrafo = document.getElementById("warnings");
 
 form.addEventListener("submit", e=>{
-    e.preventDefault();
     let warnings="";
     let entrar = false;
     let regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -25,8 +24,6 @@ form.addEventListener("submit", e=>{
 
     if(entrar){
         parrafo.innerHTML = warnings;
-    }else{
-        parrafo.innerHTML="Enviado";
     }
 
 });
