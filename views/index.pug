@@ -38,18 +38,17 @@ block content
                     .col-md-3 
                         .s_product
                             img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                            
                             .s_overlay
                             if (book.book_amount == 0) 
-                                h2(style="color: black;") AGOTADO
-                                i(class='bx bxs-heart')
-                            h3=book.book_editorial
-                            
+                                h2(style="color: black;") AGOTADO 
+                            h3=book.book_editorial     
                             h4
-                                
                                 i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                a(onclick="Agotado()", style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                                
-                            
+                                a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                            div(class="favs")
+                                a(href = "/favoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
+                                  i(class='bx bxs-heart')
                         .row
                             .col-md-12
                                 .rate
@@ -87,6 +86,8 @@ block content
                             h4
                                 i.fa.fa-cart-arrow-down(aria-hidden="true")
                                 a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                            div(class="favs")  
+
                         .row
                             .col-md-12
                                 .rate

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: bookbyte
+-- Host: 127.0.0.1    Database: bookbyte
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.28-MariaDB
+-- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,18 +23,18 @@ DROP TABLE IF EXISTS `books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `books` (
-  `book_id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_name` varchar(100) NOT NULL,
-  `book_author` varchar(50) NOT NULL,
-  `book_genre` varchar(40) NOT NULL,
+  `book_id` int NOT NULL AUTO_INCREMENT,
+  `book_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `book_author` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `book_genre` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
   `book_price` decimal(10,2) NOT NULL,
-  `book_numPage` int(11) NOT NULL,
+  `book_numPage` int NOT NULL,
   `book_datePublication` date NOT NULL,
-  `book_placePublication` varchar(45) NOT NULL,
-  `book_vol` int(11) NOT NULL,
-  `book_isbn` bigint(20) NOT NULL,
-  `book_editorial` varchar(45) NOT NULL,
-  `book_amount` int(11) NOT NULL,
+  `book_placePublication` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `book_vol` int NOT NULL,
+  `book_isbn` bigint NOT NULL,
+  `book_editorial` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `book_amount` int NOT NULL,
   PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -57,8 +57,8 @@ DROP TABLE IF EXISTS `c_metodo_pago`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `c_metodo_pago` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `TIPO` varchar(40) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `TIPO` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,16 +81,15 @@ DROP TABLE IF EXISTS `carrito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carrito` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCliente` int(11) NOT NULL,
-  `idLibro` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idCliente` int NOT NULL,
+  `idLibro` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `carrito_user_idx` (`idCliente`),
   KEY `libro_idx` (`idLibro`),
   CONSTRAINT `carrito_libro` FOREIGN KEY (`idLibro`) REFERENCES `books` (`book_id`),
   CONSTRAINT `carrito_user` FOREIGN KEY (`idCliente`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +98,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` VALUES (1,3,4),(2,3,6),(3,3,4);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,10 +110,10 @@ DROP TABLE IF EXISTS `detalle_orden`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalle_orden` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_ORDEN` int(11) NOT NULL,
-  `ID_PRODUCTO` int(11) NOT NULL,
-  `CANTIDAD` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ID_ORDEN` int NOT NULL,
+  `ID_PRODUCTO` int NOT NULL,
+  `CANTIDAD` int NOT NULL,
   `PRECIO` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_ORDEN` (`ID_ORDEN`),
@@ -140,9 +140,9 @@ DROP TABLE IF EXISTS `disponibles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `disponibles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idLibro` int(11) NOT NULL,
-  `CANTIDAD` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idLibro` int NOT NULL,
+  `CANTIDAD` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `disponibles_libro` (`idLibro`),
   CONSTRAINT `disponibles_libro` FOREIGN KEY (`idLibro`) REFERENCES `books` (`book_id`)
@@ -166,13 +166,13 @@ DROP TABLE IF EXISTS `domicilios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `domicilios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCliente` int(11) NOT NULL,
-  `calle` varchar(45) NOT NULL,
-  `ESTADO` varchar(45) NOT NULL,
-  `Municipio` varchar(45) DEFAULT NULL,
-  `CP` varchar(10) DEFAULT NULL,
-  `TELEFONO` varchar(15) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idCliente` int NOT NULL,
+  `calle` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `ESTADO` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `Municipio` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `CP` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TELEFONO` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_CLIENTE` (`idCliente`),
   CONSTRAINT `ID_CLIENTE` FOREIGN KEY (`idCliente`) REFERENCES `users` (`user_id`)
@@ -189,6 +189,34 @@ LOCK TABLES `domicilios` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `favoritos`
+--
+
+DROP TABLE IF EXISTS `favoritos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `favoritos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_book` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `favs_user_idx` (`id_user`),
+  KEY `libro_idx` (`id_book`),
+  CONSTRAINT `favs_libro` FOREIGN KEY (`id_book`) REFERENCES `books` (`book_id`),
+  CONSTRAINT `favs_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favoritos`
+--
+
+LOCK TABLES `favoritos` WRITE;
+/*!40000 ALTER TABLE `favoritos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `favoritos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `orden`
 --
 
@@ -196,11 +224,11 @@ DROP TABLE IF EXISTS `orden`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orden` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_USUARIO` int(11) NOT NULL,
-  `ID_METODO_PAGO` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ID_USUARIO` int NOT NULL,
+  `ID_METODO_PAGO` int NOT NULL,
   `TOTAL` decimal(10,2) NOT NULL,
-  `ID_DOMICILIO` int(11) NOT NULL,
+  `ID_DOMICILIO` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_USUARIO` (`ID_USUARIO`),
   KEY `ID_METODO_PAGO` (`ID_METODO_PAGO`),
@@ -228,14 +256,14 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) NOT NULL,
-  `user_lastname` varchar(45) NOT NULL,
-  `user_email` varchar(45) NOT NULL,
-  `user_password` varchar(100) NOT NULL,
-  `user_role` int(11) NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_lastname` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_email` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_role` int NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +272,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Josue','Nájera','josue123@gmail.com','$2b$10$TuJdIuSkN.7mh14O7iY6IO33z9L6WvlVtwA1mqg2ifG0vVaQ.7Wva',2),(2,'administrador','administrador','admin@admin.com','$2b$10$RRZ/RYNfRiG3F3H0BH5SguK.AELboQnO9Trrp6wYvC9PuLi8oU0Cy',0);
+INSERT INTO `users` VALUES (1,'Josue','Nájera','josue123@gmail.com','$2b$10$TuJdIuSkN.7mh14O7iY6IO33z9L6WvlVtwA1mqg2ifG0vVaQ.7Wva',2),(2,'administrador','administrador','admin@admin.com','$2b$10$RRZ/RYNfRiG3F3H0BH5SguK.AELboQnO9Trrp6wYvC9PuLi8oU0Cy',0),(3,'Emmanuel','Zurita','ezurita056@gmail.com','$2b$10$EE4BmUal9/5Qbh14bXIA7e1byjB1pePSA5JPPa/g.dsHy/jQWlqUe',2),(4,'Emmanuel','Zurita','ezurita056@gmail.com','$2b$10$HMiop161a8foVMSytp.OKOh90WAp6Nv81iUeptCUhq.c0hZVnqk5a',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -257,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-06 15:25:35
+-- Dump completed on 2024-05-03  9:20:17

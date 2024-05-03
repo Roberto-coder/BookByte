@@ -1,19 +1,17 @@
 import pool from '../config/database.js';
-async function favoritos(req, res) {
+
+async function agregarAFavoritos(req, res) {
     const { id } = req.params;
-    const idCliente = req.user.user_id;
-    const query = 'INSERT INTO carrito (idCliente, idLibro) VALUES (?,?)';
-    try {
-        pool.query(query, [idCliente, id], (error, results) =>{
-            if(error){
-                console.log(error);
-            }
-            res.redirect('/');
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error al añadir al carrito');
-    }
+    const idCliente = req.user.user_id; 
+    const query = 'INSERT INTO favoritos (id_user, id_book) VALUES (?, ?)';
+
+    pool.query(query, [idCliente, id], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('Error al añadir a favoritos');
+        }
+        res.redirect('/'); 
+    });
 }
 
-export default {favoritos};
+export default { agregarAFavoritos };

@@ -2,5 +2,6 @@ import express from "express";
 import  controller  from '../controllers/favoritosControllers.js';
 const router = express.Router();
 
-router.get('/agregarfavoritos/:id',controller.favoritos);
+router.post('/favoritos/:id', controller.agregarAFavoritos);
+
 export default router;

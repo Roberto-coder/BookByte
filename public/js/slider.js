@@ -2,13 +2,19 @@ const btnLeft = document.querySelector(".btn-left"),
       btnRight = document.querySelector(".btn-right"),
       slider = document.querySelector("#slider"),
       sliderSection = document.querySelectorAll(".slider-section"),
-      contenedorCompra = document.getElementById('contenedorCompra');     
+      contenedorCompra = document.getElementById('contenedorCompra'),   
+      favoritos = document.querySelector(".favs");
 document.querySelector('.bag').addEventListener('click', function() {
     document.getElementById('informacionCompra').style.display = 'block';
 });
     
 document.getElementById('x').addEventListener('click', function() {
     document.getElementById('informacionCompra').style.display = 'none';
+});
+document.querySelectorAll('.favs').forEach(item => {
+    item.addEventListener('click', function() {
+        document.getElementById('informacionCompra').style.display = 'block'; // Asegúrate de que este es el comportamiento deseado
+    });
 });
 
 btnLeft.addEventListener("click", e => moveToLeft())

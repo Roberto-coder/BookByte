@@ -724,11 +724,46 @@ text-align: left;
   .s_product .s_overlay{
       position: absolute;
       background: rgba(0,0,0,.4);
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 20%;
       top: 0;
       opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease-in-out;
   }
+  .s_product i.bxs-heart {
+    font-size: 2rem; 
+    color: white; 
+    display: none; 
+}
+.s_product:hover .bxs-heart {
+  display: block;
+  
+}
+.s_product .favs {
+  position: absolute;
+  width: 100px;
+  height:30px;
+  top: 250px;
+  margin-left: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0; /* Oculto inicialmente */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.s_product:hover .favs {
+  opacity: 1; /* Visible al pasar el mouse */
+}
+
+.s_product:hover > .s_overlay {
+  opacity: 1;
+}
+
   .s_product i {
     font-size: 18px;
     margin-right: 10px;

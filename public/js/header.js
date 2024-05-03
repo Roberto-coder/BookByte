@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const logout = document.querySelector('.logout');
     const contenedorCompra = document.getElementById('contenedorCompra');
     const x = document.querySelector('#x'); 
-
+    
     menu.onclick = function() {
         menu.classList.toggle('bx-x');
         navbar.classList.toggle('open');
