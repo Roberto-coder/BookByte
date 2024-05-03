@@ -1,6 +1,5 @@
 import pool from '../config/database.js';
-import util from 'util';
-import passport from '../config/passport.js';
+
 
 function getData(req, res, next) {
     if(req.isAuthenticated()){

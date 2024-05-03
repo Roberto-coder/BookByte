@@ -27,7 +27,7 @@ body{
 
 header{
     position: fixed;
-    width: 100%;
+    width: 105%;
     top: 0;
     right: 0;
     z-index: 1000;
@@ -300,6 +300,18 @@ text-align: left;
     -webkit-text-fill-color: transparent;
     display: inline-block;
     font-size: 23px;
+    margin-right: 7px;
+}
+.logout{
+  display: flex;
+  align-items: center;
+}
+.logout i{
+    background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-size: 25px;
     margin-right: 7px;
 }
 .main a:hover{

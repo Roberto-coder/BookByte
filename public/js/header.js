@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let menu = document.querySelector('#menu-icon');
     let navbar = document.querySelector('.navbar');
     const carrito = document.querySelector('.bag');
+    const logout = document.querySelector('.logout');
     const contenedorCompra = document.getElementById('contenedorCompra');
     const x = document.querySelector('#x'); 
 
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     x.addEventListener('click', function() {
         contenedorCompra.classList.add('none');
     });
+  
     
     
 });
+    
+

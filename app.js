@@ -6,12 +6,14 @@ import session from "express-session";
 import imagenesRuta from "./rutas/imagenes-ruta.js";
 import indexruta from "./rutas/index-ruta.js";
 import loginruta from "./rutas/login-ruta.js";
+
 import carritoRuta from "./rutas/carrito-ruta.js";
 import pruebasruta from "./rutas/pruebas-ruta.js";
 import catalogoruta from "./rutas/catalogo-ruta.js";
 import adminRuta from "./rutas/admin-ruta.js";
 
 import passport from "./config/passport.js";
+
 const __dirname = (process.platform === "win32")
         ? path.resolve()
         : path.dirname(new URL(import.meta.url).pathname);
@@ -44,6 +46,7 @@ app.use('/', catalogoruta);
 app.use('/', imagenesRuta);
 app.use('/', adminRuta);
 app.use('/', carritoRuta);
+
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
