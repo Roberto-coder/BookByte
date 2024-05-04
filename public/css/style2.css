@@ -244,7 +244,84 @@ text-align: left;
 .total-precio{
   margin-top: 10px;
 }
-.infocompra{
+/*inicio favoritos*/
+.contenedorFavs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+  width: 30%; 
+  height: auto; 
+  position: fixed;
+  right: 10%; 
+  top: 10%; 
+  background-color: var(--bg-color);
+  border-radius: 15px; 
+  padding: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
+  overflow: auto;
+}
+.heart-header{
+  font-family: fjalla;
+}
+.heart-header span {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+  
+}
+
+.heart-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.heart-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.heart-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.heart-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px; 
+}
+
+
+
+.none {
+  display: none;
+}
+
+  
+.productoos{
+  font-size: 20px;
+  font-family: Narrow;
+}
+.imgcompra2 {
+  display: flex;
+  align-content: center;
+}
+.imgcompra2 img{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  margin-top: 5px;
+  padding-left: 15px;
+  width: 100px;
+  height: 100px;
+}
+
+.infofavs{
   display: flex;
   margin-left: 8px;
   padding: 20px;

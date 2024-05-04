@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const logout = document.querySelector('.logout');
     const contenedorCompra = document.getElementById('contenedorCompra');
     const x = document.querySelector('#x'); 
-    
+    const favoritos = document.querySelector('.fav');
+    const contenedorFavs = document.getElementById('contenedorFavs');
+    const x2 = document.querySelector('#x2'); 
     menu.onclick = function() {
         menu.classList.toggle('bx-x');
         navbar.classList.toggle('open');
@@ -19,8 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
     x.addEventListener('click', function() {
         contenedorCompra.classList.add('none');
     });
-  
+    favoritos.addEventListener('click', function(event) {
+        event.preventDefault();
+        contenedorFavs.classList.toggle('none');
+    });
     
+    x2.addEventListener('click', function() {
+        contenedorFavs.classList.add('none');
+    });
     
 });
     

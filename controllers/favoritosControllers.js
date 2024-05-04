@@ -37,10 +37,10 @@ function getData(req, res, next) {
             });
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Error al obtener datos del carrito');
+            res.status(500).send('Error al obtener datos de Favoritos');
         }    
     }else{
-        req.carrito = null;
+        req.favoritos= null;
         return next();
         
     }

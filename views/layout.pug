@@ -77,13 +77,27 @@ html(lang="es")
                                                 div(class = "infocompra") 
                                                     p  #{librocarrito.book_name} 
                                                     span(id="nombreLibro")  
-                                             
-                                           
-
                     div(class="total-precio")
-                    button Finalizar Compra      
-                a(href="#"  class="fav")
+                    button Finalizar Compra
+                       
+                a(class="fav")
                     i(class="ri-heart-3-fill")
+                div(class="contenedorFavs none", id="contenedorFavs")
+                    div(class="heart")
+                        div(class="heart-header")
+                            h2 Favoritos
+                            span(class="x2", id="x2") ×   
+                    div(class="heart-footer")
+                        div(class="productoos") 
+                                if(favoritos)
+                                    for librofavs in favoritos
+                                        div(class="divcontainer2")
+                                            div(class="imgcompra2")
+                                                img(src="img_book/"+librofavs.book_genre+"/"+librofavs.book_isbn, alt="")
+                                                div(class="infofavs")
+                                                    p  #{librocarrito.book_name} 
+                                                    span(id="nombreLibro") 
+                                                                              
                 if user
                     a(href="/logout" class="logout")       
                         i(class="bx bxs-log-out" )
