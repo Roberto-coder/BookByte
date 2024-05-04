@@ -21,6 +21,7 @@ function getData(req, res, next) {
                 }else{
                     req.carrito = null;
                 }
+                
                 return next();
             });
         } catch (err) {
@@ -52,5 +53,4 @@ async function carritoo(req, res) {
         res.status(500).send('Error al añadir al carrito');
     }
 }
-
 export default { getData, carritoo };

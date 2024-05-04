@@ -1,18 +1,6 @@
 import pool from '../config/database.js';
 
-async function agregarAFavoritos(req, res) {
-    const { id } = req.params;
-    const idCliente = req.user.user_id; 
-    const query = 'INSERT INTO favoritos (id_user, id_book) VALUES (?, ?)';
 
-    pool.query(query, [idCliente, id], (error, results) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).send('Error al añadir a favoritos');
-        }
-        res.redirect('/'); 
-    });
-}
 function getData(req, res, next) {
     if(req.isAuthenticated()){
         const idCliente = req.user.user_id; 
@@ -33,6 +21,7 @@ function getData(req, res, next) {
                 }else{
                     req.favoritos = null;
                 }
+                
                 return next();
             });
         } catch (err) {
@@ -44,7 +33,19 @@ function getData(req, res, next) {
         return next();
         
     }
-
-
 }
-export default { agregarAFavoritos, getData };
+
+async function agregarAFavoritos(req, res) {
+    const { id } = req.params;
+    const idCliente = req.user.user_id; 
+    const query = 'INSERT INTO favoritos (id_user, id_book) VALUES (?, ?)';
+
+    pool.query(query, [idCliente, id], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('Error al añadir a favoritos');
+        }
+        res.redirect('/'); 
+    });
+}
+export default { getData, agregarAFavoritos };
