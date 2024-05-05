@@ -1,13 +1,12 @@
 import pool from '../config/database.js';
 
-
 function getData(req, res, next) {
     if(req.isAuthenticated()){
         const idCliente = req.user.user_id; 
         console.log(idCliente);
         try {
             const query = `
-                SELECT c.idCliente, c.idLibro, l.book_name, l.book_price, l.book_genre, l.book_isbn
+                SELECT c.idCliente, c.idLibro,l.book_id, l.book_name, l.book_price, l.book_genre, l.book_isbn
                 FROM carrito c
                 INNER JOIN books l ON c.idLibro = l.book_id
                 WHERE c.idCliente = ?
@@ -53,4 +52,24 @@ async function carritoo(req, res) {
         res.status(500).send('Error al añadir al carrito');
     }
 }
-export default { getData, carritoo };
+
+
+
+async function eliminarcarritoo(req, res) {
+    const { id } = req.params;
+    const idCliente = req.user.user_id;
+    const query = `
+    DELETE  
+    FROM carrito 
+    WHERE idCliente = ? AND idLibro = ?
+    `;
+    console.log(query);
+        pool.query(query, [idCliente, id], (error, results) =>{
+            if(error){
+                console.log(error);
+            }
+            res.redirect('/');
+        });
+}
+
+export default { getData, carritoo,eliminarcarritoo };

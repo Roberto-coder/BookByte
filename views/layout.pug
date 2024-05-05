@@ -76,7 +76,10 @@ html(lang="es")
                                                 img(src="img_book/"+librocarrito.book_genre+"/"+librocarrito.book_isbn, alt="")
                                                 div(class = "infocompra") 
                                                     p  #{librocarrito.book_name} 
-                                                    span(id="nombreLibro")  
+                                                    span(id="nombreLibro")
+                                                div(class = "eliminarCompra")
+                                                    a(href = "/eliminarcarrito/"+librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                       i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
                     div(class="total-precio")
                     button Finalizar Compra
                        
@@ -96,7 +99,10 @@ html(lang="es")
                                                 img(src="img_book/"+librofavs.book_genre+"/"+librofavs.book_isbn, alt="")
                                                 div(class="infofavs")
                                                     p  #{librofavs.book_name} 
-                                                    span(id="nombreLibro") 
+                                                    span(id="nombreLibro")
+                                                div(class = "eliminarFavorito")
+                                                    a(href = "/eliminarfavoritos/"+librofavs.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                        i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
 
                                                                               
                 if user

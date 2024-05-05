@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoritos = document.querySelector('.fav');
     const contenedorFavs = document.getElementById('contenedorFavs');
     const x2 = document.querySelector('#x2'); 
+  
     menu.onclick = function() {
         menu.classList.toggle('bx-x');
         navbar.classList.toggle('open');
@@ -29,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     x2.addEventListener('click', function() {
         contenedorFavs.classList.add('none');
     });
+    
+    
     
 });
     
