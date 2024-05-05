@@ -12,7 +12,7 @@ import pruebasruta from "./rutas/pruebas-ruta.js";
 import catalogoruta from "./rutas/catalogo-ruta.js";
 import adminRuta from "./rutas/admin-ruta.js";
 import passport from "./config/passport.js";
-import favoritos from "./rutas/favoritos-ruta.js";
+import favoritosRuta from "./rutas/favoritos-ruta.js";
 import gerente from "./rutas/gerente-ruta.js";
 const __dirname = (process.platform === "win32")
         ? path.resolve()
@@ -46,7 +46,7 @@ app.use('/', catalogoruta);
 app.use('/', imagenesRuta);
 app.use('/', adminRuta);
 app.use('/', carritoRuta);
-app.use('/', favoritos);
+app.use('/', favoritosRuta);
 app.use('/', gerente);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
