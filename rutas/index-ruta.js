@@ -25,7 +25,7 @@ router.get('/productos', carritoControllers.getData, (req, res) =>{
             res.redirect
             throw error;
         }else{
-        res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito });
+        res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
         }
     });
 });
