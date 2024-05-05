@@ -12,7 +12,7 @@ router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, 
             res.redirect
             throw error;
         }else{
-        res.render("index", { newBooks: results, user: req.user, carrito: req.carrito });
+        res.render("index", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
         }
     });
 });
