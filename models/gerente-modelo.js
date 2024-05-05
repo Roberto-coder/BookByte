@@ -7,13 +7,17 @@ export const mostrarReportes=(callback) => {
     'JOIN (SELECT DISTINCT MONTH(fecha_registro) as mes FROM detalle_orden WHERE MONTH(fecha_registro) = MONTH(CURDATE())) AS mes ' +
     'GROUP BY book_author ORDER BY repeticiones DESC LIMIT 10;';
 
-    const sqlGeneros = 'SELECT mes.mes, generos.book_genre, COUNT(*) AS repeticiones ' +
+    const sqlGeneros = 'SELECT fecha.fecha_registro, generos.book_genre, COUNT(*) AS repeticiones ' +
     'FROM (SELECT detalle_orden.ID_PRODUCTO,books.book_genre, books.book_id FROM detalle_orden JOIN books where detalle_orden.ID_PRODUCTO = books.book_id) as generos ' +
-    'JOIN (SELECT DISTINCT MONTH(fecha_registro) as mes FROM detalle_orden WHERE MONTH(fecha_registro) = MONTH(CURDATE())) AS mes ' +
+    'JOIN (SELECT detalle_orden.fecha_registro '+
+    'FROM detalle_orden '+
+    'JOIN books ON detalle_orden.ID_PRODUCTO = books.book_id '+
+    'WHERE MONTH(detalle_orden.fecha_registro) = 5 '+
+    'AND YEAR(detalle_orden.fecha_registro) = 2024) as fecha '+
     'GROUP BY book_genre ORDER BY repeticiones DESC LIMIT 10;';
     
-    const sqlLibros = 'SELECT mes.mes, repeticiones.repeticiones, nombre.book_name ' +
-    'FROM (SELECT DISTINCT MONTH(fecha_registro) as mes FROM detalle_orden WHERE MONTH(fecha_registro) = MONTH(CURDATE())) AS mes ' +
+    const sqlLibros = 'SELECT mes.fecha_registro, repeticiones.repeticiones, nombre.book_name ' +
+    'FROM (SELECT DISTINCT fecha_registro FROM detalle_orden WHERE MONTH(fecha_registro) = 5 AND YEAR(fecha_registro) = 2024) AS mes  ' +
     'JOIN (SELECT DISTINCT COUNT(*) as repeticiones FROM detalle_orden GROUP BY ID_PRODUCTO ORDER BY repeticiones DESC LIMIT 10) AS repeticiones ' +
     'JOIN (SELECT DISTINCT book_name FROM books JOIN ( SELECT ID_PRODUCTO FROM detalle_orden GROUP BY ID_PRODUCTO ORDER BY COUNT(*) DESC LIMIT 10 ) as top10 ON books.book_id = top10.ID_PRODUCTO) AS nombre;';
 

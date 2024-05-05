@@ -10,6 +10,11 @@ block content
         title Gerente
         link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
         script(src="https://cdn.jsdelivr.net/npm/chart.js")
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    
         style.
             .chart-container {
                 width: 400px;
@@ -21,48 +26,43 @@ block content
             h1 Reportes de ventas
             hr
             // Tabla de Reporte de Ventas para Libros
-            h2 Reporte de ventas para Libros
+
             .row
                 .col-md-6
-                    select.form-control#bookYear
-                        option(value="2024") 2024
-                        option(value="2023") 2023
-                        option(value="2022") 2022
-                        // Agrega más años según sea necesario
+                    select.form-control#year(name="year")
                 .col-md-6
-                    select.form-control#bookMonth
-                        option(value="1") January
-                        option(value="2") February
-                        option(value="3") March
-                        // Agrega más meses según sea necesario
-            table.table.table-striped
+                    select.form-control#month(name="month")
+                        option(value="1") Enero
+                        option(value="2") Febrero
+                        option(value="3") Marzo
+                        option(value="4") Abril
+                        option(value="5") Mayo
+                        option(value="6") Junio
+                        option(value="7") Julio
+                        option(value="8") Agosto
+                        option(value="9") Septiembre 
+                        option(value="10") Octubre
+                        option(value="11") Noviembre
+                        option(value="12") Diciembre
+                       
+            hr
+            h2 Reporte de ventas para Libros
+            table#bookSalesTable.table
                 thead
                     tr
                         th Mes
                         th Mas vendido
                         th Copias
                 tbody
-                each month in libros
+                //each month in libros
                     tr
                         td= month.mes
                         td= month.book_name
-                        td=month.repeticiones  
+                        td= month.repeticiones  
             hr
             // Tabla de Reporte de Ventas para Autores
             h2 Reporte de ventas para Autores
-            .row
-                .col-md-6
-                    select.form-control#authorYear
-                        option(value="2024") 2024
-                        option(value="2023") 2023
-                        option(value="2022") 2022
-                        // Agrega más años según sea necesario
-                .col-md-6
-                    select.form-control#authorMonth
-                        option(value="1") January
-                        option(value="2") February
-                        option(value="3") March
-                        // Agrega más meses según sea necesario
+
             table.table.table-striped
                 thead
                     tr
@@ -78,19 +78,7 @@ block content
             hr
             // Tabla de Reporte de Ventas para Géneros de Libros
             h2 Reporte de ventas para generos
-            .row
-                .col-md-6
-                    select.form-control#genreYear
-                        option(value="2024") 2024
-                        option(value="2023") 2023
-                        option(value="2022") 2022
-                        // Agrega más años según sea necesario
-                .col-md-6
-                    select.form-control#genreMonth
-                        option(value="1") January
-                        option(value="2") February
-                        option(value="3") March
-                        // Agrega más meses según sea necesario
+            
             table.table.table-striped
                 thead
                     tr
@@ -108,76 +96,5 @@ block content
             canvas#myChart2.chart-container
             canvas#myChart3.chart-container
 
-    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
-    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js")
-    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
-    script.
-        $(document).ready(function() {
-        // Función para actualizar los reportes de ventas para libros
-        $('#bookYear, #bookMonth').change(function() {
-            var year = $('#bookYear').val();
-            var month = $('#bookMonth').val();
-            // Aquí puedes realizar una solicitud AJAX para obtener los datos del servidor según el año y el mes seleccionados
-            // Luego, actualiza la tabla de ventas para libros con los nuevos datos
-        });
-        // Función para actualizar los reportes de ventas para autores
-        $('#authorYear, #authorMonth').change(function() {
-            var year = $('#authorYear').val();
-            var month = $('#authorMonth').val();
-            // Aquí puedes realizar una solicitud AJAX para obtener los datos del servidor según el año y el mes seleccionados
-            // Luego, actualiza la tabla de ventas para autores con los nuevos datos
-        });
-        // Función para actualizar los reportes de ventas para géneros de libros
-        $('#genreYear, #genreMonth').change(function() {
-            var year = $('#genreYear').val();
-            var month = $('#genreMonth').val();
-            // Aquí puedes realizar una solicitud AJAX para obtener los datos del servidor según el año y el mes seleccionados
-            // Luego, actualiza la tabla de ventas para géneros de libros con los nuevos datos
-        });
-        });
     
-    script.
-      // Datos para el gráfico
-      var data = {
-          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
-          datasets: [{
-              label: "Ventas por mes",
-              backgroundColor: "blue",
-              data: [65, 59, 80, 81, 56, 55]
-          }]
-      };
-
-      // Configuración del gráfico
-      var options = {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      };
-
-      // Crear el gráfico
-      var ctx1 = document.getElementById('myChart1').getContext('2d');
-      var myChart1 = new Chart(ctx1, {
-          type: 'bar',
-          data: data,
-          options: options
-      });
-
-      // Crear el gráfico
-      var ctx2 = document.getElementById('myChart2').getContext('2d');
-      var myChart2 = new Chart(ctx2, {
-          type: 'pie',
-          data: data,
-          options: options
-      });
-
-            // Crear el gráfico
-      var ctx3 = document.getElementById('myChart3').getContext('2d');
-      var myChart3 = new Chart(ctx3, {
-          type: 'line',
-          data: data,
-          options: options
-      });
+script(src="/js/graficas-reportes.js")

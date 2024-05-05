@@ -14,8 +14,13 @@ function mostrarReportes(req, res) {
         const libros = datos[1];
         const generos = datos[2];
   
-        // Renderizar la plantilla Pug y pasar los datos de usuarios y libros
-        res.render('gerente', { user: req.user, autores: autores, libros: libros, generos: generos });
+        if (req.xhr) {
+            // Si es una solicitud AJAX, enviar los datos en formato JSON
+            res.json({ autores: autores, libros: libros, generos: generos });
+        } else {
+            // Si es una solicitud normal de navegación, renderizar la página HTML
+            res.render('gerente', { user: req.user, autores: autores, libros: libros, generos: generos });
+        }
     });
   }
 
