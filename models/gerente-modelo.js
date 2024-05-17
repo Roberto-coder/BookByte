@@ -1,7 +1,8 @@
 // Importa el objeto `pool` desde el archivo de configuración
 import pool from '../config/database.js';
 
-export const mostrarReportes=(callback) => {
+export const mostrarReportes=(year, month,callback) => {
+
     const sqlAutores = 'SELECT mes.mes, book_author, COUNT(*) AS repeticiones ' +
     'FROM (SELECT detalle_orden.ID_PRODUCTO,books.book_author, books.book_id FROM detalle_orden JOIN books where detalle_orden.ID_PRODUCTO = books.book_id) as autores ' +
     'JOIN (SELECT DISTINCT MONTH(fecha_registro) as mes FROM detalle_orden WHERE MONTH(fecha_registro) = MONTH(CURDATE())) AS mes ' +
@@ -17,7 +18,7 @@ export const mostrarReportes=(callback) => {
     'GROUP BY book_genre ORDER BY repeticiones DESC LIMIT 10;';
     
     const sqlLibros = 'SELECT mes.fecha_registro, repeticiones.repeticiones, nombre.book_name ' +
-    'FROM (SELECT DISTINCT fecha_registro FROM detalle_orden WHERE MONTH(fecha_registro) = 5 AND YEAR(fecha_registro) = 2024) AS mes  ' +
+    'FROM (SELECT DISTINCT fecha_registro FROM detalle_orden WHERE MONTH(fecha_registro) = ? AND YEAR(fecha_registro) = ?) AS mes ' +
     'JOIN (SELECT DISTINCT COUNT(*) as repeticiones FROM detalle_orden GROUP BY ID_PRODUCTO ORDER BY repeticiones DESC LIMIT 10) AS repeticiones ' +
     'JOIN (SELECT DISTINCT book_name FROM books JOIN ( SELECT ID_PRODUCTO FROM detalle_orden GROUP BY ID_PRODUCTO ORDER BY COUNT(*) DESC LIMIT 10 ) as top10 ON books.book_id = top10.ID_PRODUCTO) AS nombre;';
 
@@ -26,7 +27,7 @@ export const mostrarReportes=(callback) => {
             console.error('Error al ejecutar la consulta de autores:', errorAutores);
             callback(errorAutores, null);
         } else {
-            pool.query(sqlLibros, (errorLibros, resultadosLibros) => {
+            pool.query(sqlLibros, [month, year], (errorLibros, resultadosLibros) => {
                 if (errorLibros) {
                     console.error('Error al ejecutar la consulta de libros:', errorLibros);
                     callback(errorLibros, null);
@@ -43,4 +44,10 @@ export const mostrarReportes=(callback) => {
             });
         }
     });
+
+}
+
+export const mostrarGraficas=(year, month,callback) => {
+
+
 }
