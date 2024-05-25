@@ -32,8 +32,6 @@ function getData(req, res, next) {
         return next();
         
     }
-
-
 }
 
 async function carritoo(req, res) {

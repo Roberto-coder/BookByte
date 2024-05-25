@@ -842,16 +842,19 @@ text-align: left;
 }
 
   .s_product{
+      
       position: relative;
       display: flex;
       justify-content: center; /* Centra horizontalmente */
       align-items: center; 
+      
   }
   .product {
     margin-bottom: 106px;
   }
   .s_product > img {
     width: 60%;
+    height: auto;
   }
   .s_product h2 {
     background: #e8eced none repeat scroll 0 0;
@@ -891,9 +894,9 @@ text-align: left;
   }
   .s_product .s_overlay{
       position: absolute;
-      background: rgba(0,0,0,.4);
-      width: 80%;
-      height: 20%;
+      background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+      width: 60%;
+      height: 100%;
       top: 0;
       opacity: 0;
       display: flex;
@@ -904,18 +907,21 @@ text-align: left;
   .s_product i.bxs-heart {
     font-size: 2rem; 
     color: white; 
-    display: none; 
+    display: none;
+    left: 100px;
 }
 .s_product:hover .bxs-heart {
   display: block;
+  color: red;
+
   
 }
 .s_product .favs {
   position: absolute;
-  width: 100px;
-  height:30px;
-  top: 250px;
-  margin-left: 140px;
+  width: 100%; /* Cubre todo el ancho del contenedor del producto */
+  height: 100%; /* Cubre toda la altura del contenedor del producto */
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -927,7 +933,10 @@ text-align: left;
 .s_product:hover .favs {
   opacity: 1; /* Visible al pasar el mouse */
 }
-
+.s_product .favs i.bxs-heart {
+  font-size: 2rem; 
+  color: red; 
+}
 .s_product:hover > .s_overlay {
   opacity: 1;
 }
@@ -945,6 +954,24 @@ text-align: left;
   .s_product:hover > h3{
       opacity: 0
   }
+ /* Ajustes responsivos */
+@media (max-width: 992px) {
+  .s_product .favs i.bxs-heart {
+    font-size: 1.5rem; /* Ajusta el tamaño del ícono en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 768px) {
+  .s_product .favs i.bxs-heart {
+    font-size: 1.2rem; /* Ajusta el tamaño del ícono en pantallas aún más pequeñas */
+  }
+}
+
+@media (max-width: 576px) {
+  .s_product .favs i.bxs-heart {
+    font-size: 1rem; /* Ajusta el tamaño del ícono en pantallas muy pequeñas */
+  }
+}
   .rate > h3 {
     margin: 0;
     padding-top: 40px;
@@ -953,6 +980,25 @@ text-align: left;
       font-family: "Roboto",sans-serif;
       color: #3d3d3d;
   }
+  /*Boton finalizar*/
+  .contenedorCompra button {
+    background-color: var(--main-color); 
+    color: white; 
+    width: 80%; 
+    padding: 15px 30px; 
+    border-radius: 20px; 
+    border: none;
+    font-size: 17px;
+    font-weight: 500; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .contenedorCompra button:hover {
+    background-color: #ffffff; 
+    color: #363636; 
+  }
+  
   .rate > p {
     margin-top: 5px;
   }

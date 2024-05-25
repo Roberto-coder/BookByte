@@ -80,9 +80,13 @@ html(lang="es")
                                                 div(class = "eliminarCompra")
                                                     a(href = "/eliminarcarrito/"+librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
                                                        i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
-                    div(class="total-precio")
-                    button Finalizar Compra
+                    p(class="total-precio") 
                        
+                    button(type="button", onclick="window.location.href='/compra'") Finalizar Compra
+
+                        
+                                
+                      
                 a(class="fav")
                     i(class="ri-heart-3-fill")
                 div(class="contenedorFavs none", id="contenedorFavs")
