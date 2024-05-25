@@ -1,3 +1,7 @@
-import pool from '../config/database.js';
 
-export default { finalizarCompra };
+
+function finalizarcompraa(req, res) {
+    res.render('compra');
+}
+
+export default { finalizarcompraa };

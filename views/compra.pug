@@ -1,109 +1,34 @@
-extends layout
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel="stylesheet", href="/css/style2.css")
+        title Carrito de Compra
+    body
+        // LOGO SECTION
+        section.forms-section
+            a(href = "/")
+                h1.section-title BOOK
+                    a(href = "/")
+                        samp byte
 
-block content
-  div.main-container
-     
-    div.container-carousel
-      div.carruseles#slider
-        section.slider-section
-          img(src="img/1.jpeg" alt="imagen 1")
-        section.slider-section
-          img(src="img/2.jpg")
-        section.slider-section
-          img(src="img/3.jpg")
-        section.slider-section
-          img(src="img/4.jpg")
-      div.btn-left  
-        i(class='bx bx-chevron-left')   
-      div.btn-right
-        i(class='bx bx-chevron-right') 
-      div.texto
-        h2 DESCUENTOS
-        p Descubre nuestros increíbles descuentos!!!! 
-    section.header-feahion
-      div.header-text
-      h1 NOVEDADES
-      h2
-        b Encuentra los libros más nuevos
-        hr(style="background-color: #62aabf; height: 2px; border: 0;")
-        
-    .related-products
-    .container
-        .row
-            .col-md-12
-                br
-                br
-            .row
-                .col-md-2
-                  div.btn-right-product
-                    i(class='bx bx-chevron-right') 
-                for book in newBooks
-                    .col-md-3 
-                        .s_product
-                            img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
-                            
-                            .s_overlay
-                            if (book.book_amount == 0) 
-                                h2(style="color: black;") AGOTADO 
-                            h3=book.book_editorial     
-                            h4
-                                i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                            div(class="favs")
-                                a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='bx bxs-heart')
-                        .row
-                            .col-md-12
-                                .rate
-                                    h3=book.book_name 
-                                    p
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                    h5=book.book_price  
-
-
-
-    section.header-feahion
-      div.header-text
-      h1 BEST SELLERS
-      h2
-        b Encuentra los libros más vendidos 
-        hr(style="background-color: #62aabf; height: 2px; border: 0;")       
-    .related-products
-    .container
-        .row
-            .col-md-12
-                br
-                br
-            .row
-                for book in newBooks
-                    .col-md-3 
-                        .s_product
-                            img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
-                            .s_overlay
-                            if (book.book_amount == 0) 
-                                h2(style="color: black;") AGOTADO
-
-                            h3=book.book_editorial
-                            h4
-                                i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                            div(class="favs")
-                                a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='bx bxs-heart')
-                        .row
-                            .col-md-12
-                                .rate
-                                    h3=book.book_name 
-                                    p
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                    h5=book.book_price
-                                             
-  script(src="js/slider.js")
+        // CONTENT WRAPPER
+        .content-wrapper
+            .container
+                .cart
+                    .cart-header
+                        h1 Carrito
+                    .cart-item
+                        img(src='https://via.placeholder.com/150', alt='Multímetro Digital')
+                        .item-details
+                            h2 Multímetro Digital Lcd Portátil Ac/dc Xl830l
+                            p $108.33
+                        .item-actions
+                            button Eliminar
+                .summary
+                    h2 Resumen de compra
+                    p Producto: $108.33
+                    p Total: $108.33
+                    button.btn-continue Continuar compra
