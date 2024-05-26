@@ -30,5 +30,18 @@ router.get('/productos', carritoControllers.getData,(req, res) =>{
     });
 });
 
+router.get('/compra', compraControllers.finalizarcompraa,(req, res) =>{
+    pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4',
+    (error, results) =>{
+        if (error) {
+            //res.render("ERROR");
+            res.redirect
+            throw error;
+        }else{
+        res.render("compra", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+        }
+    });
+});
+
 
 export default router;
