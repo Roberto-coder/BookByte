@@ -47,50 +47,35 @@ block content
                        
             hr
             h2 Reporte de ventas para Libros
-            table#bookSalesTable.table
+            table#bookSalesTable.table.table-striped
                 thead
                     tr
-                        th Mes
+                        th Fecha
                         th Mas vendido
                         th Copias
                 tbody
-                //each month in libros
-                    tr
-                        td= month.mes
-                        td= month.book_name
-                        td= month.repeticiones  
             hr
             // Tabla de Reporte de Ventas para Autores
             h2 Reporte de ventas para Autores
 
-            table.table.table-striped
+            table#authorSalesTable.table.table-striped
                 thead
                     tr
-                        th Month
+                        th Fecha
                         th Mas vendido
                         th Copias
                 tbody
-                each month in autores
-                    tr
-                        td= month.mes
-                        td= month.book_author
-                        td=month.repeticiones 
             hr
             // Tabla de Reporte de Ventas para Géneros de Libros
             h2 Reporte de ventas para generos
             
-            table.table.table-striped
+            table#genreSalesTable.table.table-striped
                 thead
                     tr
-                        th Month
+                        th Fecha
                         th Mas vendido
                         th Copias
                 tbody
-                each month in generos
-                    tr
-                        td= month.mes
-                        td= month.book_genre
-                        td= month.repeticiones 
 
             canvas#myChart1.chart-container
             canvas#myChart2.chart-container

@@ -7,8 +7,8 @@ function mostrarReportes(req, res) {
     const month = req.query.month || new Date().getMonth() + 1; // Default to current month if not provided
 
     // Imprimir los valores recibidos para depuración
-    console.log('Year:', year); 
-    console.log('Month:', month);
+    //console.log('Year:', year); 
+    //console.log('Month:', month);
     
     modeloGerente.mostrarReportes(year, month,(error, datos) => {
          
@@ -45,16 +45,16 @@ function mostrarReportes(req, res) {
         }
   
         // Extraer los usuarios y los libros de los datos
-        const autores = datos[0];
-        const libros = datos[1];
-        const generos = datos[2];
+        const libros = datos[0];
+        const generos = datos[1];
+        const autores = datos[2];
   
         if (req.xhr) {
             // Si es una solicitud AJAX, enviar los datos en formato JSON
-            res.json({ autores: autores, libros: libros, generos: generos });
+            res.json({libros: libros, generos:generos, autores:autores});
         } else {
             // Si es una solicitud normal de navegación, renderizar la página HTML
-            res.render('gerente', { user: req.user, autores: autores, libros: libros, generos: generos });
+            res.render('gerente', { user: req.user, libros: libros, generos:generos, autores:autores});
         }
     });
   }
