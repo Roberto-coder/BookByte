@@ -1,51 +1,53 @@
 html(lang="es")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/style.css")
-        link(rel="stylesheet", href="/css/style2.css")
-        title Carrito de Compra
-    body
-        // LOGO SECTION
-        section.forms-section
-            a(href = "/")
-                h1.section-title BOOK
-                    a(href = "/")
-                        samp byte
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="/css/style2.css")
+    link(rel="stylesheet", href="https://unpkg.com/boxicons@latest/css/boxicons.min.css")
 
-        // CONTENT WRAPPER
-        .content-wrapper
-            .container
-                .cart
-                    .cart-header
-                        h1 Carrito
-                    .cart-item
-                        if carrito
-                            each librocarrito in carrito
-                                .divcontainercompra
-                                    .imgcomprafinal
-                                        img(src="img_book/" + librocarrito.book_genre + "/" + librocarrito.book_isbn, alt="")
-                                    .infocompra
-                                        p #{librocarrito.book_name}
-                                        span(id="nombreLibro")
-                                    .divcantidad
-                                        .divcantidadbox
-                                            form(class="divcantidadcontador", id="cantidadselector", method="post", action="/updatecarrito/" + librocarrito.book_id)
-                                                input(type="number", name="cantidad", value=librocarrito.cantidad, min="1", max="50")
-                                        p #{librocarrito.disponibles} Disponibles
-                                    .eliminarproducto
-                                        a(href="/eliminarcarrito/" + librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;")
-                                        i(class="bx bx-trash bx-tada bx-rotate-90", style="color:#b71021")
-                                    .precio
-                                        p $#{librocarrito.book_price}
-                                    div(class = "eliminarCompra")
-                                                    a(href = "/eliminarcarrito/"+librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
-                                                       i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
-                    
-                .summary
-                    h2 Resumen de compra
-                    p Producto: $108.33
-                    p Total: $108.33
-                    button.btn-continue Continuar compra
-    script(src="js/header.js") 
+    title Carrito de Compra
+  body
+    // LOGO SECTION
+    section.forms-section
+      a(href = "/")
+        h1.section-title BOOK
+          a(href = "/")
+            samp byte
+
+    // CONTENT WRAPPER
+    .content-wrapper
+      .container
+        .cart
+          .cart-header
+            h1 Carrito
+          .cart-item
+            if carrito
+              each librocarrito in carrito
+                .divcontainercompra
+                  .imgcomprafinal
+                    img(src="img_book/" + librocarrito.book_genre + "/" + librocarrito.book_isbn, alt="")
+                  .infocompra
+                    p #{librocarrito.book_name}
+                    span(id="nombreLibro")
+                  .divcantidad
+                    .divcantidadbox
+                      
+                      form(class="divcantidadcontador", id="cantidadselector", method="post", action="/updatecarrito/" + librocarrito.book_id)
+                        label(for="cantidad") Cantidad
+                        input(type="number", name="cantidad", value=librocarrito.cantidad, min="1", max="10")
+                    .disponibles     
+                        p #{disponibles} Disponibles
+                  .precio
+                    p $#{librocarrito.book_price}
+                  .eliminarproducto
+                    a(href="/eliminarcarrito/" + librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                      i(class="bx bx-trash bx-tada bx-rotate-90", style="color:#b71021")
+                  
+        .summary
+          h2 Resumen de compra
+          p Producto: $108.33
+          p Envío: $79.00
+          p.total Total: $187.33
+          button.btn-continue Continuar compra

@@ -49,4 +49,21 @@ function agregarDetalle(req,res,next){
         res.redirect('/'); 
     });
 }
+function disponibles(req,res,next){
+    const {id} = req.params;
+    const query = 'SELECT CANTIDAD FROM disponibles WHERE idLibro = ?';
+
+    pool.query(query, [id], (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+        if(results.length > 0){
+            req.disponibles = results;
+        }else{
+            req.disponibles = null;
+        }
+        
+        return next();
+    });
+}
 export default { finalizarcompraa,agregarDetalle };
