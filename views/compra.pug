@@ -11,9 +11,9 @@ html(lang="es")
   body
     // LOGO SECTION
     section.forms-section
-      a(href = "/")
+      a(href="/")
         h1.section-title BOOK
-          a(href = "/")
+          a(href="/")
             samp byte
 
     // CONTENT WRAPPER
@@ -23,7 +23,7 @@ html(lang="es")
           .cart-header
             h1 Carrito
           .cart-item
-            if carrito
+            if carrito.length > 0
               each librocarrito in carrito
                 .divcontainercompra
                   .imgcomprafinal
@@ -32,22 +32,43 @@ html(lang="es")
                     p #{librocarrito.book_name}
                     span(id="nombreLibro")
                   .divcantidad
+                    p Cantidad
                     .divcantidadbox
-                      
                       form(class="divcantidadcontador", id="cantidadselector", method="post", action="/updatecarrito/" + librocarrito.book_id)
-                        label(for="cantidad") Cantidad
-                        input(type="number", name="cantidad", value=librocarrito.cantidad, min="1", max="10")
-                    .disponibles     
-                        p #{disponibles} Disponibles
-                  .precio
-                    p $#{librocarrito.book_price}
+                        input(type="number", name="cantidad", value="1", min="1", max=disponibles[librocarrito.book_id])
+                    p.disponibles #{disponibles[librocarrito.book_id] || 0} Disponibles
                   .eliminarproducto
                     a(href="/eliminarcarrito/" + librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;")
                       i(class="bx bx-trash bx-tada bx-rotate-90", style="color:#b71021")
-                  
+                  .precio
+                    p $#{librocarrito.book_price}
+            else
+              p No hay productos en el carrito.
         .summary
-          h2 Resumen de compra
-          p Producto: $108.33
-          p Envío: $79.00
-          p.total Total: $187.33
-          button.btn-continue Continuar compra
+          h2 Resumen de Compra
+          p(id="resumen-producto") Producto: $#{carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0).toFixed(2)}
+          p(id="resumen-envio") Envío: $79.00
+          p(id="resumen-total") Total: $#{(carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0) + 79).toFixed(2)}
+          button.btn-continue(type="submit") Continuar compra
+  script.
+      function actualizarPrecio(input, precioUnitario, idPrecio, idLibro) {
+        const cantidad = input.value;
+        const precioTotal = (precioUnitario * cantidad).toFixed(2);
+        document.getElementById(idPrecio).innerText = `$${precioTotal}`;
+
+        // Actualizar el total en el resumen de compra
+        const precioProducto = document.getElementById('resumen-producto');
+        const precioTotalElement = document.getElementById('resumen-total');
+        let totalProducto = 0;
+        
+        // Recalcular el total del producto
+        document.querySelectorAll('.divcantidadbox input[type="number"]').forEach((input) => {
+          const precio = parseFloat(input.getAttribute('data-precio'));
+          const cantidad = parseInt(input.value, 10);
+          totalProducto += precio * cantidad;
+        });
+
+        // Actualizar el precio total en el resumen
+        precioProducto.innerText = `Producto: $${totalProducto.toFixed(2)}`;
+        precioTotalElement.innerText = `Total: $${(totalProducto + 79).toFixed(2)}`;
+      }
