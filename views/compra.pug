@@ -5,7 +5,6 @@ html(lang="es")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/css/style.css")
     link(rel="stylesheet", href="/css/style2.css")
-    link(rel="stylesheet", href="https://unpkg.com/boxicons@latest/css/boxicons.min.css")
 
     title Carrito de Compra
   body
@@ -34,23 +33,30 @@ html(lang="es")
                   .divcantidad
                     p Cantidad
                     .divcantidadbox
-                      form(class="divcantidadcontador", id="cantidadselector", method="post", action="/updatecarrito/" + librocarrito.book_id)
-                        input(type="number", name="cantidad", value="1", min="1", max=disponibles[librocarrito.book_id])
-                    p.disponibles #{disponibles[librocarrito.book_id] || 0} Disponibles
+                      form(class="divcantidadcontador", id="cantidadselector", method="post", action="/cantidad/" + librocarrito.book_id)
+                        input(type="number", name="cantidad", value=librocarrito.carrito_cantidad, min="1", max=librocarrito.disponibles, oninput="actualizarPrecio(this, #{librocarrito.book_price}, 'precio-#{librocarrito.book_id}', #{librocarrito.book_id})")
+                        button.btn-update(type="submit") Actualizar
+                    p.disponibles #{librocarrito.disponibles || 0} Disponibles
                   .eliminarproducto
                     a(href="/eliminarcarrito/" + librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;")
                       i(class="bx bx-trash bx-tada bx-rotate-90", style="color:#b71021")
                   .precio
-                    p $#{librocarrito.book_price}
+                    p #{"$" + (librocarrito.book_price * librocarrito.carrito_cantidad).toFixed(2)}
             else
               p No hay productos en el carrito.
-        .summary
-          h2 Resumen de Compra
-          p(id="resumen-producto") Producto: $#{carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0).toFixed(2)}
-          p(id="resumen-envio") Envío: $79.00
-          p(id="resumen-total") Total: $#{(carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0) + 79).toFixed(2)}
-          button.btn-continue(type="submit") Continuar compra
-  script.
+        
+        // Resumen de compra
+        form(method="post", action="/generarOrden")
+          .summary
+            h2 Resumen de Compra
+            p(id="resumen-producto") Producto: $#{carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0).toFixed(2)}
+            p(id="resumen-envio") Envío: $79.00
+            p(id="resumen-total") Total: $#{(carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0) + 79).toFixed(2)}
+            button.btn-continue(type="submit") Continuar compra
+          
+         
+
+    script.
       function actualizarPrecio(input, precioUnitario, idPrecio, idLibro) {
         const cantidad = input.value;
         const precioTotal = (precioUnitario * cantidad).toFixed(2);

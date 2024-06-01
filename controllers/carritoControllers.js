@@ -37,7 +37,8 @@ function getData(req, res, next) {
 async function carritoo(req, res) {
     const { id } = req.params;
     const idCliente = req.user.user_id;
-    const query = 'INSERT INTO carrito (idCliente, idLibro) VALUES (?,?)';
+    const query = 'INSERT INTO carrito (idCliente, idLibro,cantidad) VALUES (?,?,1)';
+    
     try {
         pool.query(query, [idCliente, id], (error, results) =>{
             if(error){
@@ -50,8 +51,6 @@ async function carritoo(req, res) {
         res.status(500).send('Error al añadir al carrito');
     }
 }
-
-
 
 async function eliminarcarritoo(req, res) {
     const { id } = req.params;

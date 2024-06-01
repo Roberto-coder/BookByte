@@ -1263,9 +1263,10 @@ animation: showLayer .3s ease-in forwards;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
 }
+
 
 .summary p {
   margin: 0 0 10px;
@@ -1279,11 +1280,9 @@ animation: showLayer .3s ease-in forwards;
   margin-top: 10px;
   color: #000;
 }
-
 .btn-continue {
-  width: 200px;
-  padding: 10px;
-  display: flex;
+  width: 100%;
+  padding: 5px;
   border: none;
   background: #007bff;
   color: white;
@@ -1292,16 +1291,11 @@ animation: showLayer .3s ease-in forwards;
   transition: background-color 0.3s;
   font-size: 16px;
   font-weight: bold;
-  
-  text-align: center;
-  margin-left: 30%;
 }
 
 .btn-continue:hover {
   background-color: #0056b3;
 }
-
-
 .btn-continue {
   width: 40%;
   padding: 10px;
@@ -1382,19 +1376,18 @@ animation: showLayer .3s ease-in forwards;
 
 .summary {
  
-  width: 70%;
-  height: 52%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
-  flex-wrap: wrap;
-  margin-left: 920;
-  margin-top:-500px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  width: 35%;
+    height: 280px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+    margin-left: 920;
+    margin-top: -300px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
     font-family: Arial, sans-serif;
@@ -1412,9 +1405,6 @@ animation: showLayer .3s ease-in forwards;
   margin: 0 20px 10px;
   font-size: 18px;
 }
-
-
-
 .imgcomprafinal {
   display: flex;
   align-items: center;
@@ -1432,7 +1422,7 @@ animation: showLayer .3s ease-in forwards;
 }
 
 .eliminarproducto {
-  margin-left: 40px;
+  margin-left: 20px;
   color: black;
   cursor: pointer;
   font-size: 40px;
@@ -1447,29 +1437,30 @@ animation: showLayer .3s ease-in forwards;
   transform: scale(1.5);
 }
 
+
 .divcantidad {
   display: flex;
   margin-left: 30px;
   align-items: center;
   flex-direction: column; /* Para alinear cantidad y disponibles verticalmente */
 }
-.disponibles{
+
+.disponibles {
   display: flex;
   align-items: center;
   font-size: 15px;
   padding: 10px;
 }
-
 .divcantidadbox {
   display: flex;
+  
   align-items: center;
 }
 
 .divcantidadcontador {
   display: flex;
   align-items: center;
-  
-  border: 1px solid #ccc;
+  border: 0px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -1505,7 +1496,6 @@ animation: showLayer .3s ease-in forwards;
   color: red;
   transform: scale(1.1);
 }
-
 @media (max-width: 768px) {
   .cart, .summary {
     width: 100%;
@@ -1527,11 +1517,58 @@ animation: showLayer .3s ease-in forwards;
 
   .btn-continue {
     padding: 15px;
-    
   }
 
   .eliminarproducto {
     margin-top: 10px;
     align-self: flex-end;
   }
+}
+
+@media (max-width: 480px) {
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .item-details h2 {
+    font-size: 14px;
+  }
+
+  .item-details p {
+    font-size: 12px;
+  }
+
+  .divcantidadbox input[type="number"] {
+    width: 40px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .divcantidadbox .divcantidadcontador input[type="number"]::-webkit-inner-spin-button,
+  .divcantidadbox .divcantidadcontador input[type="number"]::-webkit-outer-spin-button {
+    font-size: 20px;
+  }
+
+}
+
+/* Botón Actualizar */
+.btn-update {
+  background-color: var(--main-color);
+  color: white;
+  width: 80%;
+  padding: 15px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 17px;
+  margin-left: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 5px; /* Añadir margen superior si es necesario */
+}
+
+.btn-update:hover {
+  background-color: #0056b3;
+  color: #ffffff;
 }
