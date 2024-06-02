@@ -61,13 +61,13 @@ function generarOrden(req, res, next) {
             if (err) throw err;
 
             const queryInsertOrden = `
-                INSERT INTO orden (ID_USUARIO, ID_METODO_PAGO, ID_DOMICILIO, TOTAL)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO orden (ID_USUARIO, TOTAL)
+                VALUES (?, ?)
             `;
 
             const total = req.carrito.reduce((acc, item) => acc + (item.book_price * item.carrito_cantidad), 0);
 
-            connection.query(queryInsertOrden, [idCliente, metodoPago, idDomicilio, total], (error, results) => {
+            connection.query(queryInsertOrden, [idCliente, total], (error, results) => {
                 if (error) {
                     return connection.rollback(() => {
                         throw error;
@@ -80,7 +80,7 @@ function generarOrden(req, res, next) {
                     VALUES ?
                 `;
 
-                const detalles = req.carrito.map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price]);
+                const detalles = req.carrito.map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad]);
 
                 connection.query(queryInsertDetalle, [detalles], (error, results) => {
                     if (error) {
