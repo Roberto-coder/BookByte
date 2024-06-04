@@ -5,6 +5,8 @@ html(lang="es")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/css/style.css")
     link(rel="stylesheet", href="/css/style2.css")
+    link(rel="stylesheet", href="https://unpkg.com/boxicons@latest/css/boxicons.min.css")
+
     title Carrito de Compra
   body
     // LOGO SECTION
@@ -41,6 +43,7 @@ html(lang="es")
                       i(class="bx bx-trash bx-tada bx-rotate-90", style="color:#b71021")
                   .precio
                     p #{"$" + (librocarrito.book_price * librocarrito.carrito_cantidad).toFixed(2)}
+     
             else
               p No hay productos en el carrito.
         
@@ -52,5 +55,69 @@ html(lang="es")
             p(id="resumen-envio") Envío: $79.00
             p(id="resumen-total") Total: $#{(carrito.reduce((acc, libro) => acc + (libro.book_price * libro.carrito_cantidad), 0) + 79).toFixed(2)}
             button.btn-continue(type="submit") Continuar compra
-          
+    .contentdireccion
+      .containerdireccion
+        .cartdireccion
+          h1.direccionheader Agregar Domicilio
+          form(action="/direccion" method="post")
+            .form-group
+              .row
+                .col-6
+                  label(for='nombre') Nombre Y Apellido
+                  input(type='text', id='nombre', name='nombre', value='')
+                  small Tal Cual Figure En El INE O IFE.
+                .col-6
+                  label(for='cp') Código Postal
+                  input(type='text', id='codigo-postal', name='cp', value='')
+                 
+
+            .form-group
+              .row
+                .col-4
+                  label Estado
+                  input(type='text', id='estado', name='estado', value='')
+                .col-4
+                  label Municipio/Alcaldía
+                  input(type='text', id='municipio', name='municipio', value='')
+                .col-4
+                  label Colonia
+                  input(type='text', id='colonia', name='colonia', value='')
+
+            .form-group
+              .row
+                .col-6
+                  label Calle
+                  input(type='text', name='calle', id='calle')
+                .col-6
+                  label Número Exterior
+                  input(type='text', name='numero', id='numero')
+                  input(type='checkbox', name='sin-numero', id='sin-numero')
+                  label(for='sin-numero') Sin Número
+                  small.text-danger Completa Este Dato.
+
+            .form-group
+              .row
+                .col-6
+                  label(for='interior') N° Interior/Depto (Opcional)
+                  input(type='text', name='interior', id='interior', value='')
+                .col-6
+                  label ¿Entre Qué Calles Está? (Opcional)
+                  br
+                  label Calle 1
+                  input(type='text', name='calle1', value='')
+                  label Calle 2
+                  input(type='text', name='calle2')
+
+            
+
+            .form-group
+              .row
+                .col-6
+                  label Teléfono De Contacto
+                  input(type='text', name='telefono', value='')
+                .col-6
+                  label Indicaciónes Adicionales De Esta Dirección
+                  textarea(name='indicaciones') 
+
+            button(type='submit' href="/") Guardar
           

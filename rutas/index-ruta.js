@@ -28,7 +28,8 @@ router.get('/productos', carritoControllers.getData, (req, res) => {
 router.get('/compra', compraControllers.finalizarcompraa, (req, res) => {
     res.render("compra", { user: req.user,
         carrito: req.carrito,
-        disponibles: req.disponibles });
+        disponibles: req.disponibles 
+        });
 });
 
 export default router;

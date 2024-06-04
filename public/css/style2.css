@@ -1572,3 +1572,162 @@ animation: showLayer .3s ease-in forwards;
   background-color: #0056b3;
   color: #ffffff;
 }
+/*DIRECCION*/
+.contentdireccion {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+
+.containerdireccion {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 800px;
+  width: 100%;
+  background: var(--bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-direccion label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.cartdireccion {
+  width:100%;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.direccionheader {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+input[readonly] {
+  background-color: #f5f5f5;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: #888;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.col-4, .col-6 {
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 33.3333%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+
+.text-danger {
+  color: #ff0000;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+.form-check input[type="radio"] {
+  margin-right: 10px;
+}
+
+textarea {
+  width: calc(100% - 20px);
+  height: 60px;
+  resize: vertical;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+.contentdireccion {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.containerdireccion {
+  max-width: 800px;
+  width: 100%;
+  background: var(--bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.direccionheader {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}

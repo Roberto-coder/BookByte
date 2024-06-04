@@ -49,46 +49,103 @@ function operaciones(req, res, next) {
         res.redirect('/compra');
     });
 }
-
-function generarOrden(req, res, next) {
+function capturaDireccion(req,res,next){
+    const { nombre, cp, estado, municipio, colonia, calle, numero, sin_numero, interior, calle1, calle2, tipo, telefono, indicaciones } = req.body;
     const idCliente = req.user.user_id;
-    const { metodoPago, idDomicilio } = req.body;
-
-    pool.getConnection((err, connection) => {
-        if (err) throw err;
-
-        connection.beginTransaction(err => {
-            if (err) throw err;
-
-            const queryInsertOrden = `
-                INSERT INTO orden (ID_USUARIO, TOTAL)
-                VALUES (?, ?)
+    pool.getConnection((err,connection) => {
+        if(err) throw err;
+        connection.beginTransaction(err =>{
+            if(err) throw err;
+            const query = `
+                INSERT INTO domicilios (idCliente, Nombre, CP, ESTADO, Municipio,colonia,calle,numExterior,numInterior,calleext1,calleext2,telefono,indicaciones)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
             `;
-
-            const total = req.carrito.reduce((acc, item) => acc + (item.book_price * item.carrito_cantidad), 0);
-
-            connection.query(queryInsertOrden, [idCliente, total], (error, results) => {
+            connection.query(query, [idCliente,nombre,cp,estado,municipio,colonia,calle,numero,interior,calle1,calle2,telefono,indicaciones], (error, results) => {
                 if (error) {
                     return connection.rollback(() => {
                         throw error;
                     });
                 }
 
-                const idOrden = results.insertId;
-                const queryInsertDetalle = `
-                    INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO)
-                    VALUES ?
-                `;
-
-                const detalles = req.carrito.map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad]);
-
-                connection.query(queryInsertDetalle, [detalles], (error, results) => {
-                    if (error) {
+                connection.commit(err => {
+                    if (err) {
                         return connection.rollback(() => {
-                            throw error;
+                            throw err;
                         });
                     }
-
+                    res.redirect('/compra');
+                });
+            });
+        })
+    });
+}
+function generarOrden(req, res, next) {
+    const idCliente = req.user.user_id;
+  
+    
+    const querySelectDom = `
+      SELECT id FROM domicilios WHERE idCliente = ?
+    `;
+  
+    pool.query(querySelectDom, [idCliente], (error, results) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send('Error al consultar domicilio');
+      }
+  
+      const idDomicilio = results[0]?.id; // Use optional chaining to handle potential missing id
+  
+      if (!idDomicilio) {
+        return res.status(400).send('No se encontró domicilio registrado');
+      }
+  
+      pool.getConnection((err, connection) => {
+        if (err) throw err;
+  
+        connection.beginTransaction(err => {
+          if (err) throw err;
+  
+          const queryInsertOrden = `
+            INSERT INTO orden (ID_USUARIO, TOTAL, ID_DOMICILIO) 
+            VALUES (?, ?, ?)
+          `;
+  
+          const total = req.carrito.reduce((acc, item) => acc + (item.book_price * item.carrito_cantidad), 0);
+  
+          connection.query(queryInsertOrden, [idCliente, total, idDomicilio], (error, results) => {
+            if (error) {
+              return connection.rollback(() => {
+                throw error;
+              });
+            }
+  
+            const idOrden = results.insertId;
+  
+            const queryInsertDetalle = `
+              INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO)
+              VALUES ?
+            `;
+  
+            const detalles = req.carrito.map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad]);
+  
+            connection.query(queryInsertDetalle, [detalles], (error, results) => {
+              if (error) {
+                return connection.rollback(() => {
+                  throw error;
+                });
+              }
+  
+              connection.commit(err => {
+                if (err) {
+                  return connection.rollback(() => {
+                    throw err;
+                  });
+                }
+  
+                res.redirect('/compra');
+              });
+            });
+          
                     const queryDeleteCarrito = `DELETE FROM carrito WHERE idCliente = ?`;
 
                     connection.query(queryDeleteCarrito, [idCliente], (error, results) => {
@@ -113,4 +170,4 @@ function generarOrden(req, res, next) {
     });
 }
 
-export default { finalizarcompraa, operaciones, generarOrden };
+export default { finalizarcompraa, operaciones, generarOrden,capturaDireccion };
