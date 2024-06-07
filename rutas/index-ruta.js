@@ -3,6 +3,8 @@ import pool from '../config/database.js';
 import carritoControllers from "../controllers/carritoControllers.js";
 import favoritosControllers from "../controllers/favoritosControllers.js";
 import compraControllers from "../controllers/compraControllers.js";
+import tarjetaControllers from "../controllers/tarjetaControllers.js";
+
 const router = express.Router();
 
 router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, res) => {
@@ -25,11 +27,16 @@ router.get('/productos', carritoControllers.getData, (req, res) => {
     });
 });
 
-router.get('/compra', compraControllers.finalizarcompraa, (req, res) => {
-    res.render("compra", { user: req.user,
+router.get('/compra', compraControllers.finalizarcompraa, compraControllers.obtenerDirecciones, (req, res) => {
+    res.render("compra", { 
+        user: req.user,
         carrito: req.carrito,
-        disponibles: req.disponibles 
-        });
+        direcciones: req.direcciones
+    });
+});
+
+router.get('/tarjeta', (req, res) => {
+    res.render("tarjeta");
 });
 
 export default router;

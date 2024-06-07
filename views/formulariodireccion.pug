@@ -1,0 +1,42 @@
+
+#formulario_direccion(style="display:none")
+  h2 Agregar nueva dirección
+  form(action="/direccion" method="post")
+    .inputBox
+      label(for="nombre") Nombre:
+      input(type="text" id="nombre" name="nombre" required)
+    .inputBox
+      label(for="cp") Código Postal:
+      input(type="text" id="cp" name="cp" required)
+    .inputBox
+      label(for="estado") Estado:
+      input(type="text" id="estado" name="estado" required)
+    .inputBox
+      label(for="municipio") Municipio:
+      input(type="text" id="municipio" name="municipio" required)
+    .inputBox
+      label(for="colonia") Colonia:
+      input(type="text" id="colonia" name="colonia" required)
+    .inputBox
+      label(for="calle") Calle:
+      input(type="text" id="calle" name="calle" required)
+    .inputBox
+      label(for="numero") Número Exterior:
+      input(type="text" id="numero" name="numero" required)
+    .inputBox
+      label(for="interior") Número Interior:
+      input(type="text" id="interior" name="interior")
+    .inputBox
+      label(for="calle1") Entre calle 1:
+      input(type="text" id="calle1" name="calle1")
+    .inputBox
+      label(for="calle2") Entre calle 2:
+      input(type="text" id="calle2" name="calle2")
+    .inputBox
+      label(for="telefono") Teléfono:
+      input(type="text" id="telefono" name="telefono" required)
+    .inputBox
+      label(for="indicaciones") Indicaciones:
+      input(type="text" id="indicaciones" name="indicaciones")
+    button(type="submit") Guardar dirección
+    button(type="button" onclick="ocultarFormulario()") Cancelar
