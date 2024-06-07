@@ -6,7 +6,7 @@ function mostrarReportes(req, res) {
     const year = req.query.year || new Date().getFullYear(); // Default to current year if not provided
     const month = req.query.month || new Date().getMonth() + 1; // Default to current month if not provided
 
-    // Imprimir los valores recibidos para depuración
+    // Imprimir los valores recibidos para depuracióndasds
     //console.log('Year:', year); 
     //console.log('Month:', month);
     
