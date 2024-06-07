@@ -1197,7 +1197,7 @@ animation: showLayer .3s ease-in forwards;
 }
 
 .cart {
-  width: 65%;
+  width: 70%;
   background: #ffffff;
   border-radius: 8px;
   padding: 20px;
@@ -1281,8 +1281,8 @@ animation: showLayer .3s ease-in forwards;
   color: #000;
 }
 .btn-continue {
-  width: 100%;
-  padding: 5px;
+  width: 40%;
+  padding: 10px;
   border: none;
   background: #007bff;
   color: white;
@@ -1375,22 +1375,21 @@ animation: showLayer .3s ease-in forwards;
 
 
 .summary {
- 
   width: 35%;
-    height: 280px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-    flex-wrap: wrap;
-    margin-left: 920;
-    margin-top: -300px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
+  height: 280px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+  margin-left: 920px;
+  margin-top: -300px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
     
 }
 
@@ -1594,6 +1593,15 @@ animation: showLayer .3s ease-in forwards;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.containerdireccion h2{
+ 
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: fjalla;
+}
 .form-group {
   margin-bottom: 15px;
 }
@@ -1615,9 +1623,13 @@ animation: showLayer .3s ease-in forwards;
 }
 
 .direccionheader {
-  text-align: center;
-  font-size: 1.5em;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+    font-family: fjalla;
 }
 
 
@@ -1708,8 +1720,9 @@ textarea {
 .contentdireccion {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   margin-top: 20px;
+  margin-left: 20px;
   flex-wrap: wrap;
 }
 
@@ -1718,16 +1731,185 @@ textarea {
   width: 100%;
   background: var(--bg-color);
   padding: 20px;
+  
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.direccionheader {
-  text-align: center;
-  font-size: 1.5em;
-  margin-bottom: 20px;
+#formulario_direccion {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 50%;
+  flex-wrap: wrap;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
+
+
+/*tarjeta*/
+
+.divTarjeta{
+  font-family: 'Poppins',sans-serif;
+  margin: 0 ;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  min-height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding-bottom: 60px;
+
+}
+.divTarjeta form{
+  background: var(--bg-color);
+  border-radius: 5px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 600px;
+  padding-top: 160px;
+}
+.divTarjeta form .inputBox{
+  margin-top: 20px;
+}
+.divTarjeta form .inputBox span{
+  display: block;
+  color: #999;
+  padding-bottom: 5px;
+}
+.divTarjeta form .inputBox input,
+.divTarjeta form .inputBox select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #444;
+}
+.divTarjeta form .flexbox{
+  display: flex;
+  gap: 5px;
+}
+.divTarjeta form .flexbox .inputBox{
+  flex: 1 1 150px;
+}
+.divTarjeta form .submit-btn{
+  width: 100%;
+  background: linear-gradient(45deg,blueviolet,deeppink);
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: .2s linear;
+}
+.divTarjeta form .submit-btn:hover{
+  letter-spacing: 2px;
+  opacity: .8;
+}
+.divTarjeta .card-container{
+  margin-bottom: -150px;
+  position: relative;
+  height: 280px;
+  width: 400px;
+}
+.divTarjeta .card-container .front{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0; left: 0;
+  background: linear-gradient(45deg,blueviolet,deeppink);
+  border-radius: 5px;
+  backface-visibility: hidden;
+  box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  padding: 20px;
+  transform: perspective(1000px) rotateY(0deg);
+  transition:transform .4s ease-out;
+}
+
+.divTarjeta .card-container .front .image{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.divTarjeta .card-container .front .img{
+  height: 30px;
+}
+.divTarjeta .card-container .front .card-number-box{
+  padding: 30px 0;
+  font-size: 22px;
+  color: var(--bg-color);
+}
+.divTarjeta .card-container .front .flexbox{
+  display: flex;
+}
+.divTarjeta .card-container .front .box:nth-child(1){
+  margin-right: auto;
+}
+.divTarjeta .card-container .front .flexbox .box{
+  font-size: 15px;
+  color: var(--bg-color);
+}
+
+.divTarjeta .card-container .back{
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg,blueviolet,deeppink);
+  border-radius: 5px;
+  padding: 20px 0;
+  text-align: right;
+  backface-visibility: hidden;
+  box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  transform: perspective(1000px) rotateY(180deg);
+  transition: transform .4s ease-out;
+}
+.divTarjeta .card-container .back .stripe{
+  background: #000;
+  width: 100%;
+  margin: 10px 0 ;
+  height: 50px;
+}
+
+.divTarjeta .card-container .back .box{
+  padding: 0 20px;
+}
+
+.divTarjeta .card-container .back .box span{
+  color: var(--bg-color);
+  font-size: 15px;
+}
+.divTarjeta .card-container .back .box .cvv-box{
+  height: 50px;
+  padding: 10px;
+  margin-top: 5px;
+  color: #333;
+  background: #fff;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.divTarjeta .card-container .back .box img{
+  margin-top: 30px;
+  height: 30px;
+}
+
+.contentdireccion {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+
+
+

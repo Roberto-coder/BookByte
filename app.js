@@ -15,6 +15,7 @@ import passport from "./config/passport.js";
 import favoritosRuta from "./rutas/favoritos-ruta.js";
 import gerente from "./rutas/gerente-ruta.js";
 import compraRuta from "./rutas/compra-ruta.js"
+import tarjetaRuta from "./rutas/tarjeta-ruta.js"
 const __dirname = (process.platform === "win32")
         ? path.resolve()
         : path.dirname(new URL(import.meta.url).pathname);
@@ -49,7 +50,8 @@ app.use('/', adminRuta);
 app.use('/', carritoRuta);
 app.use('/', favoritosRuta);
 app.use('/', gerente);
-app.use('/',compraRuta)
+app.use('/',compraRuta);
+app.use('/', tarjetaRuta);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

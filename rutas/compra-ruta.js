@@ -1,9 +1,11 @@
 import express from "express";
-import controller from '../controllers/compraControllers.js';
+import compraControllers from '../controllers/compraControllers.js';
+
 const router = express.Router();
 
-router.get('/compra', controller.finalizarcompraa);
-router.post('/cantidad/:id', controller.operaciones);
-router.post('/generarOrden', controller.generarOrden);  // Nueva ruta
-router.post('/direccion',controller.capturaDireccion);
+router.get('/compra', compraControllers.finalizarcompraa, compraControllers.obtenerDirecciones);
+router.post('/cantidad/:id', compraControllers.operaciones);
+router.post('/generarOrden', compraControllers.finalizarcompraa, compraControllers.generarOrden); 
+router.post('/direccion', compraControllers.capturaDireccion);
+
 export default router;
