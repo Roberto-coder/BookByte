@@ -71,7 +71,7 @@ export const obtenerUsuarioPorId = (userId, callback) => {
 export const eliminarUsuario = (userId, callback) => {
   pool.query('DELETE FROM users WHERE user_id = ?', [userId], (error, results) => {
       if (error) {
-          console.error('Error al eliminar usuario:', error);
+          console.error('Error al eliminar usuariosadsa:', error);
           return callback(error, null);
       }
       // La eliminación del usuario se ha completado correctamente
