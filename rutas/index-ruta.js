@@ -3,9 +3,11 @@ import pool from '../config/database.js';
 import carritoControllers from "../controllers/carritoControllers.js";
 import favoritosControllers from "../controllers/favoritosControllers.js";
 import compraControllers from "../controllers/compraControllers.js";
+import tarjetaControllers from "../controllers/tarjetaControllers.js";
+
 const router = express.Router();
 
-router.get('/',loginControllers.ensureAuthenticated, carritoControllers.getData, favoritosControllers.getData, (req, res) => {
+router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, res) => {
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4', (error, results) => {
         if (error) {
             throw error;
@@ -15,7 +17,7 @@ router.get('/',loginControllers.ensureAuthenticated, carritoControllers.getData,
     });
 });
 
-router.get('/productos',loginControllers.ensureAuthenticated, carritoControllers.getData, (req, res) => {
+router.get('/productos', carritoControllers.getData, (req, res) => {
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4', (error, results) => {
         if (error) {
             throw error;
@@ -25,8 +27,9 @@ router.get('/productos',loginControllers.ensureAuthenticated, carritoControllers
     });
 });
 
-router.get('/compra', compraControllers.finalizarcompraa, (req, res) => {
-    res.render("compra", { user: req.user,
+router.get('/compra', compraControllers.finalizarcompraa, compraControllers.obtenerDirecciones, (req, res) => {
+    res.render("compra", { 
+        user: req.user,
         carrito: req.carrito,
         direcciones: req.direcciones
     });

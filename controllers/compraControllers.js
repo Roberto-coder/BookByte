@@ -93,7 +93,6 @@ function capturaDireccion(req, res, next) {
         });
     });
 }
-
 function generarOrden(req, res, next) {
     const idCliente = req.user.user_id;
     const idDomicilio = req.body.domicilioId;
@@ -101,7 +100,8 @@ function generarOrden(req, res, next) {
     if (!idDomicilio) {
         return res.status(400).send('No se ha seleccionado un domicilio');
     }
-
+    const fechaActual = new Date();
+    const fechaFormateada = fechaActual.toISOString().split('T')[0];
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
@@ -124,11 +124,11 @@ function generarOrden(req, res, next) {
 
                 const idOrden = results.insertId;
 
-                const detalles = (req.carrito || []).map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad]);
+                const detalles = (req.carrito || []).map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad,fechaFormateada]);
 
                 if (detalles.length > 0) {
                     const queryInsertDetalle = `
-                        INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO)
+                        INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO,fecha_registro)
                         VALUES ?
                     `;
 
@@ -172,4 +172,5 @@ function generarOrden(req, res, next) {
         });
     });
 }
-export default { finalizarcompraa, obtenerDirecciones, operaciones, generarOrden, capturaDireccion};
+
+export default { finalizarcompraa, obtenerDirecciones, operaciones, generarOrden, capturaDireccion };
