@@ -29,3 +29,4 @@ function ocultar_buscador(){
     inputSearch.value = "";
 
 }
+

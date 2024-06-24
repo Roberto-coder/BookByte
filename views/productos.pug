@@ -7,35 +7,25 @@ block content
         h4 Categorías
         ul.filtros
           li
-            input(type="checkbox" id="novela")
-            label(for="novela") Novela
+            a(href="/buscar/novela")  Novela
           li
-            input(type="checkbox" id="romantica")
-            label(for="romantica") Romántica
+            a(href="/buscar/romantica")  Romántica
           li
-            input(type="checkbox" id="ciencia-ficcion")
-            label(for="ciencia-ficcion") Ciencia ficción
+            a(href="/buscar/Ciencia Ficción") Ciencia ficción
           li
-            input(type="checkbox" id="distopia")
-            label(for="distopia") Distopía
+            a(href="/buscar/Distopía") Distopía
           li
-            input(type="checkbox" id="aventuras")
-            label(for="aventuras") Aventuras
+            a(href="/buscar/Aventura") Aventuras
           li
-            input(type="checkbox" id="fantasia")
-            label(for="fantasia") Fantasía
+            a(href="/buscar/Fantasía") Fantasía
           li
-            input(type="checkbox" id="contemporaneo")
-            label(for="contemporaneo") Contemporáneo
+            a(href="/buscar/Contemporáneo") Contemporáneo
           li
-            input(type="checkbox" id="terror")
-            label(for="terror") Terror
+            a(href="/buscar/Terror") Terror
           li
-            input(type="checkbox" id="poesia")
-            label(for="poesia") Poesía
+            a(href="/buscar/Poesía") Poesía
           li
-            input(type="checkbox" id="juvenil")
-            label(for="juvenil") Juvenil
+            a(href="/buscar/Juvenil") Juvenil
           li
             input(type="checkbox" id="infantil")
             label(for="infantil") Infantil
@@ -72,7 +62,7 @@ block content
           for book in newBooks
             .col-md-3 
               .s_product
-                img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                img(src="/img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
                 .s_overlay
                 if (book.book_amount == 0) 
                   h2(style="color: black;") AGOTADO 

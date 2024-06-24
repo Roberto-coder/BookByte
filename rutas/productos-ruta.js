@@ -30,4 +30,23 @@ router.post('/buscar', carritoControllers.getData, favoritosControllers.getData,
         }
     });
 });
+
+router.get('/buscar/:categoria', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
+    const inputSearch = req.params.categoria;
+    pool.query(`
+    SELECT *
+    FROM books
+    WHERE book_name LIKE ? 
+    OR book_genre LIKE ? 
+    OR book_author LIKE ?;
+    `, [inputSearch, inputSearch, inputSearch] ,(error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+        }
+    });
+});
+
 export default router;
+
