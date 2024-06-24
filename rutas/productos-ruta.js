@@ -14,8 +14,8 @@ router.get('/catalogo', carritoControllers.getData, favoritosControllers.getData
         }
     });
 });
-router.get('/buscar', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
-    const { inputSearch } = req.body;
+router.post('/buscar', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
+    const inputSearch = req.body.inputSearch;
     pool.query(`
     SELECT *
     FROM books
