@@ -115,9 +115,9 @@ html(lang="es")
                 div(class="bx bx-menu" id="menu-icon")
                 
         #ctn-bars-search
-            form(action="") 
-                input(type="text", id="inputSearch", placeholder="¿Qué deseas buscar?")
-                button(type="button", id="btnSearch") Buscar
+            form(action="buscar" method="get") 
+                input(type="text", id="inputSearch", name="inputSearch" placeholder="¿Qué deseas buscar?")
+                button(type="submit", id="btnSearch") Buscar
         #cover-ctn-search
 
     script(src="js/header.js")                
