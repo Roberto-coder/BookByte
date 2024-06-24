@@ -6,7 +6,7 @@ import favoritosControllers from "../controllers/favoritosControllers.js";
 
 
 router.get('/catalogo', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
-    pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4', (error, results) => {
+    pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 10', (error, results) => {
         if (error) {
             throw error;
         } else {

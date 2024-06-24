@@ -1038,6 +1038,7 @@ text-align: left;
     padding-right: 15px;
     padding-left: 15px;
     align-items: center;
+    margin-bottom: 2.5%;
     
   }
   @media (min-width: 992px) {
@@ -1926,6 +1927,8 @@ textarea {
 	height: 100%;
 	width: 75%;
   margin-left: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .filtrosContainer{
 	background-color: beige;

@@ -8,3 +8,39 @@ block content
           td 
             p dasdasasd
     .bookContainer
+    
+            .row
+                .col-md-12
+                    br
+                    br
+                .row
+                    .col-md-2
+                      div.btn-right-product
+                        i(class='bx bx-chevron-right') 
+                    for book in newBooks
+                        .col-md-3 
+                            .s_product
+                                img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                                
+                                .s_overlay
+                                if (book.book_amount == 0) 
+                                    h2(style="color: black;") AGOTADO 
+                                h3=book.book_editorial     
+                                h4
+                                    i.fa.fa-cart-arrow-down(aria-hidden="true")
+                                    a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                                div(class="favs")
+                                    a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
+                                      i(class='bx bxs-heart')
+                            .row
+                                .col-md-12
+                                    .rate
+                                        h3=book.book_name 
+                                        p
+                                            i.fa.fa-star(aria-hidden="true")
+                                            i.fa.fa-star(aria-hidden="true")
+                                            i.fa.fa-star(aria-hidden="true")
+                                            i.fa.fa-star(aria-hidden="true")
+                                            i.fa.fa-star(aria-hidden="true")
+                                        h5=book.book_price            
+    
