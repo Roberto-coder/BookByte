@@ -3,41 +3,94 @@ extends layout
 block content
   .mainContainer 
     .filtrosContainer
-      table 
-        tr 
-          td 
-            p dasdasasd
+      .filtro-categoria
+        h4 Categorías
+        ul.filtros
+          li
+            input(type="checkbox" id="novela")
+            label(for="novela") Novela
+          li
+            input(type="checkbox" id="romantica")
+            label(for="romantica") Romántica
+          li
+            input(type="checkbox" id="ciencia-ficcion")
+            label(for="ciencia-ficcion") Ciencia ficción
+          li
+            input(type="checkbox" id="distopia")
+            label(for="distopia") Distopía
+          li
+            input(type="checkbox" id="aventuras")
+            label(for="aventuras") Aventuras
+          li
+            input(type="checkbox" id="fantasia")
+            label(for="fantasia") Fantasía
+          li
+            input(type="checkbox" id="contemporaneo")
+            label(for="contemporaneo") Contemporáneo
+          li
+            input(type="checkbox" id="terror")
+            label(for="terror") Terror
+          li
+            input(type="checkbox" id="poesia")
+            label(for="poesia") Poesía
+          li
+            input(type="checkbox" id="juvenil")
+            label(for="juvenil") Juvenil
+          li
+            input(type="checkbox" id="infantil")
+            label(for="infantil") Infantil
+          li
+            input(type="checkbox" id="autoayuda")
+            label(for="autoayuda") Autoayuda y superación personal
+          li
+            input(type="checkbox" id="salud-deporte")
+            label(for="salud-deporte") Salud y deporte
+          li
+            input(type="checkbox" id="libros-practicos")
+            label(for="libros-practicos") Libros prácticos o manuales
+          li
+            input(type="checkbox" id="biografias")
+            label(for="biografias") Biografías
+          li
+            input(type="checkbox" id="cocina")
+            label(for="cocina") Cocina
+          li
+            input(type="checkbox" id="viajes")
+            label(for="viajes") Viajes
+          li
+            input(type="checkbox" id="divulgativos")
+            label(for="divulgativos") Divulgativos
+          li
+            input(type="checkbox" id="arte")
+            label(for="arte") Arte
     .bookContainer
-    
-            .row
+      .row
+        .col-md-12
+          br
+          br
+        .row
+          for book in newBooks
+            .col-md-3 
+              .s_product
+                img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                .s_overlay
+                if (book.book_amount == 0) 
+                  h2(style="color: black;") AGOTADO 
+                h3=book.book_editorial     
+                h4
+                  i.fa.fa-cart-arrow-down(aria-hidden="true")
+                  a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                .favs
+                  a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
+                    i(class='bx bxs-heart')
+              .row
                 .col-md-12
-                    br
-                    br
-                .row
-                    for book in newBooks
-                        .col-md-3 
-                            .s_product
-                                img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
-                                
-                                .s_overlay
-                                if (book.book_amount == 0) 
-                                    h2(style="color: black;") AGOTADO 
-                                h3=book.book_editorial     
-                                h4
-                                    i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                    a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                                div(class="favs")
-                                    a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                      i(class='bx bxs-heart')
-                            .row
-                                .col-md-12
-                                    .rate
-                                        h3=book.book_name 
-                                        p
-                                            i.fa.fa-star(aria-hidden="true")
-                                            i.fa.fa-star(aria-hidden="true")
-                                            i.fa.fa-star(aria-hidden="true")
-                                            i.fa.fa-star(aria-hidden="true")
-                                            i.fa.fa-star(aria-hidden="true")
-                                        h5=book.book_price            
-    
+                  .rate
+                    h3=book.book_name 
+                    p
+                      i.fa.fa-star(aria-hidden="true")
+                      i.fa.fa-star(aria-hidden="true")
+                      i.fa.fa-star(aria-hidden="true")
+                      i.fa.fa-star(aria-hidden="true")
+                      i.fa.fa-star(aria-hidden="true")
+                    h5=book.book_price
