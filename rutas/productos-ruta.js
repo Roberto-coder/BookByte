@@ -19,9 +19,10 @@ router.post('/buscar', carritoControllers.getData, favoritosControllers.getData,
     pool.query(`
     SELECT *
     FROM books
-    WHERE book_name LIKE ? 
-    OR book_genre LIKE ? 
-    OR book_author LIKE ?;
+    WHERE LOWER(book_name) LIKE LOWER(CONCAT('%', ?, '%'))
+    OR LOWER(book_genre) LIKE LOWER(CONCAT('%', ?, '%'))
+    OR LOWER(book_author) LIKE LOWER(CONCAT('%', ?, '%'));
+
     `, [inputSearch, inputSearch, inputSearch] ,(error, results) => {
         if (error) {
             throw error;
