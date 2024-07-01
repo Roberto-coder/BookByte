@@ -1,1 +1,18 @@
 extends layout
+block content 
+    .book-item
+      img.book-cover(src="/img_book/"+libro.book_genre+"/"+libro.book_isbn, alt="")
+      .book-details
+        h2.book-title=libro.book_name
+        p.book-author=libro.book_author
+        p.book-price=libro.book_price
+        .buttons
+          button.add-to-cart
+            i.fas.fa-shopping-cart
+            |  Añadir al carrito
+          button.add-to-wishlist
+            i.fas.fa-heart
+            |  Agregar a favoritos
+          button.add-to-apartado
+            i.fas.fa-heart
+            |  Agregar a apartados

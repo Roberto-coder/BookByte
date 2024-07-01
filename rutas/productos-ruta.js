@@ -59,7 +59,7 @@ router.get('/Libro/:LibroID', carritoControllers.getData, favoritosControllers.g
         if (error) {
             throw error;
         } else {
-            res.render("libro", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+            res.render("libro", { libro: results[0], user: req.user, carrito: req.carrito, favoritos: req.favoritos });
         }
     });
 });
