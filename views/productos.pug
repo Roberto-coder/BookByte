@@ -57,15 +57,11 @@ block content
                 .s_overlay
                 if (book.book_amount == 0) 
                   h2(style="color: black;") AGOTADO 
-                h3=book.book_editorial     
+                    
                 h4
                   i.fa.fa-cart-arrow-down(aria-hidden="true")
                   a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
                 .favs
-                  a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                    i(class='bx bxs-heart')
-                  a(href = "/agregarapartado/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                    i(class='ri-book-3-fill')
               .row
                 .col-md-12
                   .rate

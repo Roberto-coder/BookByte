@@ -925,24 +925,21 @@ text-align: left;
     font-size: 50px;
 }
 
-  .s_product{
-      
-      position: relative;
-      display: flex;
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center; 
-      width: 274px;
-      height: 425px;
-      object-fit: cover; /* Mantiene el aspecto de la imagen y la recorta si es necesario */
-        
-  }
-  .product {
-    margin-bottom: 106px;
-  }
-  .s_product > img {
-    width: 60%;
-    height: auto;
-  }
+.s_product {
+  position: relative;
+  width: 274px;
+  height: 425px;
+  margin-bottom: 20px; /* Espacio entre productos */
+  overflow: hidden; /* Evita desbordamientos inesperados */
+}
+
+.s_product img {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  height: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  object-fit: cover; /* Mantiene el aspecto de la imagen y la recorta si es necesario */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+}
+
   .s_product h2 {
     background: #e8eced none repeat scroll 0 0;
     border-radius: 52%;
@@ -981,7 +978,7 @@ text-align: left;
   }
   .s_product .s_overlay{
       position: absolute;
-      background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+      
       width: 60%;
       height: 100%;
       top: 0;
