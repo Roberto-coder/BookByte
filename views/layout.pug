@@ -14,7 +14,7 @@ html(lang="es")
                 img(src="/img/logo.ico")
             ul(class="navbar")
                 li 
-                    a(href="#" class="active") INICIO
+                    a(href="/" class="active") INICIO
                 li
                     a(href="/catalogo") LIBROS+  
                     div(class = "submenu")
@@ -142,7 +142,7 @@ html(lang="es")
                 input(type="text", id="inputSearch", name="inputSearch" placeholder="¿Qué deseas buscar?")
                 button(type="submit", id="btnSearch") Buscar
         #cover-ctn-search
-    script(src="js/header.js")                
+    script(src="/js/header.js")                
     block content
     footer(class="footer")
         .container-footer 
@@ -176,4 +176,4 @@ html(lang="es")
                                  i.fab.fa-twitter
                         a(href="#", style="color: yellow;") Métodos de pago
 
-script(src="js/barra-busqueda.js")
+script(src="/js/barra-busqueda.js")

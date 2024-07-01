@@ -27,8 +27,8 @@ block content
         b Encuentra los libros más nuevos
         hr(style="background-color: #62aabf; height: 2px; border: 0;")
         
-    .related-products
-    .container
+    
+
         .row
             .col-md-12
                 br
@@ -36,33 +36,25 @@ block content
             .row
                 for book in newBooks
                     .col-md-3 
+                      a( href="/libro/"+book.book_id)
                         .s_product
                             img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
-                            
                             .s_overlay
                             if (book.book_amount == 0) 
-                                h2(style="color: black;") AGOTADO 
-                            h3=book.book_editorial     
+                                h2(style="color: black;") AGOTADO
                             h4
                                 i.fa.fa-cart-arrow-down(aria-hidden="true")
                                 a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                            div(class="favs")
-                                a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='bx bxs-heart')
-                                a(href = "/agregarapartado/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='ri-book-3-fill')
+                            
                         .row
                             .col-md-12
                                 .rate
-                                    h3=book.book_name 
+                                    h3=book.book_name
+                                    if(book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
                                     p
                                         i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                    h5=book.book_price  
-
+                                        
+                                    h5=book.book_price
 
 
     section.header-feahion
@@ -80,31 +72,24 @@ block content
             .row
                 for book in newBooks
                     .col-md-3 
+                      a( href="/libro/"+book.book_id)
                         .s_product
                             img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
                             .s_overlay
                             if (book.book_amount == 0) 
                                 h2(style="color: black;") AGOTADO
-
-                            h3=book.book_editorial
                             h4
                                 i.fa.fa-cart-arrow-down(aria-hidden="true")
                                 a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
-                            div(class="favs")
-                                a(href = "/agregarfavoritos/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='bx bxs-heart')
-                                a(href = "/agregarapartado/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;")  
-                                  i(class='ri-book-3-fill')
+                            
                         .row
                             .col-md-12
                                 .rate
-                                    h3=book.book_name 
+                                    h3=book.book_name
+                                    if(book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
                                     p
                                         i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
+                                        
                                     h5=book.book_price
                                              
   script(src="js/slider.js")

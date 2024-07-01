@@ -8,6 +8,7 @@
     list-style: none;
 }
 
+
 :root{  
   --bg-color: #ffffff;
   --text-color: #2c0544;
@@ -924,21 +925,21 @@ text-align: left;
     font-size: 50px;
 }
 
-  .s_product{
-      
-      position: relative;
-      display: flex;
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center; 
-      
-  }
-  .product {
-    margin-bottom: 106px;
-  }
-  .s_product > img {
-    width: 60%;
-    height: auto;
-  }
+.s_product {
+  position: relative;
+  width: 274px;
+  height: 425px;
+  margin-bottom: 20px; /* Espacio entre productos */
+  overflow: hidden; /* Evita desbordamientos inesperados */
+}
+
+.s_product img {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  height: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  object-fit: cover; /* Mantiene el aspecto de la imagen y la recorta si es necesario */
+  display: block; /* Asegura que la imagen se comporte como un bloque */
+}
+
   .s_product h2 {
     background: #e8eced none repeat scroll 0 0;
     border-radius: 52%;
@@ -977,7 +978,7 @@ text-align: left;
   }
   .s_product .s_overlay{
       position: absolute;
-      background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+      
       width: 60%;
       height: 100%;
       top: 0;
@@ -1111,7 +1112,7 @@ text-align: left;
     padding-right: 15px;
     padding-left: 15px;
     align-items: center;
-    margin-bottom: 2.5%;
+    margin-bottom: 5.5%;
   }
   
   @media (min-width: 992px) {
@@ -2049,3 +2050,104 @@ ul.filtros label {
   cursor: pointer;
 }
 
+.book-item {
+  display: flex;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 15%;
+  margin-bottom: 15%;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+.book-cover {
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.book-title {
+  font-size: 1.5em;
+  margin: 0 0 10px;
+}
+
+.book-author {
+  font-size: 1em;
+  color: #555;
+  margin: 0 0 10px;
+}
+
+.book-price {
+  font-size: 1.2em;
+  color: #000;
+  margin: 0 0 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.add-to-cart,
+.add-to-wishlist,
+.add-to-apartado {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-to-cart {
+    background-color: #ff9900;
+}
+
+.add-to-cart:hover {
+    background-color: #e68a00;
+}
+
+.add-to-wishlist {
+    background-color: #0073e6;
+}
+
+.add-to-wishlist:hover {
+    background-color: #005bb5;
+}
+
+.add-to-apartado {
+    background-color: #28a745;
+}
+
+.add-to-apartado:hover {
+    background-color: #218838;
+}
+
+.fas {
+    font-size: 1.2em;
+}
+.rating {
+  margin-top: 20px;
+}
+
+.star {
+  cursor: pointer;
+  color: #ddd;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.star:hover,
+.star.active {
+  color: #ffcc00;
+}
