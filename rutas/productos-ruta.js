@@ -66,6 +66,40 @@ router.get('/Libro/:LibroID', carritoControllers.getData, favoritosControllers.g
 
 router.post('/ranking', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
     const  { bookId, rating } = req.body;
+    pool.query(`
+    SELECT book_rating
+    FROM books
+    WHERE book_id = ?
+
+
+
+    `,[bookId],(error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            let new_rating;
+            if(results[0]==-1){
+             new_rating = rating;
+
+            } else{
+                new_rating=(results[0]+rating)/2;
+            }
+            pool.query(`
+                
+                
+        UPDATE books
+        SET book_rating = ?
+        WHERE book_id=?;
+                
+                `,[new_rating, bookId],(error, results) => {
+                    if (error){
+                        throw error;
+                    } else{
+                        console.log("Rating actualizado con éxito");
+                    }
+                });
+        }
+    });
     console.log(rating);
 });
 export default router;
