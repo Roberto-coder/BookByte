@@ -47,7 +47,7 @@ export const mostrarReportes=(year, month,callback) => {
 
 }
 
-export const mostrarGraficas=(year, month,callback) => {
+export const mostrarGraficas=(year, month, autor,callback) => {
     const sqlLibrosYear = 'SELECT DISTINCT meses.mes, '+ 
     'COALESCE(SUM(detalle_orden.cantidad), 0) AS total_cantidad FROM '+
     '(SELECT 1 AS mes UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION '+
@@ -78,7 +78,7 @@ export const mostrarGraficas=(year, month,callback) => {
     "CROSS JOIN meses AS m "+
     "LEFT JOIN detalle_orden AS d "+
     "ON b.book_id = d.ID_PRODUCTO AND MONTH(d.fecha_registro) = m.mes AND YEAR(d.fecha_registro) = ? "+
-    "WHERE b.book_author = 'Frank Herbert' GROUP BY b.book_author, m.mes ORDER BY m.mes; ";
+    "WHERE b.book_author = ? GROUP BY b.book_author, m.mes ORDER BY m.mes; ";
 
     pool.query(sqlLibrosYear, [year], (errorbooksByYear, booksByYear) => {
         if (errorbooksByYear) {
@@ -90,7 +90,7 @@ export const mostrarGraficas=(year, month,callback) => {
                     console.error('Error al ejecutar la consulta de generos:', errorGenre);
                     callback(errorGenre, null);
                 } else {
-                    pool.query(sqlAuthor, [year], (errorAutor, resultsAutor) => {
+                    pool.query(sqlAuthor, [year, autor], (errorAutor, resultsAutor) => {
                         if (errorAutor) {
                             console.error('Error al ejecutar la consulta de generos:', errorAutor);
                             callback(errorAutor, null);
