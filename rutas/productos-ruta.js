@@ -64,6 +64,9 @@ router.get('/Libro/:LibroID', carritoControllers.getData, favoritosControllers.g
     });
 });
 
-
+router.post('/ranking', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
+    const  { bookId, rating } = req.body;
+    console.log(rating);
+});
 export default router;
 

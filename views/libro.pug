@@ -1,5 +1,6 @@
 extends layout
 block content 
+  if(libro)
     .book-item
       img.book-cover(src="/img_book/"+libro.book_genre+"/"+libro.book_isbn, alt="")
       .book-details
@@ -19,3 +20,14 @@ block content
                 button.add-to-apartado
                     i.fas.fa-heart
                     |  Agregar a apartados
+        .rating
+          | Calificación:
+          each val in [1, 2, 3, 4, 5]
+            span.star(data-value=val)
+              i.fas.fa-star
+  else
+    p No se encontró información del libro.        
+  // Incluye jQuery primero
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+  // Luego incluye el script personalizado
+  script(src="/js/calificacion.js")      

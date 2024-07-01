@@ -2136,3 +2136,18 @@ ul.filtros label {
 .fas {
     font-size: 1.2em;
 }
+.rating {
+  margin-top: 20px;
+}
+
+.star {
+  cursor: pointer;
+  color: #ddd;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.star:hover,
+.star.active {
+  color: #ffcc00;
+}
