@@ -304,7 +304,57 @@ text-align: left;
   margin-top: 20px; 
 }
 
+/*inicio apartado*/
+.contenedorApartado{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; 
+  width: 30%; 
+  height: auto; 
+  position: fixed;
+  right: 10%; 
+  top: 10%; 
+  background-color: var(--bg-color);
+  border-radius: 15px; 
+  padding: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
+  overflow: auto;
+}
+.apartado-header{
+  font-family: fjalla;
+}
+.apartado-header span {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+  
+}
 
+.apartado-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.apartado-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.apartado-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.apartado-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px; 
+}
 
 .none {
   display: none;
@@ -329,7 +379,7 @@ text-align: left;
   height: 100px;
 }
 
-.infofavs, .infocompra {
+.infofavs, .infocompra , .infoapartado {
   display: flex;
   margin-left: 8px;
   padding: 10px;
@@ -340,13 +390,18 @@ text-align: left;
 .infocompra p{
   font-size: 25px;
 }
-.eliminarCompra .eliminarFavorito {
+.eliminarCompra .eliminarFavorito .eliminarFavorito {
   margin-top: 25px;
   cursor: pointer; 
 }
 
 
 .eliminarCompra:hover{
+  color: red;
+  transform: scale(1.5);
+}
+
+.eliminarApartado:hover{
   color: red;
   transform: scale(1.5);
 }
@@ -367,7 +422,11 @@ text-align: left;
   overflow-y: auto; 
   overflow-x: hidden;
 }
-
+#contenedorApartado {
+  max-height: 400px; 
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
 
 ::-webkit-scrollbar {
   width: 8px; 
@@ -441,6 +500,19 @@ text-align: left;
     font-size: 23px;
     margin-right: 7px;
 }
+.apartado{
+  display: flex;
+  align-items: center;
+}
+.apartado i{
+  background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-size: 23px;
+  margin-right: 7px;
+}
+
 .logout{
   display: flex;
   align-items: center;

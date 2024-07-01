@@ -48,7 +48,7 @@ export const mostrarReportes=(year, month,callback) => {
 }
 
 export const mostrarGraficas=(year, month,callback) => {
-    const sqlLibrosYear = 'SELECT meses.mes, '+ 
+    const sqlLibrosYear = 'SELECT DISTINCT meses.mes, '+ 
     'COALESCE(SUM(detalle_orden.cantidad), 0) AS total_cantidad FROM '+
     '(SELECT 1 AS mes UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION '+
      'SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION '+
@@ -57,7 +57,7 @@ export const mostrarGraficas=(year, month,callback) => {
     'ON meses.mes = MONTH(detalle_orden.fecha_registro) AND YEAR(detalle_orden.fecha_registro) = ? '+
     'GROUP BY meses.mes ORDER BY meses.mes;'
 
-    const sqlGenres = 'SELECT fecha.fecha_registro, generos.book_genre, COUNT(*) AS repeticiones ' +
+    const sqlGenres = 'SELECT DISTINCT fecha.fecha_registro, generos.book_genre, COUNT(*) AS repeticiones ' +
     'FROM (SELECT detalle_orden.ID_PRODUCTO,books.book_genre, books.book_id FROM detalle_orden JOIN books where detalle_orden.ID_PRODUCTO = books.book_id) as generos ' +
     'JOIN (SELECT detalle_orden.fecha_registro '+
     'FROM detalle_orden '+
@@ -73,7 +73,7 @@ export const mostrarGraficas=(year, month,callback) => {
         "SELECT DISTINCT book_author, book_id  "+
         "FROM books "+
         "LIMIT 5 ) "+
-    "SELECT b.book_author, m.mes, COALESCE(SUM(d.cantidad), 0) AS total_cantidad "+
+    "SELECT DISTINCT b.book_author, m.mes, COALESCE(SUM(d.cantidad), 0) AS total_cantidad "+
     "FROM top_authors AS b "+
     "CROSS JOIN meses AS m "+
     "LEFT JOIN detalle_orden AS d "+

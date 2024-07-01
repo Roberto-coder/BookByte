@@ -87,6 +87,29 @@ html(lang="es")
                         
                                 
                       
+                a(class="apartado")
+                    i(class="ri-book-3-fill")
+                div(class="contenedorApartado none", id="contenedorApartado")
+                    div(class="apartado")
+                        div(class="apartado-header")
+                            h2 Apartados
+                            span(class="x3", id="x3") ×   
+                    div(class="apartado-footer")
+                        div(class="productoos") 
+                                if(apartados)
+                                    for libroapartado in apartados
+                                        div(class="divcontainer2")
+                                            div(class="imgcompra2")
+                                                img(src="img_book/"+libroapartado.book_genre+"/"+libroapartado.book_isbn, alt="")
+                                                div(class="infoapartado")
+                                                    p  #{libroapartado.book_name} 
+                                                    span(id="nombreLibro")
+                                                div
+                                                    p  Cantidad: #{libroapartado.quantity}
+                                                div(class = "eliminarApartado")
+                                                    a(href = "/eliminarapatadoo/"+libroapartado.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                        i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
+                
                 a(class="fav")
                     i(class="ri-heart-3-fill")
                 div(class="contenedorFavs none", id="contenedorFavs")

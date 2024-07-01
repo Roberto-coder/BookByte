@@ -236,6 +236,38 @@ INSERT INTO `orden` VALUES (3,3,0.00,2),(4,3,0.00,2),(6,5,0.00,1),(7,5,0.00,1),(
 UNLOCK TABLES;
 
 --
+-- Table structure for table `apartado`
+--
+
+DROP TABLE IF EXISTS `apartado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `apartado` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_book` int NOT NULL,
+  `quantity` INT NOT NULL,
+  `reservationDate` DATE NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `apartado_user_idx` (`id_user`),
+  KEY `libro_idx` (`id_book`),
+  CONSTRAINT `apartado_libro` FOREIGN KEY (`id_book`) REFERENCES `books` (`book_id`),
+  CONSTRAINT `apartado_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `apartado`
+--
+
+LOCK TABLES `apartado` WRITE;
+/*!40000 ALTER TABLE `apartado` DISABLE KEYS */;
+INSERT INTO `apartado` VALUES (8,3,6,1,'2024-06-13'),(9,3,7,2,'2024-06-13'),(10,5,4,1,'2024-06-13');
+/*!40000 ALTER TABLE `apartado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
 -- Table structure for table `users`
 --
 

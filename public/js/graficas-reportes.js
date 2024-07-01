@@ -1,10 +1,11 @@
-
-
 // Definir el rango de años 
 var startYear = 2020;
 var endYear = 2030;
 
 var yearSelect = document.getElementById("year");
+
+// Definir la variable fuera de la función
+var primerAutor;
 
 // 
 for (var year = startYear; year <= endYear; year++) {
@@ -50,7 +51,6 @@ jQuery(document).ready(function() {
 });
 
 function updateReports(year, month) {
-    
     jQuery.ajax({
         url: '/gerente',
         method: 'GET',
@@ -60,7 +60,6 @@ function updateReports(year, month) {
             month: month
         },
         success: function(data) {
-            //console.log(data)
             // Limpiar la tabla antes de actualizar
             $('#bookSalesTable tbody').empty();
             $('#authorSalesTable tbody').empty();
@@ -72,18 +71,27 @@ function updateReports(year, month) {
                 $('#bookSalesTable tbody').append(`<tr><td>${formatDate(libro.fecha_registro)}</td><td>${libro.book_name}</td><td>${libro.repeticiones}</td></tr>`);
             }
 
-            // Recorrer los datos de libros y agregar filas a la tabla
+            // Recorrer los datos de autores y agregar filas a la tabla
             for (var i = 0; i < data.autores.length; i++) {
                 var autor = data.autores[i];
                 $('#authorSalesTable tbody').append(`<tr><td>${formatDate(autor.fecha)}</td><td>${autor.book_author}</td><td>${autor.repeticiones}</td></tr>`);
             }
 
-            // Recorrer los datos de libros y agregar filas a la tabla
+            // Asignar valor a la variable global
+            primerAutor = data.autores[0].book_author;
+            //console.log(primerAutor);
+
+            // Recorrer los datos de géneros y agregar filas a la tabla
             for (var i = 0; i < data.generos.length; i++) {
                 var genero = data.generos[i];
                 $('#genreSalesTable tbody').append(`<tr><td>${formatDate(genero.fecha_registro)}</td><td>${genero.book_genre}</td><td>${genero.repeticiones}</td></tr>`);
             }
+            
+            // Llamar una función o ejecutar algún código utilizando 'primerAutor'
+            usarPrimerAutor();
 
+            // Ahora, llamar a updateGraphs desde aquí para asegurar que primerAutor esté disponible
+            updateGraphs(year, month);
         },
         error: function(xhr, status, error) {
             console.error('Error al obtener los datos de libro:', error);
@@ -91,7 +99,19 @@ function updateReports(year, month) {
     });
 }
 
+// Función que utiliza la variable global 'primerAutor'
+function usarPrimerAutor() {
+    // Aquí puedes imprimir la variable primerAutor
+    console.log("El primer autor fuera de la función success es: " + primerAutor);
+}
+
+// Variables globales para los gráficos
+var myChart1, myChart2, myChart3;
+
 function updateGraphs(year, month) {
+    // Imprimir la variable primerAutor
+    console.log("El primer autor dentro de updateGraphs es: " + primerAutor);
+    
     jQuery.ajax({
         url: '/gerenteGraficas',
         method: 'GET',
@@ -100,12 +120,11 @@ function updateGraphs(year, month) {
             month: month
         },
         success: function(data) {
-            console.log(data);
             // Libros
             var charDataBooks = data.libros.map(function(libro) {
                 return libro.total_cantidad; 
             });
-            // Gerero
+            // Genero
             var charLabelGenre = data.generos.map(function(genero) {
                 return genero.book_genre;
             });
@@ -123,13 +142,19 @@ function updateGraphs(year, month) {
             });
 
             // Revisar si se ha creado un gráfico previamente y destruirlo
-            if (window.myChart) {
-                window.myChart.destroy();
+            if (myChart1) {
+                myChart1.destroy();
+            }
+            if (myChart2) {
+                myChart2.destroy();
+            }
+            if (myChart3) {
+                myChart3.destroy();
             }
 
             // Ahora puedes usar charData para configurar tu gráfico
             const ctx = document.getElementById('myChart1').getContext('2d');
-            window.myChart = new Chart(ctx, {
+            myChart1 = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
@@ -176,7 +201,7 @@ function updateGraphs(year, month) {
                 }
             });
             const ctx2 = document.getElementById('myChart2').getContext('2d');
-            window.myChart = new Chart(ctx2, {
+            myChart2 = new Chart(ctx2, {
                 //doughnut and pie
                 type: 'doughnut',
                 data: {
@@ -224,7 +249,7 @@ function updateGraphs(year, month) {
                 }
             });
             const ctx3 = document.getElementById('myChart3').getContext('2d');
-            window.myChart = new Chart(ctx3, {
+            myChart3 = new Chart(ctx3, {
                 //doughnut and pie
                 type: 'line',
                 data: {
@@ -277,7 +302,3 @@ function updateGraphs(year, month) {
         }
     });
 }
-
-
-
-
