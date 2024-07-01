@@ -112,9 +112,35 @@ block content
                             .col-md-12
                                 .rate
                                     h3=book.book_name
-                                    if(book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
-                                    p
+                                    - if (book.book_rating == 1)
+                                      p
                                         i.fa.fa-star(aria-hidden="true")
+                                    - else if (book.book_rating == 2)
+                                      p
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                    - else if (book.book_rating == 3)
+                                      p
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                    - else if (book.book_rating == 4)
+                                      p
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                    - else if (book.book_rating == 5)
+                                      p
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                        i.fa.fa-star(aria-hidden="true")
+                                    - else if (book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
+                                      p
+                                        i.fa.fa-star(aria-hidden="true")
+
                                         
                                     h5=book.book_price
                                              
