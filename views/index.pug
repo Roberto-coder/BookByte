@@ -37,7 +37,8 @@ block content
                 for book in newBooks
                     .col-md-3 
                         .s_product
-                            img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                            a( href="/libro/"+book.book_id)  
+                              img(src="img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
                             
                             .s_overlay
                             if (book.book_amount == 0) 
@@ -54,12 +55,10 @@ block content
                         .row
                             .col-md-12
                                 .rate
-                                    h3=book.book_name 
+                                  
+                                    h3=book.book_name
+                                    if(book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1) 
                                     p
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
                                         i.fa.fa-star(aria-hidden="true")
                                     h5=book.book_price  
 
@@ -98,13 +97,11 @@ block content
                         .row
                             .col-md-12
                                 .rate
-                                    h3=book.book_name 
+                                    h3=book.book_name
+                                    if(book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
                                     p
                                         i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
-                                        i.fa.fa-star(aria-hidden="true")
+                                        
                                     h5=book.book_price
                                              
   script(src="js/slider.js")

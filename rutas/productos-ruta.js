@@ -49,5 +49,21 @@ router.get('/buscar/:categoria', carritoControllers.getData, favoritosController
     });
 });
 
+router.get('/Libro/:LibroID', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
+    const LibroID = req.params.LibroID;
+    pool.query(`
+    SELECT *
+    FROM books
+    WHERE book_id = ?;
+    `, [LibroID] ,(error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render("libro", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+        }
+    });
+});
+
+
 export default router;
 

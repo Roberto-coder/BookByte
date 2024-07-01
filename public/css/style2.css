@@ -8,6 +8,7 @@
     list-style: none;
 }
 
+
 :root{  
   --bg-color: #ffffff;
   --text-color: #2c0544;
@@ -930,7 +931,10 @@ text-align: left;
       display: flex;
       justify-content: center; /* Centra horizontalmente */
       align-items: center; 
-      
+      width: 274px;
+      height: 425px;
+      object-fit: cover; /* Mantiene el aspecto de la imagen y la recorta si es necesario */
+        
   }
   .product {
     margin-bottom: 106px;
