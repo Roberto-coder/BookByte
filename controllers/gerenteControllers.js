@@ -36,7 +36,8 @@ function mostrarReportes(req, res) {
   function mostrarGraficas(req, res) {
     const year = req.query.year; 
     const month = req.query.month;
-    modeloGerente.mostrarGraficas(year, month,(error, datos) => {
+    const autor = req.query.autor;
+    modeloGerente.mostrarGraficas(year, month, autor,(error, datos) => {
          
         if (error) {
             console.error('Error al obtener los datos:', error);

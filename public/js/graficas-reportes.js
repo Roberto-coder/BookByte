@@ -5,7 +5,7 @@ var endYear = 2030;
 var yearSelect = document.getElementById("year");
 
 // Definir la variable fuera de la función
-var primerAutor;
+var primerAutor = 'Frank Herbert'; // Valor predeterminado
 
 // 
 for (var year = startYear; year <= endYear; year++) {
@@ -78,7 +78,11 @@ function updateReports(year, month) {
             }
 
             // Asignar valor a la variable global
-            primerAutor = data.autores[0].book_author;
+            // Asignar valor a la variable global
+            if (data.autores && data.autores.length > 0) {
+                primerAutor = data.autores[0].book_author;
+            }
+            //console.log(primerAutor);
             //console.log(primerAutor);
 
             // Recorrer los datos de géneros y agregar filas a la tabla
@@ -117,7 +121,8 @@ function updateGraphs(year, month) {
         method: 'GET',
         data: {
             year: year,
-            month: month
+            month: month,
+            autor: primerAutor
         },
         success: function(data) {
             // Libros
@@ -255,7 +260,7 @@ function updateGraphs(year, month) {
                 data: {
                     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     datasets: [{
-                        label: 'Ventas de Libros de Frank Herbert',
+                        label: 'Ventas de Libros de '+primerAutor,
                         data: charDataAutor, 
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)', 

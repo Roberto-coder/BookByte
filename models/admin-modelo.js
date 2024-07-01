@@ -3,7 +3,7 @@ import pool from '../config/database.js';
 
 export const mostrarAdminPage=(callback) => {
     const sqlUsuarios = 'SELECT * FROM users WHERE user_role!=0 AND user_role!=2 ORDER BY user_role desc ;';
-    const sqlLibros = 'SELECT book_id, book_name, book_author, YEAR(book_datePublication) AS year, book_amount FROM books;';
+    const sqlLibros = 'SELECT book_id, book_name, book_author, YEAR(book_datePublication) AS year, book_amount, book_apartados FROM books;';
 
     pool.query(sqlUsuarios, (errorUsuarios, resultadosUsuarios) => {
         if (errorUsuarios) {

@@ -1,8 +1,12 @@
-extends ../layout
+//extends ../layout
 block content
   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
   .container
     .row
+      .container.mt-3
+        button.btn.btn-primary(onclick="window.history.back();")
+            i.fas.fa-arrow-left
+            |  Regresar
       .col-md-6.offset-md-3
         .card.mt-5
           .card-header
@@ -12,11 +16,11 @@ block content
                 input(type='hidden', name='id', value=libro.book_id)
                 .form-group
                     label(for="titulo") Nombre del libro
-                    input#titulo.form-control(type="text", name="titulo", placeholder=libro.book_name, required)
+                    input#titulo.form-control(type="text", name="titulo", value=libro.book_name, required)
 
                 .form-group
                     label(for="autor") Autor
-                    input#autor.form-control(type="text", name="autor", placeholder=libro.book_author, required)
+                    input#autor.form-control(type="text", name="autor", value=libro.book_author, required)
 
                 .form-group
                     label(for="genero") Género
@@ -43,34 +47,38 @@ block content
 
                 .form-group
                     label(for="precio") Precio
-                    input#precio.form-control(type="number", name="precio", placeholder=libro.book_price, required)
+                    input#precio.form-control(type="number", name="precio", value=libro.book_price, required)
 
                 .form-group
                     label(for="paginas") Número de páginas
-                    input#paginas.form-control(type="number", name="paginas", placeholder=libro.book_numPage, required)
+                    input#paginas.form-control(type="number", name="paginas", value=libro.book_numPage, required)
 
                 .form-group
                     label(for="fecha") Fecha de publicación
-                    input#fecha.form-control(type="date", name="fecha", placeholder=libro.book_datePublication, required)
+                    input#fecha.form-control(type="date", name="fecha", value=libro.book_datePublication, required)
 
                 .form-group
                     label(for="lugar") Lugar de publicación
-                    input#lugar.form-control(type="text", name="lugar", placeholder=libro.book_placePublication, required)
+                    input#lugar.form-control(type="text", name="lugar", value=libro.book_placePublication, required)
 
                 .form-group
                     label(for="volumen") Volumen
-                    input#volumen.form-control(type="text", name="volumen", placeholder=libro.book_vol, required)
+                    input#volumen.form-control(type="text", name="volumen", value=libro.book_vol, required)
 
                 .form-group
                     label(for="isbn") ISBN
-                    input#isbn.form-control(type="text", name="isbn", placeholder=libro.book_isbn, required)
+                    input#isbn.form-control(type="text", name="isbn", value=libro.book_isbn, required)
 
                 .form-group
                     label(for="editorial") Editorial
-                    input#editorial.form-control(type="text", name="editorial", placeholder=libro.book_editorial, required)
+                    input#editorial.form-control(type="text", name="editorial", value=libro.book_editorial, required)
 
                 .form-group
                     label(for="cantidad") Cantidad
-                    input#cantidad.form-control(type="number", name="cantidad", placeholder=libro.book_amount, required)
+                    input#cantidad.form-control(type="number", name="cantidad", value=libro.book_amount, required)
+                
+                .form-group
+                    label(for="apartado") Cantidad de Libros para Apartar
+                    input#cantidad.form-control(type="number", name="apartado", value=libro.book_apartados, required)
 
                 button.btn.btn-primary(type="submit") Editar Libro

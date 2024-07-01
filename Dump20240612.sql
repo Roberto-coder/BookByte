@@ -35,6 +35,7 @@ CREATE TABLE `books` (
   `book_isbn` bigint NOT NULL,
   `book_editorial` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `book_amount` int NOT NULL,
+  `book_apartados` int NOT NULL,
   PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -45,7 +46,10 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (4,'Harry Potter y las Reliquias de la Muerte','J. K. Rowling','Fantasia',549.00,704,'2020-05-24','España',1,9786073193566,'Salamandra',10),(5,'La maldición del Titán','Rick Riordan','Fantasia',369.00,304,'2023-12-12','España',1,9786073838764,'Salamandra',0),(6,'Guerra Mundial Z: Una Historia Oral de la Guerra Zombi','Max Brooks','Terror',249.00,472,'2019-05-01','España',1,9786073170161,'Penguin Random House Grupo Editorial',20),(7,'Dune','Frank Herbert','Ciencia ficción',242.00,784,'2020-08-01','Estados Unidos',1,9786073194648,'Penguin Random House Grupo Editorial',0);
+INSERT INTO `books` VALUES (4,'Harry Potter y las Reliquias de la Muerte','J. K. Rowling','Fantasia',549.00,704,'2020-05-24','España',1,9786073193566,'Salamandra',10,10),
+                            (5,'La maldición del Titán','Rick Riordan','Fantasia',369.00,304,'2023-12-12','España',1,9786073838764,'Salamandra',0,15),
+                            (6,'Guerra Mundial Z: Una Historia Oral de la Guerra Zombi','Max Brooks','Terror',249.00,472,'2019-05-01','España',1,9786073170161,'Penguin Random House Grupo Editorial',20,15),
+                            (7,'Dune','Frank Herbert','Ciencia ficción',242.00,784,'2020-08-01','Estados Unidos',1,9786073194648,'Penguin Random House Grupo Editorial',0,12);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
