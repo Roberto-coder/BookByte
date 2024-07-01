@@ -1,8 +1,7 @@
 $(document).ready(function() {
     $('.star').on('click', function() {
       var ratingValue = $(this).data('value');
-      var bookId = 1; // Reemplazar con el ID real del libro
-  
+      var bookId = document.getElementById("idbook").value; // Reemplazar con el ID real del libro
       // Marcar las estrellas seleccionadas
       $('.star').each(function(index) {
         if (index < ratingValue) {

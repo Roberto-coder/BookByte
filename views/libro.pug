@@ -23,8 +23,9 @@ block content
         .rating
           | Calificación:
           each val in [1, 2, 3, 4, 5]
-            span.star(data-value=val)
+            span.star(data-value=val class=val <= libro.book_rating ? 'active' : '')
               i.fas.fa-star
+          input(type="hidden" value=libro.book_id, id="idbook")
   else
     p No se encontró información del libro.        
   // Incluye jQuery primero

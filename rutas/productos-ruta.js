@@ -78,14 +78,17 @@ router.post('/ranking', carritoControllers.getData, favoritosControllers.getData
             throw error;
         } else {
             let new_rating;
-            if(results[0]==-1){
-             new_rating = rating;
-
+            if(results[0].book_rating==-1){
+                new_rating = parseInt(rating);
             } else{
-                new_rating=(results[0]+rating)/2;
+                let a = parseInt(results[0].book_rating);
+                let b = parseInt(rating);
+                console.log(a);
+                new_rating=(a+b)/2;
+                console.log(new_rating+"dasdass");
             }
             pool.query(`
-                
+            
                 
         UPDATE books
         SET book_rating = ?
@@ -100,7 +103,6 @@ router.post('/ranking', carritoControllers.getData, favoritosControllers.getData
                 });
         }
     });
-    console.log(rating);
 });
 export default router;
 
