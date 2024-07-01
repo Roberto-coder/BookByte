@@ -52,15 +52,16 @@ block content
         .row
           for book in newBooks
             .col-md-3 
-              .s_product
-                img(src="/img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
-                .s_overlay
-                if (book.book_amount == 0) 
-                  h2(style="color: black;") AGOTADO 
-                    
-                h4
-                  i.fa.fa-cart-arrow-down(aria-hidden="true")
-                  a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+              a( href="/libro/"+book.book_id)
+                .s_product
+                  img(src="/img_book/"+book.book_genre+"/"+book.book_isbn, alt="")
+                  .s_overlay
+                  if (book.book_amount == 0) 
+                    h2(style="color: black;") AGOTADO 
+                      
+                  h4
+                    i.fa.fa-cart-arrow-down(aria-hidden="true")
+                    a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
                 .favs
               .row
                 .col-md-12

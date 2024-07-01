@@ -7,12 +7,15 @@ block content
         p.book-author=libro.book_author
         p.book-price=libro.book_price
         .buttons
-          button.add-to-cart
-            i.fas.fa-shopping-cart
-            |  Añadir al carrito
-          button.add-to-wishlist
-            i.fas.fa-heart
-            |  Agregar a favoritos
-          button.add-to-apartado
-            i.fas.fa-heart
-            |  Agregar a apartados
+            a(href = "/agregarcarrito/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-cart
+                    i.fas.fa-shopping-cart
+                    |  Añadir al carrito
+            a(href = "/agregarfavoritos/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-wishlist
+                    i.fas.fa-heart
+                    |  Agregar a favoritos
+            a(href = "/agregarapartado/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-apartado
+                    i.fas.fa-heart
+                    |  Agregar a apartados
