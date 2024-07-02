@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Caja Registradora
+    link(rel="stylesheet" href="/css/caja.css")
+  body
+    
+    header
+      a.btn.btn-succes(type="button", href="/")
+        svg(xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16")
+            path(fill-rule="evenodd", d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z")
+            path(fill-rule="evenodd", d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z")
+            | Salir  
+      h1 Caja Registradora
+    main
+      section.isbn-search
+        h2 Buscar Libro por ISBN
+        form(action="/caja" method="POST")
+          .form-group
+            label(for="isbn") ISBN
+            input(type="text" id="isbn" name="isbn" placeholder="Ingresar ISBN" required)
+          button(type="submit") Agregar
+      section.book-details
+        if addedBook
+          h2 Libro Agregado
+          p
+            strong Título:
+            | #{addedBook.book_name}
+          p
+            strong Autor:
+            | #{addedBook.book_author}
+          p
+            strong Género:
+            | #{addedBook.book_genre}
+          p
+            strong Precio:
+            | $#{addedBook.book_price}
+        else if error
+          p #{error}
+      section.cart
+        h2 Carrito de Compras
+        if cart && cart.length > 0
+          ul.book-list
+            each book, index in cart
+              li.book-item
+                h3= book.book_name
+                p
+                  strong Autor:
+                  | #{book.book_author}
+                p
+                  strong Precio:
+                  | $#{book.book_price}
+                form(action="/caja/remove" method="POST")
+                  input(type="hidden" name="index" value="#{index}")
+                  button(type="submit") Eliminar
+          p.total
+            strong Total:
+            | $#{total}
+          form(action="/caja/checkout" method="POST")
+            button(type="submit") Pagar
+        else
+          p No hay libros en el carrito.
+    

@@ -649,6 +649,10 @@ header.header{
 #icon-menu i:hover{
   color: var(--main-color);
 }
+#btnSearch{
+  margin-left:9.5%;
+  width: 81%;
+}
 #ctn-bars-search{
   position: fixed;
   top: 10%;

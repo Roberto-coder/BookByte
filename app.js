@@ -19,6 +19,7 @@ import compraRuta from "./rutas/compra-ruta.js";
 import tarjetaRuta from "./rutas/tarjeta-ruta.js";
 import productosRuta from "./rutas/productos-ruta.js";
 import vendedorRuta from "./rutas/vendedor-ruta.js";
+import cajaRuta from "./rutas/caja-ruta.js";
 const __dirname = (process.platform === "win32")
         ? path.resolve()
         : path.dirname(new URL(import.meta.url).pathname);
@@ -44,8 +45,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 // Definir más rutas y controladores según sea necesario...
+
 app.use('/', indexruta);
 app.use('/', loginruta);
+
 app.use('/', pruebasruta);
 app.use('/', catalogoruta);
 app.use('/', imagenesRuta);
@@ -57,7 +60,8 @@ app.use('/', gerente);
 app.use('/', compraRuta);
 app.use('/', tarjetaRuta);
 app.use('/', productosRuta);
-app.use('/',vendedorRuta);
+app.use('/', vendedorRuta);
+app.use('/', cajaRuta);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

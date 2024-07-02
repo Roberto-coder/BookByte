@@ -60,6 +60,9 @@ html(lang="es")
                     else if user.user_role == 2
                         a(href="/" class="user")= user.user_name
                             i(class="ri-user-3-fill") 
+                    else if user.user_role == 4
+                        a(href="/caja" class="user")= user.user_name
+                            i(class="ri-user-3-fill")         
                 else
                     a(href="login" class="user") MI CUENTA
                         i(class="ri-user-3-fill") 
@@ -180,8 +183,6 @@ html(lang="es")
                                 i.fab.fa-twitter
                         li
                             a(href="#", style="color: yellow;") Métodos de pago
-    script(src="js/barra-busqueda.js")
-                                 i.fab.fa-twitter
-                        a(href="#", style="color: yellow;") Métodos de pago
+    
 
 script(src="/js/barra-busqueda.js")

@@ -1,6 +1,8 @@
 import  express  from "express";
 import passport  from '../config/passport.js';
 import bcrypt from "bcrypt";
+import crypto from 'crypto';
+
 import pool from '../config/database.js';
 import loginControllers from '../controllers/loginControllers.js'
 import path from 'path';
@@ -20,6 +22,7 @@ router.get('/compras', (req, res) =>{
 router.post('/signup', async (req, res) => {
     try {
         const { signup_name, signup_lastname, signup_email, signup_password } = req.body;
+        
         const hash = await hashPassword(signup_password);
         pool.query('INSERT INTO users (user_name, user_lastname, user_email, user_password, user_role) VALUES (?, ?, ?, ?, ?)',
         //0 = admin
@@ -27,6 +30,7 @@ router.post('/signup', async (req, res) => {
         //2 = cliente
         //3 = gerente
         //4 = acomodador
+        
                 [signup_name, signup_lastname, signup_email, hash, 2], (error, results) => {
                     if (error) {
                         // Manejo de error al intentar guardar en la base de datos
@@ -74,7 +78,7 @@ router.post('/signin', passport.authenticate('local', {
             res.redirect('/gerente');
             break;
         case 4:
-            res.redirect('/acomodador');
+            res.redirect('/caja');
             break;
         default:
             res.redirect('/'); // Redirigir a una página por defecto en caso de un rol desconocido
