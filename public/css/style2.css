@@ -88,15 +88,32 @@ header.header{
   z-index: 100;
   left: 0; 
   white-space: nowrap;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px; /* Added padding for spacing */
+  border: 20px solid var(--bg-color); /* Added border */
+  width: auto; /* Adjusted width */
+  
 }
 
 .navbar li .submenu .u-items {
   display: flex; 
   flex-direction: column; 
   min-width: 120px;
-  padding: 10px; 
+  padding: 5px;
+  
 }
-
+.navbar li .submenu .u-items a {
+  padding: 10px 20px;
+  color: var(--blue2);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.navbar li .submenu .u-items a:hover {
+  background-color: var(--blue4);
+  color: var(--secondary);
+  border-radius: 5px;
+}
 .navbar li:hover > .submenu {
   visibility: visible;
   opacity: 1;
@@ -105,10 +122,13 @@ header.header{
  
 }
 .navbar li .submenu a {
-color: var(--text-color);  
-padding: 5px 0; 
-display: block; 
-text-align: left;
+  color: var(--blue2);  
+  padding: 10px 20px; 
+  display: block; 
+  text-align: left;
+  font-size: 22px;
+  font-family: Klavika;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar li:hover > ul {
@@ -136,16 +156,20 @@ text-align: left;
 
 .navbar li ul li a {
     padding: 10px;
-    color: #000; /* Submenu item text color */
-    display: block; /* Make the whole area clickable */
+    color: #000; 
+    display: block; 
 }
 .navbar a:hover{
     background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-
 }
+.navbar li .submenu a:hover {
+  background-color: var(--blue2);
+  color: var(--secondary);
+}
+
 .navbar a.active{
     background: -webkit-linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
     -webkit-background-clip: text;
@@ -1977,3 +2001,24 @@ ul.filtros label {
   cursor: pointer;
 }
 
+/* Button style for adding a new address */
+.btn-add-address {
+  background-color: var(--main-color);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  width: 40%;
+}
+
+.btn-add-address:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}

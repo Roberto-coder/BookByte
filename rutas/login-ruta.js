@@ -65,7 +65,7 @@ router.post('/signin', passport.authenticate('local', {
             res.redirect('/admin');
             break;
         case 1:
-            res.redirect('/empleado');
+            res.redirect('/vendedor');
             break;
         case 2:
             res.redirect('/cliente');

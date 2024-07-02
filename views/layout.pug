@@ -9,50 +9,53 @@ html(lang="es")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css")
     body
         header(class="header")
-
-            a(class="logo",href = "/") 
+            a(class="logo", href="/") 
                 img(src="/img/logo.ico")
             ul(class="navbar")
                 li 
-                    a(href="#" class="active") INICIO
+                    a(href="/" class="active") INICIO
                 li
                     a(href="/catalogo") LIBROS+  
-                    div(class = "submenu")
-                        div(class = "u-items")
+                    div(class="submenu")
+                        div(class="u-items")
                             p Categorías
                             ul 
                                 li
-                                    a(href ="/buscar/Poesía") Poesía
-                                    a(href ="/buscar/Terror") Terror 
-                                    a(href ="/buscar/Novela") Novela
-                        div(class = "u-items")
+                                    a(href="/buscar/Poesía") Poesía
+                                li
+                                    a(href="/buscar/Terror") Terror 
+                                li
+                                    a(href="/buscar/Novela") Novela
+                        div(class="u-items")
                             p Autores
                             ul 
                                 li
-                                    a(href ="/buscar/J. K. Rowling") J. K. Rowling
-                                    a(href ="/buscar/Ary Shared") Ary Shared
-                                    a(href ="/buscar/Andres Manuel Lopez Obrador") Andres Manuel Lopez Obrador
-                        div(class = "u-items")
+                                    a(href="/buscar/J. K. Rowling") J. K. Rowling
+                                li
+                                    a(href="/buscar/Ary Shared") Ary Shared
+                                li
+                                    a(href="/buscar/Andres Manuel Lopez Obrador") Andres Manuel Lopez Obrador
+                        div(class="u-items")
                             p Sagas
                             ul 
                                 li
-                                    a(href ="/buscar/Harry Potter") Harry Potter
-                                    a(href ="/buscar/El señor de los anillos") El señor de los anillos
-                                    a(href ="/buscar/Los juegos del hambre") Los juegos del hambre
-                li                                             
-                    a(href="#") OFERTAS
+                                    a(href="/buscar/Harry Potter") Harry Potter
+                                li
+                                    a(href="/buscar/El señor de los anillos") El señor de los anillos
+                                li
+                                    a(href="/buscar/Los juegos del hambre") Los juegos del hambre
+               
                 li
-                    a(href="#") LO MAS LEIDO
+                    a(href="#") LO MAS VENDIDO
                 #icon-menu
                     i.fa-solid.fa-magnifying-glass#icon-search
-
             div(class="mainm")
                 if (user)
                     if user.user_role == 0
                         a(href="/admin" class="user")= user.user_name
                             i(class="ri-user-3-fill") 
                     else if user.user_role == 1
-                        a(href="/" class="user")= user.user_name
+                        a(href="/vendedor" class="user")= user.user_name
                             i(class="ri-user-3-fill") 
                     else if user.user_role == 2
                         a(href="/" class="user")= user.user_name
@@ -60,7 +63,7 @@ html(lang="es")
                 else
                     a(href="login" class="user") MI CUENTA
                         i(class="ri-user-3-fill") 
-                a( class="bag")
+                a(class="bag")
                     i(class="ri-shopping-bag-3-fill") 
                 div(class="contenedorCompra none", id="contenedorCompra")
                     div(class="cesta")
@@ -69,24 +72,19 @@ html(lang="es")
                             span(class="x", id="x") ×   
                     div(class="cesta-footer")
                         div(class="productoo")         
-                                if(carrito)
-                                    for librocarrito in carrito
-                                        div(class = "divcontainer")
-                                            div(class = "imgcompra")
-                                                img(src="img_book/"+librocarrito.book_genre+"/"+librocarrito.book_isbn, alt="")
-                                                div(class = "infocompra") 
-                                                    p  #{librocarrito.book_name} 
-                                                    span(id="nombreLibro")
-                                                div(class = "eliminarCompra")
-                                                    a(href = "/eliminarcarrito/"+librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
-                                                       i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
+                            if(carrito)
+                                for librocarrito in carrito
+                                    div(class="divcontainer")
+                                        div(class="imgcompra")
+                                            img(src="img_book/"+librocarrito.book_genre+"/"+librocarrito.book_isbn, alt="")
+                                            div(class="infocompra") 
+                                                p #{librocarrito.book_name} 
+                                                span(id="nombreLibro")
+                                            div(class="eliminarCompra")
+                                                a(href="/eliminarcarrito/"+librocarrito.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                   i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
                     p(class="total-precio") 
-                       
                     button(type="button", onclick="window.location.href='/compra'") Finalizar Compra
-
-                        
-                                
-                      
                 a(class="fav")
                     i(class="ri-heart-3-fill")
                 div(class="contenedorFavs none", id="contenedorFavs")
@@ -96,27 +94,24 @@ html(lang="es")
                             span(class="x2", id="x2") ×   
                     div(class="heart-footer")
                         div(class="productoos") 
-                                if(favoritos)
-                                    for librofavs in favoritos
-                                        div(class="divcontainer2")
-                                            div(class="imgcompra2")
-                                                img(src="img_book/"+librofavs.book_genre+"/"+librofavs.book_isbn, alt="")
-                                                div(class="infofavs")
-                                                    p  #{librofavs.book_name} 
-                                                    span(id="nombreLibro")
-                                                div(class = "eliminarFavorito")
-                                                    a(href = "/eliminarfavoritos/"+librofavs.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
-                                                        i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
-
-                                                                              
+                            if(favoritos)
+                                for librofavs in favoritos
+                                    div(class="divcontainer2")
+                                        div(class="imgcompra2")
+                                            img(src="img_book/"+librofavs.book_genre+"/"+librofavs.book_isbn, alt="")
+                                            div(class="infofavs")
+                                                p #{librofavs.book_name} 
+                                                span(id="nombreLibro")
+                                            div(class="eliminarFavorito")
+                                                a(href="/eliminarfavoritos/"+librofavs.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                    i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
                 if user
                     a(href="/logout" class="logout")       
-                        i(class="bx bxs-log-out" )
+                        i(class="bx bxs-log-out")
                 div(class="bx bx-menu" id="menu-icon")
-                
         #ctn-bars-search
             form(action="buscar" method="post") 
-                input(type="text", id="inputSearch", name="inputSearch" placeholder="¿Qué deseas buscar?")
+                input(type="text", id="inputSearch", name="inputSearch", placeholder="¿Qué deseas buscar?")
                 button(type="submit", id="btnSearch") Buscar
         #cover-ctn-search
     script(src="js/header.js")                
@@ -127,30 +122,35 @@ html(lang="es")
                 .footer-links 
                     h4 CATEGORÍAS 
                     ul 
-                        l1 
-                        a(href="#") Libros   
-                        a(href="#") Ebooks 
-                        a(href="#") Audiolibros
+                        li 
+                            a(href="#") Libros   
+                        li
+                            a(href="#") Ebooks 
+                        li
+                            a(href="#") Audiolibros
                 .footer-links 
                     h4 CONÓCENOS
                     ul 
-                        l1 
-                        a(href="#") Acerca de   
-                        a(href="#") Políticas 
-                        a(href="#") Avisos de privacidad
+                        li 
+                            a(href="#") Acerca de   
+                        li
+                            a(href="#") Políticas 
+                        li
+                            a(href="#") Avisos de privacidad
                 .footer-links 
                     h4 CONTÁCTANOS 
                     ul 
-                        l1 
-                        a(href="#") elcliente@bookbyte.com.mx
-                        a(href="#", style="color: yellow;") siguenos
+                        li 
+                            a(href="#") elcliente@bookbyte.com.mx
+                        li
+                            a(href="#", style="color: yellow;") siguenos
                         .social-link 
                             a(href="#") 
-                                 i.fab.fa-facebook-f 
+                                i.fab.fa-facebook-f 
                             a(href="#") 
-                                 i.fab.fa-instagram 
+                                i.fab.fa-instagram 
                             a(href="#") 
-                                 i.fab.fa-twitter
-                        a(href="#", style="color: yellow;") Métodos de pago
-
-script(src="js/barra-busqueda.js")
+                                i.fab.fa-twitter
+                        li
+                            a(href="#", style="color: yellow;") Métodos de pago
+    script(src="js/barra-busqueda.js")

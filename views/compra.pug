@@ -56,24 +56,24 @@ html(lang="es")
             input(type="hidden" name="domicilioId" id="domicilioId" value="")
             button.btn-continue(type="submit") Continuar compra
     
-    // Sección de direcciones
-    .contentdireccion
-    if direcciones
-      if direcciones.length > 0
-        .containerdireccion
-          h2 Direcciones Guardadas
-          each direccion in direcciones
-            .cartdireccion
-              .direccionheader #{direccion.Nombre}
-              p #{direccion.calle} #{direccion.numExterior} #{direccion.numInterior ? direccion.numInterior : ""}
-              p #{direccion.colonia}, #{direccion.Municipio}, #{direccion.ESTADO}
-              p CP: #{direccion.CP}
-              p Teléfono: #{direccion.TELEFONO}
-              p Indicaciones: #{direccion.indicaciones}
-              button(type="button" onclick=`elegirDomicilio(${direccion.id})`) Usar esta dirección
-          button(type="button" onclick="mostrarFormulario()") Agregar nueva dirección
-    else
-      include formulariodireccion.pug
+      
+      .contentdireccion
+          if direcciones && direcciones.length > 0
+            .containerdireccion
+              h2 Direcciones Guardadas
+              each direccion in direcciones
+                .cartdireccion
+                  .direccionheader #{direccion.Nombre}
+                  p #{direccion.calle} #{direccion.numExterior} #{direccion.numInterior ? direccion.numInterior : ""}
+                  p #{direccion.colonia}, #{direccion.Municipio}, #{direccion.ESTADO}
+                  p CP: #{direccion.CP}
+                  p Teléfono: #{direccion.TELEFONO}
+                  p Indicaciones: #{direccion.indicaciones}
+                  button(type="button" onclick=`elegirDomicilio(${direccion.id})`) Usar esta dirección
+              button(type="button" onclick="mostrarFormulario()") Agregar nueva dirección
+          else
+            button(type="button" class="btn-add-address" onclick="mostrarFormulario()") Agregar nueva dirección
+            
 
     // Formulario para agregar dirección
     .contentdireccion(style="display:none")#formulario_direccion

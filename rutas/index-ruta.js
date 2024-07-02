@@ -4,7 +4,7 @@ import carritoControllers from "../controllers/carritoControllers.js";
 import favoritosControllers from "../controllers/favoritosControllers.js";
 import compraControllers from "../controllers/compraControllers.js";
 import tarjetaControllers from "../controllers/tarjetaControllers.js";
-
+import vendedorControllers from "../controllers/vendedorControllers.js";
 const router = express.Router();
 
 router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, res) => {
@@ -39,4 +39,7 @@ router.get('/tarjeta', (req, res) => {
     res.render("tarjeta");
 });
 
+router.get('/vendedor',(req,res)=>{
+    res.render('Empleado/vendedor', { results: req.results || [] });
+});
 export default router;

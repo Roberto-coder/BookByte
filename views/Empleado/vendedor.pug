@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Librería - Búsqueda Avanzada
+    link(rel="stylesheet" href="/css/vendedor.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+  body
+    header
+      h1 Librería Punto de Venta
+    main
+      section.search
+        h2 Búsqueda Avanzada
+        form(action="/vendedor" method="POST")
+          .form-group
+            label(for="title") Título
+            input(type="text" id="title" name="title" placeholder="Buscar por título")
+          .form-group
+            label(for="author") Autor
+            input(type="text" id="author" name="author" placeholder="Buscar por autor")
+          .form-group
+            label(for="isbn") ISBN
+            input(type="text" id="isbn" name="isbn" placeholder="Buscar por ISBN")
+          .form-group
+            label(for="publisher") Editorial
+            input(type="text" id="publisher" name="publisher" placeholder="Buscar por editorial")
+          .form-group
+            label(for="subject") Materia
+            input(type="text" id="subject" name="subject" placeholder="Buscar por materia")
+          button(type="submit") Buscar
+      section.results
+        h2 Resultados
+        if results && results.length > 0
+          ul.book-list
+            each book in results
+              li.book-item
+                h3= book.book_name
+                p
+                  strong Autor:
+                  | #{book.book_author}
+                p
+                  strong ISBN:
+                  | #{book.book_isbn}
+                p
+                  strong Editorial:
+                  | #{book.book_editorial}
+                p
+                  strong Materia:
+                  | #{book.book_genre}
+                p
+                  strong Disponibilidad:
+                  if book.book_amount > 1
+                    span.available Disponible
+                  else
+                    span.unavailable No disponible
+        else
+          p No se encontraron resultados
+    footer
+      p &copy; 2024 Librería
