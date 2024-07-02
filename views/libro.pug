@@ -1,0 +1,34 @@
+extends layout
+block content 
+  if(libro)
+    .book-item
+      img.book-cover(src="/img_book/"+libro.book_genre+"/"+libro.book_isbn, alt="")
+      .book-details
+        h2.book-title=libro.book_name
+        p.book-author=libro.book_author
+        p.book-price=libro.book_price
+        .buttons
+            a(href = "/agregarcarrito/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-cart
+                    i.fas.fa-shopping-cart
+                    |  Añadir al carrito
+            a(href = "/agregarfavoritos/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-wishlist
+                    i.fas.fa-heart
+                    |  Agregar a favoritos
+            a(href = "/agregarapartado/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                button.add-to-apartado
+                    i.fas.fa-heart
+                    |  Agregar a apartados
+        .rating
+          | Calificación:
+          each val in [1, 2, 3, 4, 5]
+            span.star(data-value=val class=val <= libro.book_rating ? 'active' : '')
+              i.fas.fa-star
+          input(type="hidden" value=libro.book_id, id="idbook")
+  else
+    p No se encontró información del libro.        
+  // Incluye jQuery primero
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+  // Luego incluye el script personalizado
+  script(src="/js/calificacion.js")      

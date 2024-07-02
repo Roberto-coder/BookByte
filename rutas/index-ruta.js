@@ -5,24 +5,27 @@ import favoritosControllers from "../controllers/favoritosControllers.js";
 import compraControllers from "../controllers/compraControllers.js";
 import tarjetaControllers from "../controllers/tarjetaControllers.js";
 import vendedorControllers from "../controllers/vendedorControllers.js";
+import apartadoControllers from "../controllers/apartadoControllers.js";
+
 const router = express.Router();
 
-router.get('/', carritoControllers.getData, favoritosControllers.getData, (req, res) => {
+router.get('/', carritoControllers.getData, favoritosControllers.getData, apartadoControllers.getData, (req, res) => {
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4', (error, results) => {
         if (error) {
             throw error;
         } else {
-            res.render("index", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+            res.render("index", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos, apartados: req.apartados });
         }
     });
 });
+
 
 router.get('/productos', carritoControllers.getData, (req, res) => {
     pool.query('SELECT * FROM books ORDER BY book_datePublication DESC LIMIT 4', (error, results) => {
         if (error) {
             throw error;
         } else {
-            res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+            res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos, apartados: req.apartados });
         }
     });
 });

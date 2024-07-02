@@ -21,6 +21,7 @@ block content
           th Autor
           th Año
           th Cantidad
+          th Apartado
           th Acciones
       tbody
         each libro in libros
@@ -30,6 +31,7 @@ block content
             td=libro.book_author
             td=libro.year
             td=libro.book_amount
+            td=libro.book_apartados
             td
               a.btn.btn-primary(href=`/admin/editar-libro?id=${libro.book_id}`) Editar
               a.btn.btn-danger(href=`/admin/eliminar-libro?id=${libro.book_id}`) Eliminar

@@ -85,6 +85,33 @@ html(lang="es")
                                                    i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
                     p(class="total-precio") 
                     button(type="button", onclick="window.location.href='/compra'") Finalizar Compra
+
+                        
+                                
+                      
+                a(class="apartado")
+                    i(class="ri-book-3-fill")
+                div(class="contenedorApartado none", id="contenedorApartado")
+                    div(class="apartado")
+                        div(class="apartado-header")
+                            h2 Apartados
+                            span(class="x3", id="x3") ×   
+                    div(class="apartado-footer")
+                        div(class="productoos") 
+                                if(apartados)
+                                    for libroapartado in apartados
+                                        div(class="divcontainer2")
+                                            div(class="imgcompra2")
+                                                img(src="img_book/"+libroapartado.book_genre+"/"+libroapartado.book_isbn, alt="")
+                                                div(class="infoapartado")
+                                                    p  #{libroapartado.book_name} 
+                                                    span(id="nombreLibro")
+                                                div
+                                                    p  Cantidad: #{libroapartado.quantity}
+                                                div(class = "eliminarApartado")
+                                                    a(href = "/eliminarapartado/"+libroapartado.book_id, style="color: white; text-decoration: none; cursor: pointer;") 
+                                                        i(class='bx bx-trash bx-tada bx-rotate-90' style='color:#b71021') 
+                
                 a(class="fav")
                     i(class="ri-heart-3-fill")
                 div(class="contenedorFavs none", id="contenedorFavs")
@@ -114,7 +141,7 @@ html(lang="es")
                 input(type="text", id="inputSearch", name="inputSearch", placeholder="¿Qué deseas buscar?")
                 button(type="submit", id="btnSearch") Buscar
         #cover-ctn-search
-    script(src="js/header.js")                
+    script(src="/js/header.js")                
     block content
     footer(class="footer")
         .container-footer 
@@ -154,3 +181,7 @@ html(lang="es")
                         li
                             a(href="#", style="color: yellow;") Métodos de pago
     script(src="js/barra-busqueda.js")
+                                 i.fab.fa-twitter
+                        a(href="#", style="color: yellow;") Métodos de pago
+
+script(src="/js/barra-busqueda.js")

@@ -35,6 +35,7 @@ CREATE TABLE `books` (
   `book_isbn` bigint NOT NULL,
   `book_editorial` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `book_amount` int NOT NULL,
+  `book_apartados` int NOT NULL,
   PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -45,7 +46,10 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (4,'Harry Potter y las Reliquias de la Muerte','J. K. Rowling','Fantasia',549.00,704,'2020-05-24','España',1,9786073193566,'Salamandra',10),(5,'La maldición del Titán','Rick Riordan','Fantasia',369.00,304,'2023-12-12','España',1,9786073838764,'Salamandra',0),(6,'Guerra Mundial Z: Una Historia Oral de la Guerra Zombi','Max Brooks','Terror',249.00,472,'2019-05-01','España',1,9786073170161,'Penguin Random House Grupo Editorial',20),(7,'Dune','Frank Herbert','Ciencia ficción',242.00,784,'2020-08-01','Estados Unidos',1,9786073194648,'Penguin Random House Grupo Editorial',0);
+INSERT INTO `books` VALUES (4,'Harry Potter y las Reliquias de la Muerte','J. K. Rowling','Fantasia',549.00,704,'2020-05-24','España',1,9786073193566,'Salamandra',10,10),
+                            (5,'La maldición del Titán','Rick Riordan','Fantasia',369.00,304,'2023-12-12','España',1,9786073838764,'Salamandra',0,15),
+                            (6,'Guerra Mundial Z: Una Historia Oral de la Guerra Zombi','Max Brooks','Terror',249.00,472,'2019-05-01','España',1,9786073170161,'Penguin Random House Grupo Editorial',20,15),
+                            (7,'Dune','Frank Herbert','Ciencia ficción',242.00,784,'2020-08-01','Estados Unidos',1,9786073194648,'Penguin Random House Grupo Editorial',0,12);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,6 +238,38 @@ LOCK TABLES `orden` WRITE;
 INSERT INTO `orden` VALUES (3,3,0.00,2),(4,3,0.00,2),(6,5,0.00,1),(7,5,0.00,1),(8,5,0.00,1),(9,5,0.00,1),(10,3,0.00,2),(11,3,1836.00,2),(12,5,1889.00,1),(13,5,0.00,1),(14,5,249.00,1),(15,3,549.00,2),(16,3,249.00,2),(17,5,549.00,1),(18,3,1098.00,2),(19,3,498.00,2),(20,3,549.00,2),(21,3,0.00,2),(22,3,0.00,2),(23,3,0.00,2),(24,3,549.00,2),(25,3,549.00,2),(30,5,798.00,1);
 /*!40000 ALTER TABLE `orden` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `apartado`
+--
+
+DROP TABLE IF EXISTS `apartado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `apartado` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_book` int NOT NULL,
+  `quantity` INT NOT NULL,
+  `reservationDate` DATE NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `apartado_user_idx` (`id_user`),
+  KEY `libro_idx` (`id_book`),
+  CONSTRAINT `apartado_libro` FOREIGN KEY (`id_book`) REFERENCES `books` (`book_id`),
+  CONSTRAINT `apartado_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `apartado`
+--
+
+LOCK TABLES `apartado` WRITE;
+/*!40000 ALTER TABLE `apartado` DISABLE KEYS */;
+INSERT INTO `apartado` VALUES (8,3,6,1,'2024-06-13'),(9,3,7,2,'2024-06-13'),(10,5,4,1,'2024-06-13');
+/*!40000 ALTER TABLE `apartado` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `users`

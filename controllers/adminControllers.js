@@ -158,7 +158,8 @@ function agregarLibro(req, res) {
       book_vol: req.body.volumen,
       book_isbn: req.body.isbn,
       book_editorial: req.body.editorial,
-      book_amount: req.body.cantidad
+      book_amount: req.body.cantidad,
+      book_apartados: req.body.apartado
     };
 
     // Llamar a la función en el modelo para agregar el nuevo usuario
@@ -205,7 +206,8 @@ function editarLibro(req, res) {
         book_datePublication: req.body.fecha,
         book_placePublication: req.body.lugar,
         book_vol: req.body.volumen,
-        book_amount: req.body.cantidad
+        book_amount: req.body.cantidad,
+        book_apartados: req.body.apartado
       };
 
       // Llamar a la función para editar el usuario en el modelo
