@@ -8,10 +8,11 @@ block content
         p.book-author=libro.book_author
         p.book-price=libro.book_price
         .buttons
-            a(href = "/agregarcarrito/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
-                button.add-to-cart
-                    i.fas.fa-shopping-cart
-                    |  Añadir al carrito
+            if(libro.book_amount > 0)
+              a(href = "/agregarcarrito/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
+                  button.add-to-cart
+                      i.fas.fa-shopping-cart
+                      |  Añadir al carrito
             a(href = "/agregarfavoritos/"+libro.book_id, style="color: white; text-decoration: none; cursor: pointer;")
                 button.add-to-wishlist
                     i.fas.fa-heart

@@ -42,9 +42,10 @@ block content
                             .s_overlay
                             if (book.book_amount == 0) 
                                 h2(style="color: black;") AGOTADO
-                            h4
-                                i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                            if(book.book_amount > 0)
+                              h4
+                                  i.fa.fa-cart-arrow-down(aria-hidden="true")
+                                  a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
                             
                         .row
                             .col-md-12
@@ -104,9 +105,10 @@ block content
                             .s_overlay
                             if (book.book_amount == 0) 
                                 h2(style="color: black;") AGOTADO
-                            h4
-                                i.fa.fa-cart-arrow-down(aria-hidden="true")
-                                a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                            if(book.book_amount > 0)
+                              h4
+                                  i.fa.fa-cart-arrow-down(aria-hidden="true")
+                                  a(href = "/agregarcarrito/"+book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
                             
                         .row
                             .col-md-12
