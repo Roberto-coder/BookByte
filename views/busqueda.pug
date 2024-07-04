@@ -1,0 +1,101 @@
+extends layout
+
+block content
+  .mainContainer 
+    .filtrosContainer
+      .filtro-categoria
+        h4 Categorías
+        ul.filtros
+          li
+            a(href="/buscar/novela") Novela
+          li
+            a(href="/buscar/romantica") Romántica
+          li
+            a(href="/buscar/Ciencia Ficción") Ciencia ficción
+          li
+            a(href="/buscar/Distopía") Distopía
+          li
+            a(href="/buscar/Aventura") Aventuras
+          li
+            a(href="/buscar/Fantasía") Fantasía
+          li
+            a(href="/buscar/Contemporáneo") Contemporáneo
+          li
+            a(href="/buscar/Terror") Terror
+          li
+            a(href="/buscar/Poesía") Poesía
+          li
+            a(href="/buscar/Juvenil") Juvenil
+          li
+            a(href="/buscar/Infantil") Infantil
+          li
+            a(href="/buscar/Autoayuda y superación personal") Autoayuda y superación personal
+          li
+            a(href="/buscar/Salud y deporte") Salud y deporte
+          li
+            a(href="/buscar/Libros prácticos o manualesl") Libros prácticos o manuales
+          li
+            a(href="/buscar/Biografías") Biografías
+          li
+            a(href="/buscar/Cocina") Cocina
+          li
+            a(href="/buscar/Viajes") Viajes
+          li
+            a(href="/buscar/Divulgativos") Divulgativos
+          li
+            a(href="/buscar/Arte") Arte
+    .bookContainer
+      .row
+        .col-md-12
+          br
+          br
+        .row
+          if (typeof newBooks !== 'undefined' && newBooks.length > 0)
+            for book in newBooks
+              .col-md-3 
+                a(href="/libro/" + book.book_id)
+                  .s_product
+                    img(src="/img_book/" + book.book_genre + "/" + book.book_isbn, alt="")
+                    .s_overlay
+                    if (book.book_amount == 0) 
+                      h2(style="color: black;") AGOTADO 
+                    h4
+                      i.fa.fa-cart-arrow-down(aria-hidden="true")
+                      a(href="/agregarcarrito/" + book.book_id, style="color: white; text-decoration: none; cursor: pointer;") AÑADIR AL CARRITO
+                  .favs
+                .row
+                  .col-md-12
+                    .rate
+                      h3= book.book_name 
+                    if (book.book_rating == 1)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+                    else if (book.book_rating == 2)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                    else if (book.book_rating == 3)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                    else if (book.book_rating == 4)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                    else if (book.book_rating == 5)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                        i.fa.fa-star(aria-hidden="true")
+                    else if (book.book_rating == -1 || book.book_rating >= 0 || book.book_rating <= 1)
+                      p
+                        i.fa.fa-star(aria-hidden="true")
+        
+                      h5= book.book_price
+          else  
+            h1 No Se encontraron resultados
