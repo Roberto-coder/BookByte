@@ -2,6 +2,7 @@ import passport from "passport";
 import bcrypt from "bcrypt";
 import pool from './database.js';
 import { Strategy as LocalStrategy } from 'passport-local';
+
 passport.use(new LocalStrategy({
     usernameField: 'login_email',
     passwordField: 'login_password'
@@ -35,7 +36,7 @@ passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
   
-  // Deserialización del usuario
+// Deserialización del usuario
 passport.deserializeUser(function(id, done) {
     pool.getConnection((err, connection) => {
         if (err) { return done(err); }
@@ -47,4 +48,6 @@ passport.deserializeUser(function(id, done) {
         });
     });
 });
+
+
 export default passport;

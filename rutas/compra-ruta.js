@@ -11,4 +11,9 @@ router.post('/cantidad/:id', compraControllers.operaciones);
 router.post('/generarOrden', compraControllers.finalizarcompraa, compraControllers.generarOrden); 
 router.post('/direccion', compraControllers.capturaDireccion);
 
+router.get('/editarDireccion/:id', compraControllers.obtenerDireccionParaEdicion); // Obtener datos para la edición
+router.post('/editarDireccion/:id', compraControllers.editarDireccion); // Editar dirección
+router.get('/eliminarDireccion/:id', compraControllers.eliminarDireccion); // Eliminar dirección
+
+
 export default router;

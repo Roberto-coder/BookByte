@@ -25,12 +25,12 @@ function finalizarcompraa(req, res, next) {
         next();
     }
 }
+
 function obtenerDirecciones(req, res, next) {
     if (req.isAuthenticated()) {
         const idCliente = req.user.user_id;
-        const queryDirecciones = `
-            SELECT * FROM domicilios WHERE idCliente = ?
-        `;
+        const queryDirecciones = `SELECT * FROM domicilios WHERE idCliente = ?`;
+
         pool.query(queryDirecciones, [idCliente], (error, results) => {
             if (error) {
                 console.log(error);
@@ -93,6 +93,7 @@ function capturaDireccion(req, res, next) {
         });
     });
 }
+
 function generarOrden(req, res, next) {
     const idCliente = req.user.user_id;
     const idDomicilio = req.body.domicilioId;
@@ -124,11 +125,11 @@ function generarOrden(req, res, next) {
 
                 const idOrden = results.insertId;
 
-                const detalles = (req.carrito || []).map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad,fechaFormateada]);
+                const detalles = (req.carrito || []).map(item => [idOrden, item.book_id, item.carrito_cantidad, item.book_price * item.carrito_cantidad, fechaFormateada]);
 
                 if (detalles.length > 0) {
                     const queryInsertDetalle = `
-                        INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO,fecha_registro)
+                        INSERT INTO detalle_orden (ID_ORDEN, ID_PRODUCTO, CANTIDAD, PRECIO, fecha_registro)
                         VALUES ?
                     `;
 
@@ -173,4 +174,58 @@ function generarOrden(req, res, next) {
     });
 }
 
-export default { finalizarcompraa, obtenerDirecciones, operaciones, generarOrden, capturaDireccion };
+function editarDireccion(req, res, next) {
+    const idDireccion = req.params.id;
+    const { nombre, cp, estado, municipio, colonia, calle, numero, sin_numero, interior, calle1, calle2, tipo, telefono, indicaciones } = req.body;
+    const idCliente = req.user.user_id;
+
+    const queryUpdate = `
+        UPDATE domicilios 
+        SET Nombre = ?, CP = ?, ESTADO = ?, Municipio = ?, colonia = ?, calle = ?, numExterior = ?, numInterior = ?, calleext1 = ?, calleext2 = ?, telefono = ?, indicaciones = ?
+        WHERE idCliente = ? AND id = ?
+    `;
+
+    pool.query(queryUpdate, [nombre, cp, estado, municipio, colonia, calle, numero, interior, calle1, calle2, telefono, indicaciones, idCliente, idDireccion], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('Error al actualizar la dirección');
+        }
+        res.redirect('/compra');
+    });
+}
+
+function eliminarDireccion(req, res, next) {
+    const idDireccion = req.params.id;
+    const idCliente = req.user.user_id;
+
+    const queryDelete = `DELETE FROM domicilios WHERE idCliente = ? AND id = ?`;
+
+    pool.query(queryDelete, [idCliente, idDireccion], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('Error al eliminar la dirección');
+        }
+        res.redirect('/compra');
+    });
+}
+
+function obtenerDireccionParaEdicion(req, res, next) {
+    const idDireccion = req.params.id;
+    const idCliente = req.user.user_id;
+
+    const query = `SELECT * FROM domicilios WHERE idCliente = ? AND id = ?`;
+
+    pool.query(query, [idCliente, idDireccion], (error, results) => {
+        if (error) {
+            console.log(error);
+            return res.status(500).send('Error al obtener la dirección');
+        }
+        if (results.length > 0) {
+            res.render('editarDireccion', { direccion: results[0] });
+        } else {
+            res.status(404).send('Dirección no encontrada');
+        }
+    });
+}
+
+export default { finalizarcompraa, obtenerDirecciones, operaciones, generarOrden, capturaDireccion, editarDireccion, eliminarDireccion, obtenerDireccionParaEdicion };

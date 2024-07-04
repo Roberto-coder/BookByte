@@ -52,6 +52,11 @@ html(lang="es")
                             div.input-block
                                 label(for="signup-password") Contraseña
                                 input#signup-password(type="password", name="signup_password", required)
+                            if error_msg.length > 0
+                                .error
+                                    each err in error_msg
+                                        p #{err}    
                         button.btn-signup#btn-signup(type="submit") Crear cuenta
+
 
         script(src="js/login.js")
