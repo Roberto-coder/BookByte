@@ -27,7 +27,7 @@ router.post('/buscar', carritoControllers.getData, favoritosControllers.getData,
         if (error) {
             throw error;
         } else {
-            res.render("productos", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
+            res.render("busqueda", { newBooks: results, user: req.user, carrito: req.carrito, favoritos: req.favoritos });
         }
     });
 });
