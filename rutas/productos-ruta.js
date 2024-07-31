@@ -64,43 +64,51 @@ router.get('/Libro/:LibroID', carritoControllers.getData, favoritosControllers.g
     });
 });
 
-router.post('/ranking', carritoControllers.getData, favoritosControllers.getData, (req, res) =>{
-    const  { bookId, rating } = req.body;
+router.post('/ranking', carritoControllers.getData, favoritosControllers.getData, (req, res) => {
+    const { bookId, rating } = req.body;
+
     pool.query(`
-    SELECT book_rating
-    FROM books
-    WHERE book_id = ?
-
-
-
-    `,[bookId],(error, results) => {
+        SELECT book_rating
+        FROM books
+        WHERE book_id = ?
+    `, [bookId], (error, results) => {
         if (error) {
             throw error;
         } else {
             let new_rating;
-            if(results[0].book_rating==-1){
+            let current_rating = parseInt(results[0].book_rating);
+
+            if (isNaN(current_rating) || current_rating == -1) {
                 new_rating = parseInt(rating);
-            } else{
-                let a = parseInt(results[0].book_rating);
-                let b = parseInt(rating);
-                console.log(a);
-                new_rating=(a+b)/2;
-                console.log(new_rating+"dasdass");
+            } else {
+                let rating_value = parseInt(rating);
+                if (!isNaN(rating_value)) {
+                    new_rating = (current_rating + rating_value) / 2;
+                } else {
+                    console.error("El valor de rating proporcionado no es un número válido");
+                    res.status(400).send("Error: el valor de rating proporcionado no es válido");
+                    return;
+                }
             }
-            pool.query(`
-            
-                
-        UPDATE books
-        SET book_rating = ?
-        WHERE book_id=?;
-                
-                `,[new_rating, bookId],(error, results) => {
-                    if (error){
+
+            // Asegurarse de que new_rating sea un número válido antes de ejecutar la consulta de actualización
+            if (!isNaN(new_rating)) {
+                pool.query(`
+                    UPDATE books
+                    SET book_rating = ?
+                    WHERE book_id = ?;
+                `, [new_rating, bookId], (error, results) => {
+                    if (error) {
                         throw error;
-                    } else{
+                    } else {
                         console.log("Rating actualizado con éxito");
+                        res.status(200).send("Rating actualizado con éxito");
                     }
                 });
+            } else {
+                console.error("El valor calculado de new_rating no es un número válido");
+                res.status(400).send("Error en la actualización del rating");
+            }
         }
     });
 });
